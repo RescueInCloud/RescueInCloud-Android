@@ -27,7 +27,8 @@ import android.util.Log;
 public class HttpPostConnector {
 	
 
-	public static String IP_Server = "192.168.1.107";	
+	//public static String IP_Server = "192.168.1.107";	
+	public static String IP_Server = "192.168.1.105";//ip mac
 	/* Connections */
 	
 	public static String URL_HOLA = "http://" + IP_Server + "/git/web-service-demo/ws-rescueincloud/scripts/login.php";
