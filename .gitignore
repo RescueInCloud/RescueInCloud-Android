@@ -1,1 +1,3 @@
 RescueInCloud/bin/
+RescueInCloud/gen/
+*.DS_Store
