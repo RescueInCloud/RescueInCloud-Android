@@ -3,13 +3,13 @@ package es.ucm.ric;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import es.ucm.ric.dao.DatabaseHelper;
 import es.ucm.ric.tools.Tools;
 
 public class MyApp extends Application {
 	
 	public static MyApp INSTANCE;
 	public final String PREFERENCES_FILE = "Ajustes";
+	public final String  DATABASE_NAME = "rescue_lite_db";
 	private boolean hayActualizacion;
 	
 	public static Context getContext() {
@@ -47,8 +47,8 @@ public class MyApp extends Application {
 	        editor.putBoolean("flag", true);
 	        editor.commit();
 			
-	        Tools.loadDataBase(this.getApplicationContext(), DatabaseHelper.DATABASE_NAME, R.raw.rescue_lite_db);
-    	}
+	        Tools.loadDataBase(this.getApplicationContext(), DATABASE_NAME, R.raw.rescue_lite_db);
+	   	}
     	
 	}
 

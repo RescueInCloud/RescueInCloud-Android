@@ -27,10 +27,10 @@ import android.util.Log;
 public class HttpPostConnector {
 	
 
-	public static String IP_Server = "10.0.0.2:8080";	
+	public static String IP_Server = "192.168.1.107";	
 	/* Connections */
 	
-	public static String URL_HOLA = "http://" + IP_Server + "/git/ws-rescueincloud/scripts/login.php";
+	public static String URL_HOLA = "http://" + IP_Server + "/git/web-service-demo/ws-rescueincloud/scripts/login.php";
 
 	private InputStream is = null;
 	private String result = "";
