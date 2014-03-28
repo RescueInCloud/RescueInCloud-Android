@@ -5,42 +5,123 @@
     android:orientation="vertical" >
     
     <LinearLayout
+        android:id="@+id/protocolos"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="vertical"
-	    android:background="@drawable/card_item"
+	    android:orientation="horizontal"
+	    style="@style/Card_style"
 	    android:gravity="center"
-	    android:layout_marginTop="10dp"
-	    android:layout_marginLeft="10dp"
-	    android:layout_marginRight="10dp"
 	    android:clickable="true"
-	     >
+	    android:onClick="onClick" >
 
+        
         <ImageView
-            android:id="@+id/imageButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/list_icon" />
+            android:src="@drawable/diagnostico"
+            android:contentDescription="@string/titulo_protocolos" />
+
+        <LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:layout_marginLeft="10dp">
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/titulo_protocolos"
+	            android:textColor="@color/color_secundario_a"
+	            android:textSize="24sp"
+	            android:textStyle="bold"   />
+	        
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/subtitulo_protocolos"
+	            android:textColor="@color/color_secundario_c"
+	            android:textSize="18sp"
+	            android:textStyle="normal"   />
+        </LinearLayout>
 
 	</LinearLayout>
 	
     <LinearLayout
+        android:id="@+id/farmacos"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="vertical"
-	    android:background="@drawable/card_item"
+	    android:orientation="horizontal"
+	    style="@style/Card_style" 
 	    android:gravity="center"
-	    android:layout_marginTop="10dp"
-	    android:layout_marginLeft="10dp"
-	    android:layout_marginRight="10dp"
-	    android:clickable="true"
-	>
+	    android:clickable="true" 
+	    android:onClick="onClick">
 
         <ImageView
-            android:id="@+id/imageButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/list_icon" />
+            android:src="@drawable/pastillas"
+            android:contentDescription="@string/titulo_farmacos" />
+        
+        <LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:layout_marginLeft="10dp" >
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/titulo_farmacos"
+	            android:textColor="@color/color_secundario_a"
+	            android:textSize="24sp"
+	            android:textStyle="bold"   />
+	        
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/subtitulo_farmacos"
+	            android:textColor="@color/color_secundario_c"
+	            android:textSize="18sp"
+	            android:textStyle="normal"   />
+        </LinearLayout>
+
+	</LinearLayout>
+	
+    <LinearLayout
+        android:id="@+id/notas"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	   	style="@style/Card_style" 
+	    android:gravity="center"
+	    android:clickable="true" 
+	    android:onClick="onClick">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/libro_diagnostico" 
+            android:contentDescription="@string/titulo_notas" />
+        
+        <LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical"
+		    android:layout_marginLeft="10dp" >
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/titulo_notas"
+	            android:textColor="@color/color_secundario_a"
+	            android:textSize="24sp"
+	            android:textStyle="bold"   />
+	        
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/subtitulo_notas"
+	            android:textColor="@color/color_secundario_c"
+	            android:textSize="18sp"
+	            android:textStyle="normal"   />
+        </LinearLayout>
 
 	</LinearLayout>
     

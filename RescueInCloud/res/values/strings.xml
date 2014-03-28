@@ -7,5 +7,13 @@
     
     <!-- HolaMundo Activity -->
 	<string name="button_conexion">Traer farmacos del servidor</string>
-
+	
+	<!-- MenuPrincipal Activity -->
+	<string name="titulo_protocolos">Protocolos</string>
+	<string name="subtitulo_protocolos">Revisar los protocolos disponibles</string>
+	<string name="titulo_farmacos">Farmacos</string>
+	<string name="subtitulo_farmacos">Revisar los farmacos disponibles</string>
+	<string name="titulo_notas">Notas</string>
+	<string name="subtitulo_notas">Revisar las notas disponibles</string>
+	
 </resources>

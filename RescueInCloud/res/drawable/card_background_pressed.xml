@@ -3,19 +3,15 @@
     <item>
         <shape android:shape="rectangle"
             android:dither="true">
-            <corners android:radius="2dp"/>
-            <solid android:color="#CCC" />
+            <corners android:radius="1dp"/>
+            <stroke android:width="5dp" android:color="#CCC" />
         </shape>
     </item>
-    <item android:bottom="2dp">
+    <item android:top="2dp" android:left="2dp" >
         <shape android:shape="rectangle"
             android:dither="true">
-            <corners android:radius="2dp" />
-            <solid android:color="#22000000" />
-            <padding android:bottom="6dp"
-                android:left="4dp"
-                android:right="4dp"
-                android:top="4dp" />
+            <corners android:radius="1dp" />
+            <solid android:color="#FFF" />
         </shape>
     </item>
 </layer-list>
