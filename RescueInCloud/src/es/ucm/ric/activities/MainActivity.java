@@ -22,7 +22,7 @@ public class MainActivity extends BaseActivity {
 		
 		switch (v.getId()){
 			case R.id.button1:
-				Intent intent = new Intent(this, SecondActivity.class);
+				Intent intent = new Intent(this, HolaMundoActivity.class);
 				startActivity(intent);
 				break;
 			

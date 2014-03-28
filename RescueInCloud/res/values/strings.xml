@@ -2,5 +2,10 @@
 
     <string name="app_name">Rescue in cloud</string>
     <string name="button_next">Next activity</string>
+    
+    
+    
+    <!-- HolaMundo Activity -->
+	<string name="button_conexion">Traer farmacos del servidor</string>
 
 </resources>
