@@ -15,5 +15,6 @@
 	<string name="subtitulo_farmacos">Revisar los farmacos disponibles</string>
 	<string name="titulo_notas">Notas</string>
 	<string name="subtitulo_notas">Revisar las notas disponibles</string>
+	<string name="action_refresh">Refrescar</string>
 	
 </resources>
