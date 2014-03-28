@@ -31,6 +31,10 @@ public class MainActivity extends BaseActivity {
 		        connection.execute();
 		        break;
 				
+			case R.id.button3:
+				Intent intent2 = new Intent(this, MenuPrincipalActivity.class);
+				startActivity(intent2);
+		        break;
 		
 		
 		}
