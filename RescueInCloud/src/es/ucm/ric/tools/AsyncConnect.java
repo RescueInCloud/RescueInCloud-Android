@@ -5,7 +5,11 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-
+/**
+ * 
+ * @author Ricardo Champa
+ *
+ */
 public class AsyncConnect extends AsyncTask<Void, String, String> {
 
 	public static final String CONNECTION_ESTABLISHED = "ok";

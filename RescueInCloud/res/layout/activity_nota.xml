@@ -26,6 +26,6 @@
 	        android:text="13 de abril de 2014"
 	        android:textAppearance="?android:attr/textAppearanceSmall"
 	        android:layout_marginBottom="10dp"
-	        android:textColor="#AEAEAE" />
+	        android:textColor="#A3A1A0" />
 	</LinearLayout>
 </ScrollView>

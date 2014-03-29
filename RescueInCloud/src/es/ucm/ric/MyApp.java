@@ -7,7 +7,7 @@ import es.ucm.ric.tools.Tools;
 
 public class MyApp extends Application {
 	
-	public static MyApp INSTANCE;
+	private static MyApp INSTANCE;
 	public final String PREFERENCES_FILE = "Ajustes";
 	public final String  DATABASE_NAME = "rescue_lite_db";
 	private boolean hayActualizacion;

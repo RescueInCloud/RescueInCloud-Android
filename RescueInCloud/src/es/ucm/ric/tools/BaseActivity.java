@@ -6,6 +6,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import es.ucm.ric.R;
 
+/**
+ * 
+ * @author Ricardo Champa
+ *
+ */
 public class BaseActivity extends ActionBarActivity {
 
 	@Override

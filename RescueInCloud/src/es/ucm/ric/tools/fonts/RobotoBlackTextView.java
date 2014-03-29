@@ -5,6 +5,11 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+/**
+ * 
+ * @author Ricardo Champa
+ *
+ */
 public class RobotoBlackTextView extends TextView {
 
     public RobotoBlackTextView(Context context, AttributeSet attrs, int defStyle) {

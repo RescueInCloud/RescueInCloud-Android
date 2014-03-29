@@ -21,7 +21,7 @@ import android.util.Log;
  * Clase que se encarga de enviar una peticion y gestionar la respuesta 
  * devolviendo un JSON Array.
  * 
- * @author Ricardo
+ * @author Ricardo Champa
  *
  */
 public class HttpPostConnector {

@@ -9,12 +9,22 @@
     <color name="color_background_editText_onfocus">#ffffff</color>
     
     
-    <color name="color_primario">#A72813</color>
-    <color name="color_primario2">#A72813</color>
-    <color name="color_secundario_a">#0D666A</color>
-    <color name="color_secundario_b">#589812</color>
+    <color name="color_menu_item_pressed">#CCC</color>
+    
+    
+    <color name="color_primario">#138A7A</color>
+    <color name="color_primario2">#065A4E</color>
+    <color name="color_secundario_a">#8F600A</color>
+    <color name="color_secundario_b">#D51E2F</color>
     
           
 </resources>
 
-<!-- <color name="color_font_boton">#ffffff</color> -->
+<!-- 
+<color name="color_primario">#A72813</color>
+    <color name="color_primario2">#A72813</color>
+    <color name="color_secundario_a">#0D666A</color>
+    <color name="color_secundario_b">#589812</color>
+
+
+<color name="color_font_boton">#ffffff</color> -->

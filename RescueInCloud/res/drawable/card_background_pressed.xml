@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
+    <item android:right="4dp">
         <shape android:shape="rectangle"
             android:dither="true">
             <corners android:radius="1dp"/>
-            <stroke android:width="5dp" android:color="#CCC" />
+            <stroke android:width="5dp" android:color="@color/color_menu_item_pressed" />
         </shape>
     </item>
-    <item android:top="2dp" android:left="2dp" >
+    <item android:top="2dp" android:left="2dp" android:right="4dp" >
         <shape android:shape="rectangle"
             android:dither="true">
             <corners android:radius="1dp" />
