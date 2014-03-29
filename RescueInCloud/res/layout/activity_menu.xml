@@ -19,28 +19,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/diagnostico"
-            android:contentDescription="@string/titulo_protocolos" />
+            android:contentDescription="@string/titulo_protocolos" 
+            android:background="@color/color_primario"
+            />
 
         <LinearLayout
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="vertical"
-		    android:layout_marginLeft="10dp">
+		    android:layout_marginLeft="10dp" >
 	        <TextView
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="@string/titulo_protocolos"
 	            android:textColor="@color/color_secundario_a"
-	            android:textSize="24sp"
-	            android:textStyle="bold"   />
+	            android:textSize="24sp"   />
 	        
 	        <TextView
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="@string/subtitulo_protocolos"
-	            android:textColor="@color/color_secundario_c"
-	            android:textSize="18sp"
-	            android:textStyle="normal"   />
+	            android:textColor="@color/color_primario"
+	            android:textSize="14sp"   />
         </LinearLayout>
 
 	</LinearLayout>
@@ -59,7 +59,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/pastillas"
-            android:contentDescription="@string/titulo_farmacos" />
+            android:contentDescription="@string/titulo_farmacos"
+            android:background="@color/color_primario" />
         
         <LinearLayout
 		    android:layout_width="match_parent"
@@ -71,16 +72,14 @@
 	            android:layout_height="wrap_content"
 	            android:text="@string/titulo_farmacos"
 	            android:textColor="@color/color_secundario_a"
-	            android:textSize="24sp"
-	            android:textStyle="bold"   />
+	            android:textSize="24sp"  />
 	        
 	        <TextView
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="@string/subtitulo_farmacos"
-	            android:textColor="@color/color_secundario_c"
-	            android:textSize="18sp"
-	            android:textStyle="normal"   />
+	            android:textColor="@color/color_primario"
+	            android:textSize="14sp"   />
         </LinearLayout>
 
 	</LinearLayout>
@@ -98,8 +97,9 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/libro_diagnostico" 
-            android:contentDescription="@string/titulo_notas" />
+            android:src="@drawable/diagnostico_check" 
+            android:contentDescription="@string/titulo_notas" 
+            android:background="@color/color_primario"/>
         
         <LinearLayout
 		    android:layout_width="match_parent"
@@ -111,16 +111,14 @@
 	            android:layout_height="wrap_content"
 	            android:text="@string/titulo_notas"
 	            android:textColor="@color/color_secundario_a"
-	            android:textSize="24sp"
-	            android:textStyle="bold"   />
+	            android:textSize="22sp"  />
 	        
 	        <TextView
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="@string/subtitulo_notas"
-	            android:textColor="@color/color_secundario_c"
-	            android:textSize="18sp"
-	            android:textStyle="normal"   />
+	            android:textColor="@color/color_primario"
+	            android:textSize="14sp"  />
         </LinearLayout>
 
 	</LinearLayout>

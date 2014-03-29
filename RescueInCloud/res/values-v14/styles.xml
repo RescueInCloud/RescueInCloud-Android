@@ -27,7 +27,7 @@
     <style name="MyActionBar"
            parent="@style/Widget.AppCompat.ActionBar">
         <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
-        <item name="android:background">@color/color_secundario_c</item>
+        <item name="android:background">@color/color_primario</item>
 
         <!-- Support library compatibility -->
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>

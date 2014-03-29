@@ -1,5 +1,6 @@
 package es.ucm.ric.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -23,7 +24,8 @@ public class MenuPrincipalActivity extends BaseActivity{
 				Toast.makeText(this, "Has pulsado farmacos", Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.notas:
-				Toast.makeText(this, "Has pulsado notas", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(this, NotaActivity.class);
+				startActivity(intent);
 				break;
 		}
 	}

@@ -16,10 +16,7 @@
                 android:width="0dp"
         		android:color="#EFECEC" 
         	/>
-            <padding android:bottom="10dp"
-                android:left="10dp"
-                android:right="10dp"
-                android:top="10dp" />
+            
             
         </shape>
     </item>
