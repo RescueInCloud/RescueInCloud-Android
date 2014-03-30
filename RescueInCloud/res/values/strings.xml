@@ -18,5 +18,7 @@
 	<string name="action_refresh">Refrescar</string>
 	<string name="testing">Testing</string>
 	
+	<string name="drawer_open">Menú Abierto</string>
+    <string name="drawer_close">Menú Cerrado</string>
 	
 </resources>
