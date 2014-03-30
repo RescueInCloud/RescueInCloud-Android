@@ -9,8 +9,9 @@
     <color name="color_background_editText_onfocus">#ffffff</color>
     
     
-    <color name="color_menu_item_pressed">#CCC</color>
     
+    <color name="color_menu_item_pressed">#CCC</color>
+    <color name="color_blanco">#FFF</color>
     
     <color name="color_primario">#138A7A</color>
     <color name="color_primario2">#065A4E</color>

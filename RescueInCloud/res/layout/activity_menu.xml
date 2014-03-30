@@ -29,19 +29,15 @@
 		    android:gravity="center_vertical"
 		    android:background="@drawable/card_item_contenido" >
 	        <TextView
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:id="@+id/titulo_protocolo"
+	            style="@style/Card_contenido"
 	            android:text="@string/titulo_protocolos"
-       		    android:layout_marginLeft="10dp"
-	            android:textColor="#FFF"
 	            android:textSize="24sp"   />
 	        
 	        <TextView
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:id="@+id/subtitulo_protocolo"
+	            style="@style/Card_contenido"
 	            android:text="@string/subtitulo_protocolos"
-	            android:layout_marginLeft="10dp"
-	            android:textColor="#FFF"
 	            android:textSize="14sp"   />
         </LinearLayout>
 
@@ -70,19 +66,15 @@
 		    android:gravity="center_vertical"
 		    android:background="@drawable/card_item_contenido" >
 	        <TextView
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:id="@+id/titulo_farmaco"
+	            style="@style/Card_contenido"
 	            android:text="@string/titulo_farmacos"
-	            android:layout_marginLeft="10dp"
-	            android:textColor="#FFF"
 	            android:textSize="24sp"  />
 	        
 	        <TextView
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:id="@+id/subtitulo_farmaco"
+	            style="@style/Card_contenido"
 	            android:text="@string/subtitulo_farmacos"
-	            android:layout_marginLeft="10dp"
-	            android:textColor="#FFF"
 	            android:textSize="14sp"   />
         </LinearLayout>
 
@@ -109,21 +101,15 @@
 		    android:layout_height="match_parent"
 		    android:orientation="vertical"
 		    android:gravity="center_vertical"
-		    android:background="@color/color_primario" >
+		    android:background="@drawable/card_item_contenido" >
 	        <TextView
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            style="@style/Card_contenido"
 	            android:text="@string/titulo_notas"
-	            android:layout_marginLeft="10dp"
-	            android:textColor="#FFF"
-	            android:textSize="22sp"  />
+	            android:textSize="24sp"  />
 	        
 	        <TextView
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            style="@style/Card_contenido"
 	            android:text="@string/subtitulo_notas"
-	            android:layout_marginLeft="10dp"
-	            android:textColor="#FFF"
 	            android:textSize="14sp"  />
         </LinearLayout>
 
