@@ -9,13 +9,13 @@ import es.ucm.ric.activities.peticiones.HolaConexion;
 import es.ucm.ric.tools.AsyncConnect;
 import es.ucm.ric.tools.BaseActivity;
 
-public class MainActivity extends BaseActivity {
+public class TestActivity extends BaseActivity {
 	
 	AsyncConnect connection;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_test);
 	}
 	
 	public void onClick(View v){
@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity {
 				break;
 			
 			case R.id.button2:
-				connection = new AsyncConnect(new HolaConexion(MainActivity.this),"ale7jandra.89@gmail.com");
+				connection = new AsyncConnect(new HolaConexion(TestActivity.this),"ale7jandra.89@gmail.com");
 		        connection.execute();
 		        break;
 				

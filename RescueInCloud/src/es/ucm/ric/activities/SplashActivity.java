@@ -41,7 +41,7 @@ public class SplashActivity extends Activity{
 //                	SharedPreferences prefs = SplashActivity.this.getSharedPreferences("PREFERENCES_FILE", Context.MODE_PRIVATE);
 //                	String name = prefs.getString("NAME", "");
 
-                	Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                	Intent intent = new Intent(SplashActivity.this, MenuPrincipalActivity.class);
                 	startActivity(intent);
                 	
                 	

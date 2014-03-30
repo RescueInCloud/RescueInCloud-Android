@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
-encoding//src/es/ucm/ric/activities/MainActivity.java=UTF-8
 encoding//src/es/ucm/ric/activities/NotaActivity.java=UTF-8
+encoding//src/es/ucm/ric/activities/TestActivity.java=UTF-8
 encoding//src/es/ucm/ric/activities/peticiones/HolaConexion.java=UTF-8
 encoding//src/es/ucm/ric/activities/peticiones/RecuperarFarmacosConexion.java=UTF-8
 encoding//src/es/ucm/ric/tools/JustifiedTextView.java=UTF-8

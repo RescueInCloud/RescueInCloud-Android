@@ -16,5 +16,7 @@
 	<string name="titulo_notas">Notas</string>
 	<string name="subtitulo_notas">Revisar las notas disponibles</string>
 	<string name="action_refresh">Refrescar</string>
+	<string name="testing">Testing</string>
+	
 	
 </resources>
