@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    	xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/protocolos"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    style="@style/Card_style"
+	    android:gravity="center"
+	    android:clickable="true"
+	    android:onClick="onClick" >
+
+        
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/diagnostico"
+            android:contentDescription="@string/titulo_protocolos" 
+            />
+
+        <LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="vertical"
+		    android:gravity="center_vertical"
+		    android:background="@drawable/card_item_contenido" >
+	        <TextView
+	            android:id="@+id/titulo"
+	            style="@style/Card_contenido"
+	            android:text="@string/titulo_protocolos"
+	            android:textSize="24sp"   />
+	        
+	        <TextView
+	            android:id="@+id/subtitulo"
+	            style="@style/Card_contenido"
+	            android:text="@string/subtitulo_protocolos"
+	            android:textSize="14sp"   />
+        </LinearLayout>
+
+	</LinearLayout>

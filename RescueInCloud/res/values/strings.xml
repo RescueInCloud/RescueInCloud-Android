@@ -20,5 +20,12 @@
 	
 	<string name="drawer_open">Menú Abierto</string>
     <string name="drawer_close">Menú Cerrado</string>
+    
+    <string name="opcion_protocolo">Protocolos</string>
+    <string name="opcion_farmacos">Farmacos</string>
+    <string name="opcion_notas">Notas</string>
+    
+    <string name="empezar">Empezar</string>
+    
 	
 </resources>

@@ -7,19 +7,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import es.ucm.ric.R;
 import es.ucm.ric.tools.BaseActivity;
 
 public class DrawerActivity extends BaseActivity{
 	private String[] opcionesMenu;
     private DrawerLayout drawerLayout;
-    private ListView drawerList;
+    private View drawerList;
     private ActionBarDrawerToggle drawerToggle;
     
     private CharSequence tituloSeccion;  
@@ -32,39 +27,39 @@ public class DrawerActivity extends BaseActivity{
 		
 		opcionesMenu = new String[] {"Protocolos", "Fármacos"};
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerList = (ListView) findViewById(R.id.left_drawer);
+        drawerList = findViewById(R.id.drawer);
 
-        drawerList.setAdapter(new ArrayAdapter<String>(
-        		getSupportActionBar().getThemedContext(),
-                android.R.layout.simple_list_item_1, opcionesMenu));
-        
-		drawerList.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-
-				Fragment fragment = null;
-
-				switch (position) {
-					case 0:
-						fragment = new FragmentMenuPrincipal();
-						break;
-					case 1:
-						fragment = new FragmentNota();
-						break;
-
-				}
-
-				cambiarFragment(fragment);
-
-				drawerList.setItemChecked(position, true);
-
-				tituloSeccion = opcionesMenu[position];
-				getSupportActionBar().setTitle(tituloSeccion);
-
-				drawerLayout.closeDrawer(drawerList);
-			}
-		});
+//        drawerList.setAdapter(new ArrayAdapter<String>(
+//        		getSupportActionBar().getThemedContext(),
+//                android.R.layout.simple_list_item_1, opcionesMenu));
+//        
+//		drawerList.setOnItemClickListener(new OnItemClickListener() {
+//			@Override
+//			public void onItemClick(AdapterView<?> parent, View view,
+//					int position, long id) {
+//
+//				Fragment fragment = null;
+//
+//				switch (position) {
+//					case 0:
+//						fragment = new FragmentMenuPrincipal();
+//						break;
+//					case 1:
+//						fragment = new FragmentNota();
+//						break;
+//
+//				}
+//
+//				cambiarFragment(fragment);
+//
+//				drawerList.setItemChecked(position, true);
+//
+//				tituloSeccion = opcionesMenu[position];
+//				getSupportActionBar().setTitle(tituloSeccion);
+//
+//				drawerLayout.closeDrawer(drawerList);
+//			}
+//		});
 		
 		tituloSeccion = getTitle();
 		tituloApp = getTitle();
@@ -90,7 +85,7 @@ public class DrawerActivity extends BaseActivity{
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		
-		cambiarFragment(new FragmentMenuPrincipal());
+		cambiarFragment(new FragmentInit());
 	}
 	
 	private void cambiarFragment(Fragment fragment){
@@ -102,19 +97,23 @@ public class DrawerActivity extends BaseActivity{
 				.commit();
 	}
 
-	
-	
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
 
-		boolean menuAbierto = drawerLayout.isDrawerOpen(drawerList);
+	public void onClick(View v){
 		
-		if(menuAbierto)
-			menu.findItem(R.id.action_search).setVisible(false);
-		else
-			menu.findItem(R.id.action_search).setVisible(true);
+		switch(v.getId()){
+			case R.id.opcion_protocolo:
+				cambiarFragment(new FragmentMenuPrincipal());
+				break;
+			
+			case R.id.opcion_farmaco:
+				break;
+				
+			case R.id.opcion_notas:
+				cambiarFragment(new FragmentNota());
+				break;
+		}
 		
-		return super.onPrepareOptionsMenu(menu);
+		drawerLayout.closeDrawers();
 	}
 	
 	@Override
