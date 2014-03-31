@@ -11,47 +11,10 @@
         android:layout_height="match_parent" />
 
     <!-- Menú Lateral -->
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/drawer"
         android:layout_width="240dp"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="#C1BDBD"
-        android:orientation="vertical"
-        android:padding="5dp" >
-
-        <TextView
-            android:id="@+id/opcion_protocolo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/opcion_protocolo"
-            android:drawableLeft="@drawable/mini_diagnostico"
-            android:drawablePadding="5dp"
-            android:textSize="28sp"
-            android:clickable="true"
-            android:onClick="onClick" />
-        
-        <TextView
-            android:id="@+id/opcion_farmaco"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/opcion_farmacos"
-            android:drawableLeft="@drawable/mini_pastillas"
-            android:textSize="28sp"
-            android:clickable="true"
-            android:onClick="onClick" />
-        
-        <TextView
-            android:id="@+id/opcion_notas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/opcion_notas"
-            android:drawableLeft="@drawable/mini_diagnostico_check"
-            android:textSize="28sp"
-            android:clickable="true"
-            android:onClick="onClick" />
-
-        
-    </LinearLayout>
-
+        android:layout_gravity="start"  />
+    
 </android.support.v4.widget.DrawerLayout>

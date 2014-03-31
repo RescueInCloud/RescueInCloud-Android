@@ -12,7 +12,6 @@ import es.ucm.ric.R;
 import es.ucm.ric.tools.BaseActivity;
 
 public class DrawerActivity extends BaseActivity{
-	private String[] opcionesMenu;
     private DrawerLayout drawerLayout;
     private View drawerList;
     private ActionBarDrawerToggle drawerToggle;
@@ -25,41 +24,13 @@ public class DrawerActivity extends BaseActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_drawer);
 		
-		opcionesMenu = new String[] {"Protocolos", "Fármacos"};
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = findViewById(R.id.drawer);
+        
+        getSupportFragmentManager().beginTransaction()
+		.replace(R.id.drawer, new FragmentDrawerLateral())
+		.commit();
 
-//        drawerList.setAdapter(new ArrayAdapter<String>(
-//        		getSupportActionBar().getThemedContext(),
-//                android.R.layout.simple_list_item_1, opcionesMenu));
-//        
-//		drawerList.setOnItemClickListener(new OnItemClickListener() {
-//			@Override
-//			public void onItemClick(AdapterView<?> parent, View view,
-//					int position, long id) {
-//
-//				Fragment fragment = null;
-//
-//				switch (position) {
-//					case 0:
-//						fragment = new FragmentMenuPrincipal();
-//						break;
-//					case 1:
-//						fragment = new FragmentNota();
-//						break;
-//
-//				}
-//
-//				cambiarFragment(fragment);
-//
-//				drawerList.setItemChecked(position, true);
-//
-//				tituloSeccion = opcionesMenu[position];
-//				getSupportActionBar().setTitle(tituloSeccion);
-//
-//				drawerLayout.closeDrawer(drawerList);
-//			}
-//		});
 		
 		tituloSeccion = getTitle();
 		tituloApp = getTitle();
@@ -90,15 +61,17 @@ public class DrawerActivity extends BaseActivity{
 	
 	private void cambiarFragment(Fragment fragment){
 		
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		
-		fragmentManager.beginTransaction()
-				.replace(R.id.content_frame, fragment)
-				.commit();
+		getSupportFragmentManager().beginTransaction()
+		.replace(R.id.content_frame, fragment)
+		.commit();
 	}
 
 
 	public void onClick(View v){
+		
+		//drawerList.setItemChecked(position, true);
+		//tituloSeccion = opcionesMenu[position];
+		//getSupportActionBar().setTitle(tituloSeccion);
 		
 		switch(v.getId()){
 			case R.id.opcion_protocolo:

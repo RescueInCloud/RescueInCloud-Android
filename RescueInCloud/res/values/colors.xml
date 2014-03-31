@@ -18,6 +18,14 @@
     <color name="color_secundario_a">#8F600A</color>
     <color name="color_secundario_b">#D51E2F</color>
     
+    <color name="color_drawer_background">#3f4241</color>
+    <color name="color_drawer_background_pressed">#000000</color>
+    <color name="color_barra">#474744</color>
+    <color name="color_drawer_texto">#e3ddd6</color>
+    <color name="color_drawer_imagen_background">#596865</color>
+    
+    
+    
           
 </resources>
 
