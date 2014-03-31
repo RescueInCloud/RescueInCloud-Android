@@ -61,6 +61,7 @@
             android:layout_alignParentBottom="true"   
             android:text="@string/msg_sincronizacion" 
             android:textColor="@color/color_drawer_texto"
-            android:background="#383938"/>
+            android:background="#383938"
+            android:paddingLeft="10dp"/>
 	
 </RelativeLayout>
