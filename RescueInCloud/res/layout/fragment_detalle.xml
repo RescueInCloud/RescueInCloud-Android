@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/color_blanco"
+    android:layout_margin="20dp">
+    
+        <TextView
+            android:id="@+id/nombre_farmaco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/testing"
+            android:textColor="@color/color_blanco"
+            android:textStyle="bold"
+            android:background="@color/color_primario" 
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/detalle_frasco_medicina_verde"
+            android:padding="20dp" 
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"/>
+        
+        
+        <TextView
+            android:id="@+id/nombre_fabricante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/testing"
+            android:textColor="@color/color_blanco"
+            android:textStyle="bold"
+            android:background="@color/color_primario" 
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            />
+        
+        <View 
+		   android:layout_width="fill_parent"
+		   android:layout_height="1dp"       
+		   android:background="@color/color_blanco"/>
+        
+        <TextView
+            android:id="@+id/presentacion_farmaco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/testing"
+            android:textColor="@color/color_blanco"
+            android:textStyle="bold"
+            android:background="@color/color_primario" 
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            />
+        
+        <View 
+		   android:layout_width="fill_parent"
+		   android:layout_height="1dp"       
+		   android:background="@color/color_blanco"/>
+        
+        <TextView
+            android:id="@+id/tipo_presentacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/testing"
+            android:textColor="@color/color_blanco"
+            android:textStyle="bold"
+            android:background="@color/color_primario" 
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            />
+        <View 
+		   android:layout_width="fill_parent"
+		   android:layout_height="1dp"       
+		   android:background="@color/color_blanco"/>
+        
+        <TextView
+            android:id="@+id/descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/testing"
+            android:textColor="@color/color_blanco"
+            android:textStyle="bold"
+            android:background="@color/color_primario" 
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            />
+        
+</LinearLayout>

@@ -74,11 +74,15 @@ public class DrawerActivity extends BaseActivity{
 		//getSupportActionBar().setTitle(tituloSeccion);
 		
 		switch(v.getId()){
+			case R.id.imagen_ini:
+				cambiarFragment(new FragmentInit());
+				break;
 			case R.id.opcion_protocolo:
-				cambiarFragment(new FragmentMenuPrincipal());
+				cambiarFragment(new FragmentDetalle());
 				break;
 			
 			case R.id.opcion_farmaco:
+				cambiarFragment(new FragmentLista());
 				break;
 				
 			case R.id.opcion_notas:

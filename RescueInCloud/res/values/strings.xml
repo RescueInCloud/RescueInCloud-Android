@@ -25,9 +25,12 @@
     <string name="opcion_farmacos">Farmacos</string>
     <string name="opcion_notas">Notas</string>
     
-    <string name="empezar">Empezar</string>
+    <string name="empezar">Empezar nuevo protocolo</string>
+    <string name="continuar">Continuar protocolo</string>
     
     
     <string name="msg_sincronizacion">Última sincronización 01/04/2013</string>
+    
+    <string name="msg_test">Texto de prueba</string>
 	
 </resources>

@@ -12,9 +12,10 @@
 
         
         <ImageView
+            android:id="@+id/imagen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/diagnostico"
+            android:src="@drawable/frasco_medicina_roja"
             android:contentDescription="@string/titulo_protocolos" 
             />
 
@@ -27,14 +28,14 @@
 	        <TextView
 	            android:id="@+id/titulo"
 	            style="@style/Card_contenido"
-	            android:text="@string/titulo_protocolos"
-	            android:textSize="24sp"   />
+	            android:text="@string/msg_test"
+	            android:textSize="16sp"   />
 	        
 	        <TextView
 	            android:id="@+id/subtitulo"
 	            style="@style/Card_contenido"
-	            android:text="@string/subtitulo_protocolos"
-	            android:textSize="14sp"   />
+	            android:text="@string/msg_test"
+	            android:textSize="12sp"   />
         </LinearLayout>
 
 	</LinearLayout>
