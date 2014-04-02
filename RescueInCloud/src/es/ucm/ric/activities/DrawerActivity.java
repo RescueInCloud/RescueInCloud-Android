@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import es.ucm.ric.R;
@@ -82,11 +81,15 @@ public class DrawerActivity extends BaseActivity{
 				break;
 			
 			case R.id.opcion_farmaco:
-				cambiarFragment(new FragmentLista());
+				cambiarFragment(new FragmentListaFarmacos());
 				break;
 				
 			case R.id.opcion_notas:
 				cambiarFragment(new FragmentNota());
+				break;
+				
+			case R.id.opcion_test:
+				cambiarFragment(new FragmentTest());
 				break;
 		}
 		

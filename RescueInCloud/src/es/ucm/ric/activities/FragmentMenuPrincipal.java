@@ -58,7 +58,7 @@ public class FragmentMenuPrincipal extends Fragment{
 				startActivity(intent);
 				break;
 			case R.id.test:
-				intent = new Intent(getActivity(), TestActivity.class);
+				intent = new Intent(getActivity(), FragmentTest.class);
 				startActivity(intent);
 				break;
 		}

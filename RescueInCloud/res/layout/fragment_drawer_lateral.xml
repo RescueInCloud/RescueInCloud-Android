@@ -52,6 +52,17 @@
             android:text="@string/opcion_notas"
             android:drawableLeft="@drawable/mini_diagnostico_check"
             style="@style/Drawer_style" />
+        
+        <View 
+		   android:layout_width="fill_parent"
+		   android:layout_height="2dp"       
+		   android:background="@color/color_barra"/>
+        
+        <TextView
+            android:id="@+id/opcion_test"
+            android:text="@string/testing"
+            android:drawableLeft="@drawable/mini_diagnostico_check"
+            style="@style/Drawer_style" />
                 
 	</LinearLayout>
 	

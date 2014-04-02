@@ -1,8 +1,11 @@
 package es.ucm.ric.activities.adapters;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +13,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import es.ucm.ric.R;
-import es.ucm.ric.model.Farmaco;
+import es.ucm.ric.model.IListable;
 
-public class MiAdapter extends ArrayAdapter<Farmaco>{
+public class MiAdapter extends ArrayAdapter<IListable>{
 
 	private LayoutInflater inflater = null;
-	private ArrayList<Farmaco> lista;
+	private ArrayList<IListable> lista;
+	private int[] imagenes_por_defecto;
 	
-	public MiAdapter(Activity context, ArrayList<Farmaco> lista) {
+	public MiAdapter(Activity context, ArrayList<IListable> lista, int[] imagenes_por_defecto) {
 		super(context, R.layout.item_lista, lista);
 		this.lista = lista;
 		this.inflater = context.getLayoutInflater();
+		this.imagenes_por_defecto = imagenes_por_defecto;
 	}
 	
 	@Override
@@ -41,15 +46,24 @@ public class MiAdapter extends ArrayAdapter<Farmaco>{
 
 		//asignando valores
 		ViewHolder holder = (ViewHolder) v.getTag();
-		Farmaco f = lista.get(position);
-	    holder.titulo.setText(f.getNombre_farmaco());
-	    holder.subtitulo.setText(f.getDescripcion_farmaco());
+		IListable f = lista.get(position);
+	    holder.titulo.setText(f.getTitulo());
+	    holder.subtitulo.setText(f.getSubtitulo());
 	    
-	    if( (position%2)==0)
-	    	holder.imagen.setImageResource(R.drawable.frasco_medicina_roja);
-	    else
-	    	holder.imagen.setImageResource(R.drawable.frasco_medicina_verde);
-                  
+	    boolean imagen_cargada = false;
+	    if(f.getRuta()!=null){
+	    	File imgFile = new  File(f.getRuta());
+	    	if(imgFile.exists()){
+
+	    	    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+	    	    holder.imagen.setImageBitmap(myBitmap);
+	    	    imagen_cargada = true;
+	    	}
+	    }
+	    
+	    if(!imagen_cargada){
+		    holder.imagen.setImageResource(this.imagenes_por_defecto[position%2]);
+	    }
 	    
         return v;
     }

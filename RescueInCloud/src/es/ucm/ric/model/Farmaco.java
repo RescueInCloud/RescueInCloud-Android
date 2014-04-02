@@ -1,6 +1,6 @@
 package es.ucm.ric.model;
 
-public class Farmaco {
+public class Farmaco implements IListable{
 
 	private int id;
 	private String nombre_farmaco;
@@ -42,6 +42,18 @@ public class Farmaco {
 	public String toString() {
 		return "[id=" + id + ", nombre_farmaco=" + nombre_farmaco
 				+ ", nombre_fabricante=" + nombre_fabricante + "]";
+	}
+	@Override
+	public String getTitulo() {
+		return this.nombre_farmaco;
+	}
+	@Override
+	public String getSubtitulo() {
+		return this.descripcion_farmaco;
+	}
+	@Override
+	public String getRuta() {
+		return null;
 	}
 	
 	

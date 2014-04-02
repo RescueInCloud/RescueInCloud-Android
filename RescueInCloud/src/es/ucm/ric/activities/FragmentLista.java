@@ -12,11 +12,13 @@ import es.ucm.ric.R;
 import es.ucm.ric.activities.adapters.MiAdapter;
 import es.ucm.ric.dao.FarmacoDAO;
 import es.ucm.ric.model.Farmaco;
+import es.ucm.ric.model.IListable;
 
 public class FragmentLista extends Fragment {
 	
-	ArrayList<Farmaco> lista;
-	ListView listView;
+	protected ArrayList<IListable> lista;
+	protected ListView listView;
+	protected MiAdapter adapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, 
@@ -26,18 +28,20 @@ public class FragmentLista extends Fragment {
 		return inflater.inflate(R.layout.fragment_list, container, false);
 	}
 	
-	@Override
-	public void onActivityCreated(Bundle state) {
-		super.onActivityCreated(state);
-		
-		FarmacoDAO dao = new FarmacoDAO();
-		lista = dao.getListaFarmacos();
-		
-		MiAdapter adapter = new MiAdapter(this.getActivity(), lista);
-		listView = (ListView) getView().findViewById(R.id.mi_lista);
-		listView.setAdapter(adapter);
-	}
-	
-	
+//	@Override
+//	public void onActivityCreated(Bundle state) {
+//		super.onActivityCreated(state);
+//		
+//		FarmacoDAO dao = new FarmacoDAO();
+//		ArrayList<Farmaco> lista_farmacos = dao.getListaFarmacos();
+//		
+//		for (Farmaco f : lista_farmacos) {
+//			lista.add(f);
+//		}
+//		int[] imagenes_por_defecto = {R.drawable.frasco_medicina_roja, R.drawable.frasco_medicina_verde};
+//		adapter = new MiAdapter(this.getActivity(), lista, imagenes_por_defecto);
+//		listView = (ListView) getView().findViewById(R.id.mi_lista);
+//		listView.setAdapter(adapter);
+//	}
 	
 }
