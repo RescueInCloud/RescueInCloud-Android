@@ -1,4 +1,4 @@
-package es.ucm.ric.activities;
+package es.ucm.ric.activities.fragments;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import es.ucm.ric.R;
+import es.ucm.ric.activities.NotaActivity;
 
 public class FragmentMenuPrincipal extends Fragment{
 	

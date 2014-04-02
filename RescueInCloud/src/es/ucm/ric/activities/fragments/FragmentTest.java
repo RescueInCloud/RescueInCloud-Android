@@ -1,4 +1,4 @@
-package es.ucm.ric.activities;
+package es.ucm.ric.activities.fragments;
 
 
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import es.ucm.ric.R;
+import es.ucm.ric.activities.HolaMundoActivity;
+import es.ucm.ric.activities.MenuPrincipalActivity;
 import es.ucm.ric.activities.peticiones.HolaConexion;
 import es.ucm.ric.tools.AsyncConnect;
 

@@ -1,4 +1,4 @@
-package es.ucm.ric.activities;
+package es.ucm.ric.activities.fragments;
 
 import java.util.ArrayList;
 
@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.adapters.MiAdapter;
-import es.ucm.ric.dao.FarmacoDAO;
-import es.ucm.ric.model.Farmaco;
 import es.ucm.ric.model.IListable;
 
 public class FragmentLista extends Fragment {

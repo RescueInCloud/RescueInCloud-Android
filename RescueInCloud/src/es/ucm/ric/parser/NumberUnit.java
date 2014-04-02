@@ -8,6 +8,9 @@ package es.ucm.ric.parser;
 
 import java.util.ArrayList;
 
+/*
+ * Por ejemplo: 44mg, 70kg etc
+ */
 public class NumberUnit extends TextInterpreter{
     
  private String unidad,id,texto,relacionCantidad;

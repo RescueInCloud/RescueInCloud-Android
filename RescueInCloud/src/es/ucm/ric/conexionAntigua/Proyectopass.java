@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
 
-import es.ucm.ric.cajas.CajaTexto;
 import es.ucm.ric.cajas.CajasHijos;
 import es.ucm.ric.cajas.CajasProtocolo;
+import es.ucm.ric.model.CajaTexto;
 import es.ucm.ric.parser.TextInterpreter;
 import es.ucm.ric.parser.TextParser;
 
@@ -31,8 +31,8 @@ public class Proyectopass {
             con la clave el id de la caja y el contenido la caja en si (class CajaTexto)
             */
   /*          cp= new CajasProtocolo();
-            /*añade las cajas al hashmap y las muestra.
-            Parsea el contenido de las cajas creando nuevos objetos con los que trabajará Android*/
+            /*a��ade las cajas al hashmap y las muestra.
+            Parsea el contenido de las cajas creando nuevos objetos con los que trabajar�� Android*/
  /*           if (con.consultarCajaTexto(user,cp)){
             	System.out.println("--------------------------");
             	System.out.println("Las cajas de texto que forman el protocolo son:");

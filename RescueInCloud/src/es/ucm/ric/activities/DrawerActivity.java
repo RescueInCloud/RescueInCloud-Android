@@ -6,8 +6,15 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.view.MenuItem;
 import android.view.View;
 import es.ucm.ric.R;
+import es.ucm.ric.activities.fragments.FragmentDetalle;
+import es.ucm.ric.activities.fragments.FragmentDrawerLateral;
+import es.ucm.ric.activities.fragments.FragmentInit;
+import es.ucm.ric.activities.fragments.FragmentListaFarmacos;
+import es.ucm.ric.activities.fragments.FragmentNota;
+import es.ucm.ric.activities.fragments.FragmentTest;
 import es.ucm.ric.tools.BaseActivity;
 
 public class DrawerActivity extends BaseActivity{
@@ -63,6 +70,17 @@ public class DrawerActivity extends BaseActivity{
 		getSupportFragmentManager().beginTransaction()
 		.replace(R.id.content_frame, fragment)
 		.commit();
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				drawerLayout.openDrawer(drawerList);
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 
 

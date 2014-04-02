@@ -14,7 +14,7 @@ import java.sql.Statement;
 import es.ucm.ric.cajas.CajaTexto;
 import es.ucm.ric.cajas.CajasHijos;
 import es.ucm.ric.cajas.CajasProtocolo;
-import es.ucm.ric.cajas.ProtocoloCajas;
+import es.ucm.ric.model.Protocolo;
 
 /**
  *
@@ -25,7 +25,7 @@ public class Conexion {
     public String login ="root";
     public String password="";
     public String url="jdbc:mysql://localhost/"+bd;
-    private ProtocoloCajas protocolo = new ProtocoloCajas();
+    private Protocolo protocolo = new Protocolo();
     private CajaTexto cajaTexto = new CajaTexto();
     
     Connection conn =null;
@@ -36,7 +36,7 @@ public class Conexion {
             conn = DriverManager.getConnection(url,login,password);
           /*  if (conn != null)
                 JOptionPane.showMessageDialog(null, "Conexion a bbdd "+bd+" listo");
-            else JOptionPane.showMessageDialog(null, "NO se ùede conectar");*/
+            else JOptionPane.showMessageDialog(null, "NO se ��ede conectar");*/
         }
         catch(SQLException e){
             System.out.println(e);
@@ -101,8 +101,8 @@ public class Conexion {
         Object[][] res=this.select("protocolos", "nombre_protocolo,email_usuario,creado_en",user);
         if (res.length >0){
             protocolo.setNombre(res[0][0].toString());
-            protocolo.setEmail_usuario(res[0][1].toString());
-            protocolo.setFecha(res[0][2].toString());
+//            protocolo.setEmail_usuario(res[0][1].toString());
+//            protocolo.setFecha(res[0][2].toString());
             
         }
         else return false;
@@ -142,7 +142,7 @@ public class Conexion {
   /* public void NuevaPersona(String name, String contra){
        try {            
             PreparedStatement pstm =this.getConnection().prepareStatement("insert into " + 
-                    "tablausers(USUARIO,CONTRASEÑA) " +
+                    "tablausers(USUARIO,CONTRASE��A) " +
                     " values(?,?)"); 
             pstm.setString(1, name);
             pstm.setString(2, contra);                      

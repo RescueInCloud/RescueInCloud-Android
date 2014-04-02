@@ -3,6 +3,7 @@ package es.ucm.ric.activities;
 import android.os.Bundle;
 import android.view.View;
 import es.ucm.ric.R;
+import es.ucm.ric.activities.fragments.FragmentMenuPrincipal;
 import es.ucm.ric.tools.BaseActivity;
 
 public class MenuPrincipalActivity extends BaseActivity{
