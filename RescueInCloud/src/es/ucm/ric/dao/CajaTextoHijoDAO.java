@@ -1,12 +1,9 @@
 package es.ucm.ric.dao;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import es.ucm.ric.MyApp;
-import es.ucm.ric.model.CajaTexto;
 import es.ucm.ric.model.CajasHijos;
 import es.ucm.ric.model.Tupla;
 
