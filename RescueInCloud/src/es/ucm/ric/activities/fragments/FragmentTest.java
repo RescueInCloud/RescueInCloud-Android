@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.HolaMundoActivity;
 import es.ucm.ric.activities.MenuPrincipalActivity;
+import es.ucm.ric.activities.SandboxActivity;
 import es.ucm.ric.activities.peticiones.HolaConexion;
 import es.ucm.ric.tools.AsyncConnect;
 
@@ -23,13 +24,9 @@ public class FragmentTest extends Fragment {
 			                 ViewGroup container, 
 			                 Bundle savedInstanceState) {
 		
-		return inflater.inflate(R.layout.activity_test, container, false);
+		return inflater.inflate(R.layout.fragment_test, container, false);
 	}
 	
-//	protected void onCreate(Bundle savedInstanceState) {
-//		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.activity_test);
-//	}
 	
 	public void onClick(View v){
 		
@@ -47,6 +44,11 @@ public class FragmentTest extends Fragment {
 			case R.id.button3:
 				Intent intent2 = new Intent(getActivity(), MenuPrincipalActivity.class);
 				startActivity(intent2);
+		        break;
+		        
+			case R.id.button4:
+				Intent intent3 = new Intent(getActivity(), SandboxActivity.class);
+				startActivity(intent3);
 		        break;
 		
 		

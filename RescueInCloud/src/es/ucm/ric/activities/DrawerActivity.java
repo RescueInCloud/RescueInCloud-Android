@@ -24,6 +24,11 @@ public class DrawerActivity extends BaseActivity{
     
     private CharSequence tituloSeccion;  
     private CharSequence tituloApp;  
+    
+    boolean drawerAbierto = false;
+    
+    FragmentTest fragTest;
+    
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +52,13 @@ public class DrawerActivity extends BaseActivity{
 				R.string.drawer_close) {
 
 			public void onDrawerClosed(View view) {
+				drawerAbierto = false;
 				getSupportActionBar().setTitle(tituloSeccion);
 				ActivityCompat.invalidateOptionsMenu(DrawerActivity.this);
 			}
 
 			public void onDrawerOpened(View drawerView) {
+				drawerAbierto = true;
 				getSupportActionBar().setTitle(tituloApp);
 				ActivityCompat.invalidateOptionsMenu(DrawerActivity.this);
 			}
@@ -76,7 +83,10 @@ public class DrawerActivity extends BaseActivity{
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case android.R.id.home:
-				drawerLayout.openDrawer(drawerList);
+				if(drawerAbierto)
+					drawerLayout.closeDrawers();
+				else
+					drawerLayout.openDrawer(drawerList);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -107,7 +117,15 @@ public class DrawerActivity extends BaseActivity{
 				break;
 				
 			case R.id.opcion_test:
-				cambiarFragment(new FragmentTest());
+				fragTest = new FragmentTest();
+				cambiarFragment(fragTest);
+				break;
+				
+			case R.id.button1:
+			case R.id.button2:
+			case R.id.button3:
+			case R.id.button4:
+			    fragTest.onClick(v);
 				break;
 		}
 		

@@ -12,7 +12,7 @@ public class NotaActivity extends BaseActivity{
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_nota_titulo_fijo);
+		setContentView(R.layout.fragment_nota);
 		
 
         //some random long text

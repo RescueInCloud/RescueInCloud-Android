@@ -16,7 +16,7 @@ public class FragmentNota extends Fragment{
 			                 ViewGroup container, 
 			                 Bundle savedInstanceState) {
 		
-		return inflater.inflate(R.layout.activity_nota_titulo_fijo, container, false);
+		return inflater.inflate(R.layout.fragment_nota, container, false);
 	}
 	
 	public void onActivityCreated(Bundle state) { 
