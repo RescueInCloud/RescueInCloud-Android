@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/box_background"
+	    android:orientation="vertical" 
+	    android:gravity="center">
+
+        <TextView
+            android:id="@+id/contenido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/color_blanco"
+            android:gravity="center"
+            android:text="Una pregunta cualquiera y con mucho blablabla cualquiera" />
+        
+        
+        <RelativeLayout
+	        android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" 
+		    android:padding="5dp">
+
+        	<Button
+            android:id="@+id/buttonVolver"
+            android:layout_width="wrap_content"
+            android:layout_height="50sp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/rounded_button_item"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="5dp"
+            android:text="Volver"
+            android:textColor="@color/circle_button_text_color" />
+
+        </RelativeLayout>
+    
+    </LinearLayout>
+    
+    
+    
+    
+
+</LinearLayout>

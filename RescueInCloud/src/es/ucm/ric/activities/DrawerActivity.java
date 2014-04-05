@@ -14,6 +14,7 @@ import es.ucm.ric.activities.fragments.FragmentDrawerLateral;
 import es.ucm.ric.activities.fragments.FragmentInit;
 import es.ucm.ric.activities.fragments.FragmentListaFarmacos;
 import es.ucm.ric.activities.fragments.FragmentNota;
+import es.ucm.ric.activities.fragments.FragmentPaginador;
 import es.ucm.ric.activities.fragments.FragmentTest;
 import es.ucm.ric.tools.BaseActivity;
 
@@ -119,6 +120,11 @@ public class DrawerActivity extends BaseActivity{
 			case R.id.opcion_test:
 				fragTest = new FragmentTest();
 				cambiarFragment(fragTest);
+				break;
+				
+				
+			case R.id.empezar:
+				cambiarFragment(new FragmentPaginador());
 				break;
 				
 			case R.id.button1:

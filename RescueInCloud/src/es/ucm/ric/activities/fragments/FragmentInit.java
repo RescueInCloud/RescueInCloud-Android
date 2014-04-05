@@ -21,5 +21,10 @@ public class FragmentInit extends Fragment{
 	public void onActivityCreated(Bundle state) { 
 		super.onActivityCreated(state);
 	}
+	
+	public void onClick(View v){
+		
+		
+	}
 
 }
