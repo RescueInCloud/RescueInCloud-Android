@@ -33,6 +33,7 @@ public class CajaTextoDAO {
 				String contenido = cursor.getString(cursor.getColumnIndex(CONTENIDO));
 				
 				valueObject = new CajaTexto(id, id_protocolo, tipo, contenido);
+				//falta añadir que se añada la CajaTexto al protocolo
 				
 				list.add(valueObject);
 			}while(cursor.moveToNext());

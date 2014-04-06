@@ -17,6 +17,7 @@ public class CajasHijos {
    
 	private int id;
 	private ArrayList<Tupla> hijos;
+	
 	public CajasHijos(int id) {
 		this.id = id;
 		this.hijos = new ArrayList<Tupla>();

@@ -10,13 +10,14 @@ import java.util.ArrayList;
 
 
 public class Text extends TextInterpreter{
-    public String texto,id;
+    public String texto;
+    private int id;
     
     public Text(){
         super();
     }
     
-    public Text(String id,String texto){
+    public Text(int id,String texto){
         super();
         this.texto=texto;
         this.id=id;
@@ -42,13 +43,11 @@ public class Text extends TextInterpreter{
         	command.add("Text");
         	command.add(w[0].replace("id", ""));
         	command.add(cadena_aux);
-         /*   this.setId(w[0].replace("id", ""));
-            this.setValor(cadena_aux);*/
         }
 	return command;
     }
     
-    public void setId(String id) {
+    public void setId(int id) {
 		this.id=id;
 	}
 
@@ -66,15 +65,6 @@ public class Text extends TextInterpreter{
     void setValor(String texto) {
         this.texto=texto; 
     }
-
-
-
-	@Override
-	public String encontrarRelacionCantidad(String cadena) {
-		// TODO Auto-generated method stub
-		return "";
-	}
-
 
 
 	@Override

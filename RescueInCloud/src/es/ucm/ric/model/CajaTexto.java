@@ -6,11 +6,9 @@
 
 package es.ucm.ric.model;
 
-/**
- *
- * @author Mila
- */
+
 public class CajaTexto {
+	
     private int idCajaTexto, id_protocolo;
     private String tipo,contenido;
 

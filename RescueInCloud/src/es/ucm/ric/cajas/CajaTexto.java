@@ -63,7 +63,7 @@ public class CajaTexto {
     }
     
     public String toString(){
-        return "id"+this.idCajaTexto+" " + this.tipo+" " + this.subTipo+" "+this.text+"\n";
+        return "id"+this.idCajaTexto+" " + this.tipo+" "+this.text+"\n";
     }
     
 }

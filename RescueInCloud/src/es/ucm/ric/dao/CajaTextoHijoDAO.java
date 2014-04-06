@@ -32,7 +32,9 @@ public class CajaTextoHijoDAO {
 				t.id=id_hijo;
 				t.relacion = relacion;
 				valueObject.addHijo(t);
+				
 			}while(cursor.moveToNext());
+			//al final hay que añadir el valueObject a la clase protocolo
 		}
 		
 		cursor.close();
