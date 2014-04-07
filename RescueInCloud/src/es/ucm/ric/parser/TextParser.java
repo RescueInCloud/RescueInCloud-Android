@@ -24,6 +24,7 @@ public class TextParser {
          ArrayList<String> aux = null;
          for (int i=0;i<lines.length;i++){
         	 int j=0;
+        	 aux=null;
         	 while(aux==null && j<texts.length){
 	        	 aux =  texts[j].textInterpreterparseText(lines[i]);
 	        	 if (aux!= null){
@@ -38,7 +39,7 @@ public class TextParser {
 	    			 arr.add(auxT);
 	    		 	} 
         	 	}
-	        	 aux=null;
+	        	 //aux=null;
 	        	 j++;
         	}
          }

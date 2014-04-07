@@ -11,10 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import es.ucm.ric.cajas.CajaTexto;
-import es.ucm.ric.cajas.CajasHijos;
-import es.ucm.ric.cajas.CajasProtocolo;
+import es.ucm.ric.model.CajaTexto;
+import es.ucm.ric.model.CajasHijos;
 import es.ucm.ric.model.Protocolo;
+import es.ucm.ric.model.Tupla;
 
 /**
  *
@@ -25,8 +25,8 @@ public class Conexion {
     public String login ="root";
     public String password="";
     public String url="jdbc:mysql://localhost/"+bd;
-    private Protocolo protocolo = new Protocolo();
-    private CajaTexto cajaTexto = new CajaTexto();
+    //private Protocolo protocolo;
+   // private CajaTexto cajaTexto;
     
     Connection conn =null;
     
@@ -34,9 +34,9 @@ public class Conexion {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(url,login,password);
-          /*  if (conn != null)
+/*            if (conn != null)
                 JOptionPane.showMessageDialog(null, "Conexion a bbdd "+bd+" listo");
-            else JOptionPane.showMessageDialog(null, "NO se ��ede conectar");*/
+            else JOptionPane.showMessageDialog(null, "NO se ùede conectar");*/
         }
         catch(SQLException e){
             System.out.println(e);
@@ -96,53 +96,53 @@ public class Conexion {
         return data;
     }
     
-    public boolean consultarProtocolo(String user){
+    public Protocolo consultarProtocolo(String user){
         user = "nombre_protocolo = '"+user+"'";
         Object[][] res=this.select("protocolos", "nombre_protocolo,email_usuario,creado_en",user);
+       
+        Protocolo protocolo = null;
         if (res.length >0){
-            protocolo.setNombre(res[0][0].toString());
-//            protocolo.setEmail_usuario(res[0][1].toString());
-//            protocolo.setFecha(res[0][2].toString());
-            
+        	protocolo = new Protocolo(1,res[0][0].toString());
         }
-        else return false;
-        return true;
+        return protocolo;
     }
     
-    public boolean consultarCajaTexto(String user,CajasProtocolo cp){
+    public boolean consultarCajaTexto(String user,Protocolo protocolo){
         boolean exito =false;
         user = "Protocolos_nombre_protocolo = '"+user+"'";
         Object[][] res=this.select("CajaTexto", "idCajaTexto,tipo,subTipo,text",user);
         for(int i=0;i<res.length;i++){
             exito=true;
-            cajaTexto.setIdCajaTexto(Integer.parseInt(res[i][0].toString()));
-            cajaTexto.setTipo(res[i][1].toString());
-            cajaTexto.setSubTipo(res[i][2].toString());
-            cajaTexto.setText(res[i][3].toString());
-            cp.add(cajaTexto);
-            cajaTexto=new CajaTexto();
+            CajaTexto cajaTexto = new CajaTexto(Integer.parseInt(res[i][0].toString()),1,res[i][1].toString(),res[i][3].toString());
+            protocolo.anyadirCaja(cajaTexto);
         }
         return exito;
     }
 
-    public boolean consultarCajaHijo(String id,CajasHijos cp){
+    
+    public boolean consultarCajaHijo(String id,Protocolo protocolo){
         boolean exito=false;
         String consulta = "CajaTexto_idCajaTexto = '"+id+"'";
         Object[][] res=this.select("cajatexto_has_hijo", "CajaTexto_idHijo , Relacion",consulta);
+        CajasHijos cajasHijos = new CajasHijos();
         for (int i=0;i<res.length;i++){
             exito=true;
            // int idint=Integer.parseInt(id);
             if (res[i][1] == null)
             	res[i][1]="";
-            cp.insertarHijos(id, res[i][0].toString(),res[i][1].toString());
+            Tupla tupla=new Tupla();
+            tupla.id=Integer.parseInt(res[i][0].toString());
+            tupla.relacion=res[i][1].toString();
+            cajasHijos.addHijo(Integer.parseInt(id), tupla);
         }
+        protocolo.setHijos(cajasHijos);
         return exito;
     }    
    
   /* public void NuevaPersona(String name, String contra){
        try {            
             PreparedStatement pstm =this.getConnection().prepareStatement("insert into " + 
-                    "tablausers(USUARIO,CONTRASE��A) " +
+                    "tablausers(USUARIO,CONTRASEÑA) " +
                     " values(?,?)"); 
             pstm.setString(1, name);
             pstm.setString(2, contra);                      

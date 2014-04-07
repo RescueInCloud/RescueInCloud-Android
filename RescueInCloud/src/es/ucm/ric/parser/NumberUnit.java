@@ -67,30 +67,36 @@ public class NumberUnit extends TextInterpreter{
             return dev;
         }
         else{
-            for (int i =0;i<s.length();i++){
+        	boolean hayDigito=false;
+        	int i=0;
+        	while(i<s.length() && dev == null){
+            	String copia="";
                 //si no es punto ni digito puede ser una unidad
-                if(!(s.charAt(i)=='.') && !Character.isDigit(s.charAt(i)))
+            	if(Character.isDigit(s.charAt(i)) && !hayDigito){
+            		hayDigito=true;
+            		copia=s.replace("0", "").replace("1", "").replace("2","").replace("3","").replace("4","").replace("5","").replace("6","").replace("7","").replace("8","").replace("9","");
+            	}
+                if(!(s.charAt(i)=='.') && hayDigito)
                 	for (Unidades uni : Unidades.values()){
-                		dev=separarUnidad(s,uni.toString());
-                		if (dev != null){ 
+                		if (separarUnidad(copia,uni.getFriendlyName())){
+                			dev = new String[2];
+                			dev[0]=s.replace(copia, "");
+                			dev[1]=copia;
                 			break;
                 		}
                 	}
+                i++;
             }
         }
         return dev;
     }
     
 	
-	String[] separarUnidad(String cadena,String unidad){
-		 String[] dev = null;
-		 if (cadena.contains(unidad)){
-			dev = new String[2];
-            String[] aux = unidad.split(unidad);
-            dev[0]=aux[0];
-            dev[1]=unidad;
+	boolean separarUnidad(String cadena,String unidad){
+		 if (cadena.equals(unidad)){
+			return true;
 		}
-		return dev;
+		return false;
 	}
     
     void setValor(Double valor,String unidad) {

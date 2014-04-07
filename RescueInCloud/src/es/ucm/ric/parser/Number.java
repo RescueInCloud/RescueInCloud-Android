@@ -57,8 +57,8 @@ public class Number extends TextInterpreter{
                      command.add(this.encontrarRelacionCantidad(cadena,w[i]));//4->relacionCant
                      command.add(texto); //4->texto
             	 }
-            i++;
             }
+            i++;
         }
 	return command;
     }
@@ -71,7 +71,7 @@ public class Number extends TextInterpreter{
 
 	public boolean isUnit(String s){
 		for (Unidades uni : Unidades.values()){
-    		 if (s.equals(uni.toString()))
+    		 if (s.equals(uni.getFriendlyName()))
     			 return true;
     		 }
 		return false;

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package es.ucm.ric.cajas;
+package es.ucm.ric.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +43,7 @@ public class CajasProtocolo {
     public ArrayList<CajaTexto> getCajasDecision() {
         ArrayList<CajaTexto> decision = new ArrayList();
         for (CajaTexto value :  this.cajasProtocolo.values()){
-            if (value.tipo.equals("decision")){
+            if (value.getTipo().equals("decision")){
                 decision.add(value);
             }
         }

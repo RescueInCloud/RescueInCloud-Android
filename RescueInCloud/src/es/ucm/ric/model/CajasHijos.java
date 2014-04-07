@@ -7,30 +7,41 @@
 package es.ucm.ric.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 
 /**
  *
- * @author Mila
+ * queda inutilizada, se actualiza en protocolo
  */
 public class CajasHijos {
    
-	private int id;
-	private ArrayList<Tupla> hijos;
+	private HashMap<Integer, ArrayList<Tupla>> hijos;
 	
-	public CajasHijos(int id) {
-		this.id = id;
-		this.hijos = new ArrayList<Tupla>();
-	}
-	public int getId() {
-		return id;
-	}
-	public ArrayList<Tupla> getHijos() {
-		return hijos;
+	
+	public CajasHijos() {
+		this.hijos = new HashMap<Integer, ArrayList<Tupla>>();
 	}
 	
-	public void addHijo(Tupla hijo){
-		hijos.add(hijo);
+	public Set getIds() {
+		return this.hijos.keySet();
+	}
+	
+	public ArrayList<Tupla> getHijos(int id) {
+		return this.hijos.get(id);
+	}
+	
+	
+	public void addHijo(int id,Tupla hijo){
+		if (this.hijos.containsKey(id)){
+			this.hijos.get(id).add(hijo);
+		}
+		else {
+			ArrayList<Tupla> arr = new ArrayList<Tupla>();
+			arr.add(hijo);
+			this.hijos.put(id,arr);
+		}
 	}
 	
 	

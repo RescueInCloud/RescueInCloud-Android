@@ -22,7 +22,7 @@ public class CajaTextoHijoDAO {
 		SQLiteDatabase db = MyApp.getContext().openOrCreateDatabase("rescue_lite_db", Context.MODE_PRIVATE,null);
 		//Cursor cursor = db.query(TABLE, null, null, null, null, null, null);
 		Cursor cursor = db.query(TABLE, null, PADRE+"=?", new String[] {""+id_caja_texto_padre}, null, null, null);
-		CajasHijos valueObject = new CajasHijos(id_caja_texto_padre);
+		CajasHijos valueObject = new CajasHijos();
 		if(cursor.moveToFirst()){
 			
 			do{
@@ -31,7 +31,7 @@ public class CajaTextoHijoDAO {
 				Tupla t = new Tupla();
 				t.id=id_hijo;
 				t.relacion = relacion;
-				valueObject.addHijo(t);
+				valueObject.addHijo(id_caja_texto_padre,t);
 				
 			}while(cursor.moveToNext());
 			//al final hay que añadir el valueObject a la clase protocolo
