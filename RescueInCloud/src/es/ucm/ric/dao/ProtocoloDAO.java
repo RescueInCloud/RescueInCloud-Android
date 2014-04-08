@@ -13,7 +13,7 @@ import es.ucm.ric.model.Protocolo;
 public class ProtocoloDAO {
 	
 	private static final String TABLE = "protocolos";
-	private static final String ID = "protocolo_id";
+	private static final String ID = "protocolos_id";
 	private static final String NOMBRE = "nombre_protocolo";
 	
 	public ArrayList<Protocolo> getListaProtocolo() {
