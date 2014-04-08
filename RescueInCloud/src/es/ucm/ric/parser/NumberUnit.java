@@ -119,6 +119,18 @@ public class NumberUnit extends TextInterpreter{
 					 + " RELACION_CANTIDAD: "+this.relacionCantidad;
 		
 	}
+
+	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+
+	@Override
+	public String getContenido() {
+		// TODO Auto-generated method stub
+		return texto;
+	}
     
 }
 

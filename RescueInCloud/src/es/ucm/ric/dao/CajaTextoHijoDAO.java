@@ -11,30 +11,32 @@ public class CajaTextoHijoDAO {
 	
 	private static final String TABLE = "caja_texto_hijos";
 	private static final String ID = "id";
+	private static final String ID_PROTOCOLO = "id_protocolo";
 	private static final String HIJO = "caja_texto_hijo";
 	private static final String PADRE = "caja_texto_padre";
 	private static final String RELACION = "tipo_relacion";
 	
-	public CajasHijos getListaCajas(int id_caja_texto_padre) {
+	public CajasHijos getListaCajas(int id_protocolo) {
 		
 		
 		//SQLiteDatabase db = new DatabaseHelper().getReadableDatabase();
 		SQLiteDatabase db = MyApp.getContext().openOrCreateDatabase("rescue_lite_db", Context.MODE_PRIVATE,null);
 		//Cursor cursor = db.query(TABLE, null, null, null, null, null, null);
-		Cursor cursor = db.query(TABLE, null, PADRE+"=?", new String[] {""+id_caja_texto_padre}, null, null, null);
+		Cursor cursor = db.query(TABLE, null, ID_PROTOCOLO+"=?", new String[] {""+id_protocolo}, null, null, null);
 		CajasHijos valueObject = new CajasHijos();
 		if(cursor.moveToFirst()){
 			
 			do{
 				int id_hijo = cursor.getInt(cursor.getColumnIndex(HIJO));
+				int id_padre = cursor.getInt(cursor.getColumnIndex(PADRE));
 				String relacion = cursor.getString(cursor.getColumnIndex(RELACION));
 				Tupla t = new Tupla();
 				t.id=id_hijo;
 				t.relacion = relacion;
-				valueObject.addHijo(id_caja_texto_padre,t);
+				valueObject.addHijo(id_padre,t);
 				
 			}while(cursor.moveToNext());
-			//al final hay que añadir el valueObject a la clase protocolo
+			//al final hay que aï¿½adir el valueObject a la clase protocolo
 		}
 		
 		cursor.close();

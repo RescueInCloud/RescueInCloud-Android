@@ -6,6 +6,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import es.ucm.ric.MyApp;
+import es.ucm.ric.model.CajaTexto;
+import es.ucm.ric.model.CajasHijos;
 import es.ucm.ric.model.Protocolo;
 
 public class ProtocoloDAO {
@@ -36,5 +38,30 @@ public class ProtocoloDAO {
 		cursor.close();
 		db.close();
 		return list;
+	}
+	
+	public Protocolo get(String nombre) {
+		//SQLiteDatabase db = new DatabaseHelper().getReadableDatabase();
+		SQLiteDatabase db = MyApp.getContext().openOrCreateDatabase("rescue_lite_db", Context.MODE_PRIVATE,null);
+		Cursor cursor = db.query(TABLE, null, NOMBRE+"=?", new String[] {nombre}, null, null, null);
+		Protocolo valueObject = null;
+		
+		if (cursor.moveToFirst()) {
+			int id = cursor.getInt(cursor.getColumnIndex(ID));
+			valueObject = new Protocolo(id, nombre);
+			
+			ArrayList<CajaTexto> cajas = new CajaTextoDAO().getListaProtocolo(id);
+			for (CajaTexto cajaTexto : cajas) {
+				valueObject.anyadirCaja(cajaTexto);
+			}
+			
+			CajasHijos relaciones = new CajaTextoHijoDAO().getListaCajas(id);
+			valueObject.setHijos(relaciones);
+			
+		}
+		
+		cursor.close();
+		db.close();
+		return valueObject;
 	}
 }

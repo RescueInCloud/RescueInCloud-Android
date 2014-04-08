@@ -2,13 +2,11 @@ package es.ucm.ric.tools;
 
 import java.util.ArrayList;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.text.TextPaint;
 import android.view.View;
 
@@ -45,7 +43,7 @@ public class JustifiedTextView extends View {
                 textColor = Color.BLACK;
         }
 
-        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+        //@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 		@Override
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
                 super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -57,7 +55,7 @@ public class JustifiedTextView extends View {
                 textPaint.setColor(textColor);
 
                 int minw = getPaddingLeft() + getPaddingRight() + getSuggestedMinimumWidth();
-                w = resolveSizeAndState(minw, widthMeasureSpec, 1);
+                w = resolveSizeAndState10(minw, widthMeasureSpec, 1);
                 h = MeasureSpec.getSize(widthMeasureSpec);
 
                 onBirim = 0.009259259f * w;
@@ -180,6 +178,28 @@ public class JustifiedTextView extends View {
 
         public void setLineSpacing(float lineSpacing) {
                 this.lineSpacing = lineSpacing;
+        }
+        
+        public int resolveSizeAndState10(int size, int measureSpec, int childMeasuredState) {
+            int result = size;
+            int specMode = MeasureSpec.getMode(measureSpec);
+            int specSize =  MeasureSpec.getSize(measureSpec);
+            switch (specMode) {
+            case MeasureSpec.UNSPECIFIED:
+                result = size;
+                break;
+            case MeasureSpec.AT_MOST:
+                if (specSize < size) {
+                    result = specSize | MEASURED_STATE_TOO_SMALL;
+                } else {
+                    result = size;
+                }
+                break;
+            case MeasureSpec.EXACTLY:
+                result = specSize;
+                break;
+            }
+            return result | (childMeasuredState&MEASURED_STATE_MASK);
         }
 
         class Line {

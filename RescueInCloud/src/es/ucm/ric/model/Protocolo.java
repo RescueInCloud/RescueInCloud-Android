@@ -12,9 +12,10 @@ public class Protocolo {
 	protected int id;
 	protected String nombre;
 	protected ArrayList<CajaTexto> cajas;
-	protected CajasHijos hijos;
+	protected CajasHijos hijos;//relaciones
 	protected ArrayList<Integer> decision;
-    
+   
+
 	public Protocolo(){
     	this.nombre="";
     	cajas= new ArrayList<CajaTexto>();
@@ -29,6 +30,10 @@ public class Protocolo {
     	hijos= new CajasHijos();
     	decision= new ArrayList<Integer>();
     }
+    
+    public ArrayList<Integer> getDecision() {
+		return decision;
+	}
     
     public String getNombre() {
         return nombre;

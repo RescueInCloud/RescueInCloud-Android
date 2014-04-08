@@ -72,5 +72,17 @@ public class Text extends TextInterpreter{
 		// TODO Auto-generated method stub
 		return "ID: "+ this.id + " TIPO_PARSER: " + "Text" + " TEXTO: "+this.texto;
 	}
+
+	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+
+	@Override
+	public String getContenido() {
+		// TODO Auto-generated method stub
+		return texto;
+	}
     
 }

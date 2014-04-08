@@ -27,7 +27,7 @@ public class FragmentPaginador extends Fragment {
 
 	private PagerAdapter buildAdapter() {
 		MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getChildFragmentManager());
-		adapter.addFragment(new FragmentListaFarmacos());
+		adapter.addFragment(new FragmentNuevoProtocolo());
 		adapter.addFragment(new FragmentMenuPrincipal());
 		return adapter;
 	}

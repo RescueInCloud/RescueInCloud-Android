@@ -29,6 +29,9 @@ public class Number extends TextInterpreter{
         this.id=id;
     }
    
+    public int getId(){
+    	return id;
+    }
 
     @Override
     public ArrayList<String> textInterpreterparseText(String cadena) {
@@ -104,6 +107,12 @@ public class Number extends TextInterpreter{
 	public String toString() {
 		return "ID: "+ this.id + " TIPO_PARSER: " + "Number" + " VALOR: " + this.valor + " TEXTO_COMPLETO: "+this.texto
 				 + " RELACION_CANTIDAD: "+this.relacionCantidad;
+	}
+
+	@Override
+	public String getContenido() {
+		// TODO Auto-generated method stub
+		return texto;
 	}
     
 }
