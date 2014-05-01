@@ -10,7 +10,12 @@ import es.ucm.ric.model.CajaTexto;
 import es.ucm.ric.model.Protocolo;
 
 public class CajaTextoDAO {
-
+	/*0 -> normal
+1-> decision
+y en el tipo de relacion
+0 -> Sí
+1 -> no
+2 -> nada*/
 	private static final String TABLE = "caja_texto";
 	private static final String ID = "caja_texto_id";
 	private static final String TIPO = "tipo";
@@ -29,7 +34,7 @@ public class CajaTextoDAO {
 			
 			do{
 				int id = cursor.getInt(cursor.getColumnIndex(ID));
-				String tipo = cursor.getString(cursor.getColumnIndex(TIPO));
+				int tipo = cursor.getInt(cursor.getColumnIndex(TIPO));
 				String contenido = cursor.getString(cursor.getColumnIndex(CONTENIDO));
 				
 				valueObject = new CajaTexto(id, id_protocolo, tipo, contenido);

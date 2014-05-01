@@ -34,7 +34,7 @@ public class FragmentNuevoProtocolo extends Fragment{
 		Protocolo p = new ProtocoloDAO().get("prueba1");
 		TextParser tp = new TextParser();
 		ArrayList<TextInterpreter> cajas = tp.parseCaja(p.cajas_toString());
-		
+		//hasta aqui correctamente
 		ProtocoloParseado pp = new ProtocoloParseado(cajas,p);
 		TextInterpreter cajaelegida=null;
 		for (TextInterpreter caja : cajas) {
@@ -42,19 +42,19 @@ public class FragmentNuevoProtocolo extends Fragment{
 			if(caja instanceof Number){
 				Number n = (Number)caja;
 				int id = n.getId();
-				if(id==8)
+				if(id==0)
 				cajaelegida = caja;
 			}
 			else if(caja instanceof NumberUnit){
 				NumberUnit n = (NumberUnit)caja;
 				int id = n.getId();
-				if(id==8)
+				if(id==0)
 				cajaelegida = caja;
 			}
 			else if(caja instanceof Text){
 				Text n = (Text)caja;
 				int id = n.getId();
-				if(id==8)
+				if(id==0)
 				cajaelegida = caja;
 			}
 		}

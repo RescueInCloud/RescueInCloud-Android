@@ -8,7 +8,12 @@ import es.ucm.ric.model.CajasHijos;
 import es.ucm.ric.model.Tupla;
 
 public class CajaTextoHijoDAO {
-	
+	/*0 -> normal
+1-> decision
+y en el tipo de relacion
+0 -> Sí
+1 -> no
+2 -> nada*/
 	private static final String TABLE = "caja_texto_hijos";
 	private static final String ID = "id";
 	private static final String ID_PROTOCOLO = "id_protocolo";

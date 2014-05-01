@@ -45,13 +45,20 @@ public class Number extends TextInterpreter{
             if (isNumber(w[i])){
             	 encontrado=true;
             	 command = new ArrayList<String>();
+            		if (w[i].charAt(w[i].length()-1)==','){
+            			w[i]=w[i].replace(",","");
+                	}
+                	else if (w[i].charAt(w[i].length()-1)=='.'){
+                		w[i]=w[i].replace(".","");
+                	}
+                	
             	 if (i+1<w.length){
 	            	 if(!isUnit(w[i+1])){
 		                command.add("Number");//0->tipo
 		                command.add(w[0].replace("id", ""));//1->id
 		                command.add(w[i]);//2->valor
 		                command.add(encontrarRelacionCantidad(cadena,w[i]));//3->rC
-		                command.add(cadena);
+		                command.add(texto);
 	            	 }
 	            	 else{
 	            		 command.add("NumberUnit"); //0->nombre
@@ -61,6 +68,13 @@ public class Number extends TextInterpreter{
 	                     command.add(this.encontrarRelacionCantidad(cadena,w[i]));//4->relacionCant
 	                     command.add(texto); //4->texto
 	            	 }
+            	 }
+            	 else{
+            		 command.add("Number");//0->tipo
+		                command.add(w[0].replace("id", ""));//1->id
+		                command.add(w[i]);//2->valor
+		                command.add(encontrarRelacionCantidad(cadena,w[i]));//3->rC
+		                command.add(texto);
             	 }
             }
             i++;
@@ -87,9 +101,11 @@ public class Number extends TextInterpreter{
             return false;
         }
         else{
-            for (int i =0;i<s.length();i++){
-                if(!(s.charAt(i)=='.') && !Character.isDigit(s.charAt(i)))
-                    return false;
+        
+            for(int i=0;i<s.length();i++){
+                if(!(s.charAt(i)==',') && !(s.charAt(i)=='.') && !Character.isDigit(s.charAt(i))){
+                     return false;
+                }
             }
         }
         return true;

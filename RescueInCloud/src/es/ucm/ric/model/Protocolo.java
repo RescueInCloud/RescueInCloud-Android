@@ -64,7 +64,7 @@ public class Protocolo {
 
     public void anyadirCaja(CajaTexto caja){
     	this.cajas.add(caja);
-    	if (caja.getTipo().equals("decision"))
+    	if (caja.getTipo()==1)
     		this.decision.add(caja.getIdCajaTexto());	
     }
     

@@ -8,11 +8,12 @@ package es.ucm.ric.model;
 
 
 public class CajaTexto {
-	
-    private int idCajaTexto, id_protocolo;
-    private String tipo,contenido;
+	/*0 -> normal
+		1-> decision*/
+    private int idCajaTexto, id_protocolo,tipo;
+    private String contenido;
 
-    public CajaTexto(int idCajaTexto, int id_protocolo, String tipo, String text) {
+    public CajaTexto(int idCajaTexto, int id_protocolo, int tipo, String text) {
 		super();
 		this.idCajaTexto = idCajaTexto;
 		this.id_protocolo = id_protocolo;
@@ -34,11 +35,11 @@ public class CajaTexto {
         this.idCajaTexto = idCajaTexto;
     }
 
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
     

@@ -42,6 +42,13 @@ public class NumberUnit extends TextInterpreter{
         	texto+= " "+w[i];
             datos = (isNumber(w[i]));
             if (datos!=null){
+            	if (datos[0].charAt(datos[0].length()-1)==','){
+            		datos[0]=datos[0].replace(",","");
+            	}
+            	else if (datos[0].charAt(datos[0].length()-1)=='.'){
+            		datos[0]= datos[0].replace(".","");
+            	}
+            	
                 encontrado=true;
                 command = new ArrayList<String>();
                 command.add("NumberUnit"); //0->nombre
@@ -69,6 +76,7 @@ public class NumberUnit extends TextInterpreter{
         else{
         	boolean hayDigito=false;
         	int i=0;
+        	
         	while(i<s.length() && dev == null){
             	String copia="";
                 //si no es punto ni digito puede ser una unidad

@@ -43,7 +43,7 @@ public class CajasProtocolo {
     public ArrayList<CajaTexto> getCajasDecision() {
         ArrayList<CajaTexto> decision = new ArrayList();
         for (CajaTexto value :  this.cajasProtocolo.values()){
-            if (value.getTipo().equals("decision")){
+            if (value.getTipo()==1){
                 decision.add(value);
             }
         }
