@@ -34,7 +34,7 @@ y en el tipo de relacion
 			do{
 				int id_hijo = cursor.getInt(cursor.getColumnIndex(HIJO));
 				int id_padre = cursor.getInt(cursor.getColumnIndex(PADRE));
-				String relacion = cursor.getString(cursor.getColumnIndex(RELACION));
+				int relacion = cursor.getInt(cursor.getColumnIndex(RELACION));
 				Tupla t = new Tupla();
 				t.id=id_hijo;
 				t.relacion = relacion;

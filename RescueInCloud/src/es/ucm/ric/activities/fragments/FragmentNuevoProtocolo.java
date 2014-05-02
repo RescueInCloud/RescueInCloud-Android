@@ -43,20 +43,24 @@ public class FragmentNuevoProtocolo extends Fragment{
 				Number n = (Number)caja;
 				int id = n.getId();
 				if(id==0)
-				cajaelegida = caja;
+					cajaelegida = caja;
+				break;
 			}
 			else if(caja instanceof NumberUnit){
 				NumberUnit n = (NumberUnit)caja;
 				int id = n.getId();
 				if(id==0)
-				cajaelegida = caja;
+					cajaelegida = caja;
+				break;
 			}
 			else if(caja instanceof Text){
 				Text n = (Text)caja;
 				int id = n.getId();
 				if(id==0)
-				cajaelegida = caja;
+					cajaelegida = caja;
+				break;
 			}
+			
 		}
 		
 		TextView contenidoTV = (TextView)getActivity().findViewById(R.id.contenido);
