@@ -13,6 +13,7 @@ import es.ucm.ric.activities.fragments.FragmentDetalle;
 import es.ucm.ric.activities.fragments.FragmentDrawerLateral;
 import es.ucm.ric.activities.fragments.FragmentInit;
 import es.ucm.ric.activities.fragments.FragmentListaFarmacos;
+import es.ucm.ric.activities.fragments.FragmentListaProtocolos;
 import es.ucm.ric.activities.fragments.FragmentNota;
 import es.ucm.ric.activities.fragments.FragmentPaginador;
 import es.ucm.ric.activities.fragments.FragmentTest;
@@ -107,6 +108,7 @@ public class DrawerActivity extends BaseActivity{
 				break;
 			case R.id.opcion_protocolo:
 				cambiarFragment(new FragmentDetalle());
+				//cambiarFragment(new FragmentListaProtocolos());
 				break;
 			
 			case R.id.opcion_farmaco:
