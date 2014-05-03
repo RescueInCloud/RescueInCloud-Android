@@ -1,4 +1,4 @@
-package es.ucm.ric.activities.fragments;
+package es.ucm.ric.activities.fragments.details;
 
 import es.ucm.ric.R;
 import android.os.Bundle;

@@ -20,17 +20,22 @@ import es.ucm.ric.parser.TextParser;
 
 public class FragmentNuevoProtocolo extends Fragment{
 	
+	private ViewGroup contenedor;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, 
 			                 ViewGroup container, 
 			                 Bundle savedInstanceState) {
 		
-		return inflater.inflate(R.layout.nuevo_protocolo, container, false);
+		return inflater.inflate(R.layout.fragment_protocolo, container, false);
 	}
 	
 	@Override
 	public void onActivityCreated(Bundle state) { 
 		super.onActivityCreated(state);
+		
+		contenedor = (ViewGroup) getActivity().findViewById(R.id.contenedor);
+		
 		Protocolo p = new ProtocoloDAO().get("prueba1");
 		TextParser tp = new TextParser();
 		ArrayList<TextInterpreter> cajas = tp.parseCaja(p.cajas_toString());
@@ -38,34 +43,58 @@ public class FragmentNuevoProtocolo extends Fragment{
 		ProtocoloParseado pp = new ProtocoloParseado(cajas,p);
 		TextInterpreter cajaelegida=null;
 		for (TextInterpreter caja : cajas) {
-			
-			if(caja instanceof Number){
-				Number n = (Number)caja;
-				int id = n.getId();
-				if(id==0)
-					cajaelegida = caja;
-				break;
-			}
-			else if(caja instanceof NumberUnit){
-				NumberUnit n = (NumberUnit)caja;
-				int id = n.getId();
-				if(id==0)
-					cajaelegida = caja;
-				break;
-			}
-			else if(caja instanceof Text){
-				Text n = (Text)caja;
-				int id = n.getId();
-				if(id==0)
-					cajaelegida = caja;
-				break;
+			if(caja.getId()==0){
+				cajaelegida = caja;
 			}
 			
 		}
 		
-		TextView contenidoTV = (TextView)getActivity().findViewById(R.id.contenido);
-		contenidoTV.setText(cajaelegida.getContenido());
+		//cajaelegida.encontrarRelacionCantidad(cadena, valor)
+		
+		addItem(cajaelegida.getContenido());
 		
 	}
+	
+	private void addItem(String texto) {
+        // Instantiate a new "row" view.
+        final ViewGroup newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
+                R.layout.protocolo_item, contenedor, false);
+
+        // Set the text in the new row to a random country.
+        ((TextView) newView.findViewById(R.id.contenido)).setText(texto);
+
+        // Set a click listener for the "X" button in the row that will remove the row.
+        newView.findViewById(R.id.buttonSi).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Remove the row from its parent (the container view).
+                // Because mContainerView has android:animateLayoutChanges set to true,
+                // this removal is automatically animated.
+                //contenedor.removeView(newView);
+
+            }
+        });
+
+        newView.findViewById(R.id.buttonNo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               
+
+            }
+        });
+        
+        newView.findViewById(R.id.buttonContinuar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               
+            	addItem("lalala");
+            }
+        });
+        // Because mContainerView has android:animateLayoutChanges set to true,
+        // adding this view is automatically animated.
+        //contenedor.addView(newView,0);
+        contenedor.addView(newView);
+    }
+
 
 }

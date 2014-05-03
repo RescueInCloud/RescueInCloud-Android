@@ -1,4 +1,4 @@
-package es.ucm.ric.activities.fragments;
+package es.ucm.ric.activities.fragments.lists;
 
 import java.util.ArrayList;
 

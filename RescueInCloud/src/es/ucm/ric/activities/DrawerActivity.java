@@ -9,14 +9,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
 import es.ucm.ric.R;
-import es.ucm.ric.activities.fragments.FragmentDetalle;
 import es.ucm.ric.activities.fragments.FragmentDrawerLateral;
 import es.ucm.ric.activities.fragments.FragmentInit;
-import es.ucm.ric.activities.fragments.FragmentListaFarmacos;
-import es.ucm.ric.activities.fragments.FragmentListaProtocolos;
 import es.ucm.ric.activities.fragments.FragmentNota;
 import es.ucm.ric.activities.fragments.FragmentPaginador;
 import es.ucm.ric.activities.fragments.FragmentTest;
+import es.ucm.ric.activities.fragments.lists.FragmentListaFarmacos;
+import es.ucm.ric.activities.fragments.lists.FragmentListaProtocolos;
 import es.ucm.ric.tools.BaseActivity;
 
 public class DrawerActivity extends BaseActivity{
