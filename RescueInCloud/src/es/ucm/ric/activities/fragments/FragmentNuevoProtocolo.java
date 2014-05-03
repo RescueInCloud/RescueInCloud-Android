@@ -12,6 +12,7 @@ import es.ucm.ric.R;
 import es.ucm.ric.dao.ProtocoloDAO;
 import es.ucm.ric.model.Protocolo;
 import es.ucm.ric.model.ProtocoloParseado;
+import es.ucm.ric.model.TuplaParseada;
 import es.ucm.ric.parser.Number;
 import es.ucm.ric.parser.NumberUnit;
 import es.ucm.ric.parser.Text;
@@ -41,13 +42,29 @@ public class FragmentNuevoProtocolo extends Fragment{
 		ArrayList<TextInterpreter> cajas = tp.parseCaja(p.cajas_toString());
 		//hasta aqui correctamente
 		ProtocoloParseado pp = new ProtocoloParseado(cajas,p);
-		TextInterpreter cajaelegida=null;
+		
+		/**/
+		/*consulta por el id de una caja si es de decision o de texto*/
+		boolean b = pp.esCajaDecision(0);
+		/*devuelve toodos los hijos de una caja, metiendo su id. En la clase TuplaParseada
+		 * está la caja hijo ya parseada (TextInterpreter) y su relación 
+		 */
+		ArrayList<TuplaParseada> t= pp.getHijosParseados(0);
+		/*Idem pero devolviendo sólo los de si o no o normal por separado, devuelven null si no tienen esos hijos*/
+		TextInterpreter tno=pp.getHijoParseadoNO(0);
+		ArrayList<TextInterpreter> tnormal=pp.getHijoParseadoNORMAL(0);
+		TextInterpreter tsi=pp.getHijoParseadoSI(0);
+		/**/
+		
+		/**/TextInterpreter cajaelegida=null;
 		for (TextInterpreter caja : cajas) {
 			if(caja.getId()==0){
 				cajaelegida = caja;
+				break;
 			}
 			
 		}
+		
 		
 		//cajaelegida.encontrarRelacionCantidad(cadena, valor)
 		
