@@ -7,7 +7,7 @@ package es.ucm.ric.model;
 import java.util.ArrayList;
 
 
-public class Protocolo {
+public class Protocolo implements IListable{
 
 	protected int id;
 	protected String nombre;
@@ -75,5 +75,20 @@ public class Protocolo {
     	}
     	return s;
     }
+
+	@Override
+	public String getTitulo() {
+		return nombre;
+	}
+
+	@Override
+	public String getSubtitulo() {
+		return nombre;
+	}
+
+	@Override
+	public String getRuta() {
+		return null;
+	}
 
 }

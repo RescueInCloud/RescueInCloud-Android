@@ -107,8 +107,8 @@ public class DrawerActivity extends BaseActivity{
 				cambiarFragment(new FragmentInit());
 				break;
 			case R.id.opcion_protocolo:
-				cambiarFragment(new FragmentDetalle());
-				//cambiarFragment(new FragmentListaProtocolos());
+				//cambiarFragment(new FragmentDetalle());
+				cambiarFragment(new FragmentListaProtocolos());
 				break;
 			
 			case R.id.opcion_farmaco:
