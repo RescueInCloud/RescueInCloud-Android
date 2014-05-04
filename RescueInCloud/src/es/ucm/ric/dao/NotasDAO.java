@@ -11,7 +11,7 @@ import es.ucm.ric.model.Nota;
 public class NotasDAO {
 	private static final String TABLE = "notas";
 	//private static final String ID = "rowid";
-	private static final String FARMACO = "nombre_nota";
+	private static final String NOMBRE = "nombre_nota";
 	private static final String DESCRIPCION = "descripcion";
 	
 	public ArrayList<Nota> getListaNotas() {
@@ -25,7 +25,7 @@ public class NotasDAO {
 			
 			do{
 				//int id = cursor.getInt(cursor.getColumnIndex(ID));
-				String nota = cursor.getString(cursor.getColumnIndex(FARMACO));
+				String nota = cursor.getString(cursor.getColumnIndex(NOMBRE));
 				String descripcion = cursor.getString(cursor.getColumnIndex(DESCRIPCION));
 				
 				valueObject = new Nota(nota, descripcion);
@@ -39,6 +39,24 @@ public class NotasDAO {
 		return list;
 	}
 	
+	
+	public Nota get(String name) {
+		SQLiteDatabase db = MyApp.getContext().openOrCreateDatabase("rescue_lite_db", Context.MODE_PRIVATE,null);
+		Cursor cursor = db.query(TABLE, null, NOMBRE+"=?", new String[] {name}, null, null, null);
+		
+		Nota valueObject = null;
+		if (cursor.moveToFirst()) {
+			//String nombre = cursor.getString(cursor.getColumnIndex(NOMBRE));
+			String descripcion = cursor.getString(cursor.getColumnIndex(DESCRIPCION));
+			
+			valueObject = new Nota(name, descripcion);
+					
+		}
+
+		cursor.close();
+		db.close();
+		return valueObject;
+	}
 
 }
 
