@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.adapters.MiAdapter;
-import es.ucm.ric.dao.FarmacoDAO;
 import es.ucm.ric.dao.NotasDAO;
-import es.ucm.ric.model.Farmaco;
 import es.ucm.ric.model.IListable;
 import es.ucm.ric.model.Nota;
 

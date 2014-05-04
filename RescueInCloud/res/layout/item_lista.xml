@@ -7,8 +7,7 @@
 	    android:orientation="horizontal"
 	    style="@style/Card_style"
 	    android:gravity="center"
-	    android:clickable="true"
-	    android:onClick="onClick" >
+	     >
 
         
         <ImageView

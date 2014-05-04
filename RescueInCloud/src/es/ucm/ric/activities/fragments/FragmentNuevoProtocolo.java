@@ -17,7 +17,6 @@ import es.ucm.ric.R;
 import es.ucm.ric.dao.ProtocoloDAO;
 import es.ucm.ric.model.Protocolo;
 import es.ucm.ric.model.ProtocoloParseado;
-import es.ucm.ric.model.TuplaParseada;
 import es.ucm.ric.parser.TextInterpreter;
 import es.ucm.ric.parser.TextParser;
 
@@ -38,7 +37,9 @@ public class FragmentNuevoProtocolo extends Fragment{
 		
 		contenedor = (ViewGroup) getActivity().findViewById(R.id.contenedor);
 
-		Protocolo p = new ProtocoloDAO().get("prueba1");
+		String id = getArguments().getString("ID");
+		
+		Protocolo p = new ProtocoloDAO().get(id);
 		TextParser tp = new TextParser();
 		
 		ArrayList<TextInterpreter> cajas = tp.parseCaja(p.cajas_toString());

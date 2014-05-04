@@ -10,15 +10,22 @@ import android.view.MenuItem;
 import android.view.View;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.fragments.FragmentDrawerLateral;
-import es.ucm.ric.activities.fragments.FragmentInit;
 import es.ucm.ric.activities.fragments.FragmentNota;
 import es.ucm.ric.activities.fragments.FragmentPaginador;
 import es.ucm.ric.activities.fragments.FragmentTest;
 import es.ucm.ric.activities.fragments.lists.FragmentListaFarmacos;
 import es.ucm.ric.activities.fragments.lists.FragmentListaProtocolos;
+import es.ucm.ric.activities.listeners.ICambiarFragmentListener;
+import es.ucm.ric.model.IListable;
 import es.ucm.ric.tools.BaseActivity;
 
-public class DrawerActivity extends BaseActivity{
+public class DrawerActivity extends BaseActivity
+	implements ICambiarFragmentListener<IListable>{
+	
+	
+	public static final int ABRIR_PAGINADOR = 0;
+	
+	
     private DrawerLayout drawerLayout;
     private View drawerList;
     private ActionBarDrawerToggle drawerToggle;
@@ -69,8 +76,9 @@ public class DrawerActivity extends BaseActivity{
 		
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
-		
-		cambiarFragment(new FragmentInit());
+		FragmentListaProtocolos f = new FragmentListaProtocolos();
+		f.setListener(this);
+		cambiarFragment(f);
 	}
 	
 	private void cambiarFragment(Fragment fragment){
@@ -103,7 +111,7 @@ public class DrawerActivity extends BaseActivity{
 		
 		switch(v.getId()){
 			case R.id.imagen_ini:
-				cambiarFragment(new FragmentInit());
+				//cambiarFragment(new FragmentInit());
 				break;
 			case R.id.opcion_protocolo:
 				//cambiarFragment(new FragmentDetalle());
@@ -149,6 +157,24 @@ public class DrawerActivity extends BaseActivity{
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		drawerToggle.onConfigurationChanged(newConfig);
+	}
+
+	@Override
+	public void cambiarFragment(IListable data, int opcion) {
+		
+		switch (opcion) {
+			case ABRIR_PAGINADOR:
+				FragmentPaginador f = new FragmentPaginador();
+				Bundle bundle = new Bundle();
+			    bundle.putString("ID", data.getTitulo());
+			    f.setArguments(bundle);
+				cambiarFragment(f);
+				break;
+	
+			default:
+				break;
+		}
+		
 	}
 	
 

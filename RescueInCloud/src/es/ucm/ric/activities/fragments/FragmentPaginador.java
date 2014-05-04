@@ -13,22 +13,32 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class FragmentPaginador extends Fragment {
+	
+	private String id; 
+	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View result = inflater.inflate(R.layout.fragment_paginador, container,
-				false);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View result = inflater.inflate(R.layout.fragment_paginador, container,false);
+		
+		id = getArguments().getString("ID");
+		
 		ViewPager pager = (ViewPager) result.findViewById(R.id.pager);
 		pager.setPageTransformer(true, new DepthPageTransformer());
 		pager.setAdapter(buildAdapter());
-
+		
 		return (result);
 	}
 
 	private PagerAdapter buildAdapter() {
 		MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getChildFragmentManager());
-		adapter.addFragment(new FragmentNuevoProtocolo());
+		
+		FragmentNuevoProtocolo fp = new FragmentNuevoProtocolo();
+		Bundle bundle = new Bundle();
+	    bundle.putString("ID", id);
+	    fp.setArguments(bundle);
+		adapter.addFragment(fp);
 		adapter.addFragment(new FragmentMenuPrincipal());
+		
 		return adapter;
 	}
 }
