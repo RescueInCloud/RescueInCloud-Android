@@ -80,6 +80,11 @@ public class ProtocoloParseado extends Protocolo{
 	public ArrayList<TextInterpreter> getHijoParseadoNORMAL(int id){
 
 		ArrayList<Tupla> hijosDeID = super.hijos.getHijos(id);
+		
+		//Se pregunta por hijosDeID porque no se peude hacer un foreach de null y da error
+		if(hijosDeID==null)
+			return null;
+		
 		ArrayList<TextInterpreter> hijosDeIDparseados = null;
 		for (Tupla t: hijosDeID){
 			if (t.relacion==2){
