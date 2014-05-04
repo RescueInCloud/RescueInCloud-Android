@@ -159,4 +159,25 @@ public class Tools {
 		}
     }
     
+    /**
+     * Return dp's from a given pixels
+     * @param context
+     * @param px
+     * @return
+     */
+    public static float dpFromPx(Context context, float px)
+    {
+        return px / context.getResources().getDisplayMetrics().density;
+    }
+
+    /**
+     * Return pixels from a given dp 
+     * @param context
+     * @param dp
+     * @return
+     */
+    public static float pxFromDp(Context context, float dp)
+    {
+        return dp * context.getResources().getDisplayMetrics().density;
+    }
 }

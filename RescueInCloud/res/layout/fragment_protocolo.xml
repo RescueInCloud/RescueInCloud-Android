@@ -7,12 +7,9 @@
     
  <LinearLayout android:id="@+id/contenedor"
 	android:layout_margin="10dp"
-    android:padding="10dp"
     android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:background="@drawable/box_background"
 	android:orientation="vertical" 
-	android:showDividers="middle"
     android:animateLayoutChanges="true"
   	android:gravity="center" />
 

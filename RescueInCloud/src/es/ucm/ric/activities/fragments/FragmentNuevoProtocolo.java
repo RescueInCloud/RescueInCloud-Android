@@ -13,9 +13,6 @@ import es.ucm.ric.dao.ProtocoloDAO;
 import es.ucm.ric.model.Protocolo;
 import es.ucm.ric.model.ProtocoloParseado;
 import es.ucm.ric.model.TuplaParseada;
-import es.ucm.ric.parser.Number;
-import es.ucm.ric.parser.NumberUnit;
-import es.ucm.ric.parser.Text;
 import es.ucm.ric.parser.TextInterpreter;
 import es.ucm.ric.parser.TextParser;
 
@@ -24,9 +21,7 @@ public class FragmentNuevoProtocolo extends Fragment{
 	private ViewGroup contenedor;
 	
 	@Override
-	public View onCreateView(LayoutInflater inflater, 
-			                 ViewGroup container, 
-			                 Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
 		
 		return inflater.inflate(R.layout.fragment_protocolo, container, false);
 	}
@@ -36,7 +31,7 @@ public class FragmentNuevoProtocolo extends Fragment{
 		super.onActivityCreated(state);
 		
 		contenedor = (ViewGroup) getActivity().findViewById(R.id.contenedor);
-		
+
 		Protocolo p = new ProtocoloDAO().get("prueba1");
 		TextParser tp = new TextParser();
 		ArrayList<TextInterpreter> cajas = tp.parseCaja(p.cajas_toString());
@@ -50,7 +45,7 @@ public class FragmentNuevoProtocolo extends Fragment{
 		 * está la caja hijo ya parseada (TextInterpreter) y su relación 
 		 */
 		ArrayList<TuplaParseada> t= pp.getHijosParseados(0);
-		/*Idem pero devolviendo sólo los de si o no o normal por separado, devuelven null si no tienen esos hijos*/
+		/*Idem pero devolviendo s—lo los de si o no o normal por separado, devuelven null si no tienen esos hijos*/
 		TextInterpreter tno=pp.getHijoParseadoNO(0);
 		ArrayList<TextInterpreter> tnormal=pp.getHijoParseadoNORMAL(0);
 		TextInterpreter tsi=pp.getHijoParseadoSI(0);
