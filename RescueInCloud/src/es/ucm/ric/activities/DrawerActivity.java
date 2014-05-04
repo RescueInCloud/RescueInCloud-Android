@@ -10,12 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.fragments.FragmentDrawerLateral;
-import es.ucm.ric.activities.fragments.FragmentNota;
 import es.ucm.ric.activities.fragments.FragmentPaginador;
-import es.ucm.ric.activities.fragments.FragmentTest;
+import es.ucm.ric.activities.fragments.details.FragmentDetalleFarmaco;
 import es.ucm.ric.activities.fragments.lists.FragmentListaFarmacos;
 import es.ucm.ric.activities.fragments.lists.FragmentListaNotas;
 import es.ucm.ric.activities.fragments.lists.FragmentListaProtocolos;
+import es.ucm.ric.activities.fragments.sandbox.FragmentTest;
 import es.ucm.ric.activities.listeners.ICambiarFragmentListener;
 import es.ucm.ric.model.IListable;
 import es.ucm.ric.tools.BaseActivity;
@@ -25,6 +25,7 @@ public class DrawerActivity extends BaseActivity
 	
 	
 	public static final int ABRIR_PAGINADOR = 0;
+	public static final int ABRIR_DETALLE_FARMACO = 1;
 	
 	
     private DrawerLayout drawerLayout;
@@ -115,13 +116,15 @@ public class DrawerActivity extends BaseActivity
 				//cambiarFragment(new FragmentInit());
 				break;
 			case R.id.opcion_protocolo:
-				FragmentListaProtocolos f = new FragmentListaProtocolos();
-				f.setListener(this);
-				cambiarFragment(f);
+				FragmentListaProtocolos fp = new FragmentListaProtocolos();
+				fp.setListener(this);
+				cambiarFragment(fp);
 				break;
 			
 			case R.id.opcion_farmaco:
-				cambiarFragment(new FragmentListaFarmacos());
+				FragmentListaFarmacos lf = new FragmentListaFarmacos();
+				lf.setListener(this);
+				cambiarFragment(lf);
 				break;
 				
 			case R.id.opcion_notas:
@@ -163,16 +166,23 @@ public class DrawerActivity extends BaseActivity
 
 	@Override
 	public void cambiarFragment(IListable data, int opcion) {
-		
+		Bundle bundle = null;
 		switch (opcion) {
 			case ABRIR_PAGINADOR:
 				FragmentPaginador f = new FragmentPaginador();
-				Bundle bundle = new Bundle();
+				bundle = new Bundle();
 			    bundle.putString("ID", data.getTitulo());
 			    f.setArguments(bundle);
 				cambiarFragment(f);
 				break;
 	
+			case ABRIR_DETALLE_FARMACO:
+				FragmentDetalleFarmaco fdf = new FragmentDetalleFarmaco();
+				bundle = new Bundle();
+			    bundle.putString("ID", data.getTitulo());
+			    fdf.setArguments(bundle);
+				cambiarFragment(fdf);
+				break;
 			default:
 				break;
 		}

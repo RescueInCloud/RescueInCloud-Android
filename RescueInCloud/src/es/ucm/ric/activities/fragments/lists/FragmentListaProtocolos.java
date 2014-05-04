@@ -2,7 +2,6 @@ package es.ucm.ric.activities.fragments.lists;
 
 import java.util.ArrayList;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,7 +10,6 @@ import android.widget.ListView;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.DrawerActivity;
 import es.ucm.ric.activities.adapters.MiAdapter;
-import es.ucm.ric.activities.fragments.FragmentNuevoProtocolo;
 import es.ucm.ric.activities.listeners.ICambiarFragmentListener;
 import es.ucm.ric.dao.ProtocoloDAO;
 import es.ucm.ric.model.IListable;

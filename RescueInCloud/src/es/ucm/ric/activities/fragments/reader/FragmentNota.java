@@ -1,4 +1,4 @@
-package es.ucm.ric.activities.fragments;
+package es.ucm.ric.activities.fragments.reader;
 
 import es.ucm.ric.R;
 import es.ucm.ric.tools.JustifiedTextView;

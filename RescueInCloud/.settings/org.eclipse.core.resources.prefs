@@ -1,8 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/es/ucm/ric/activities/DrawerActivity.java=UTF-8
 encoding//src/es/ucm/ric/activities/NotaActivity.java=UTF-8
-encoding//src/es/ucm/ric/activities/fragments/FragmentNota.java=UTF-8
-encoding//src/es/ucm/ric/activities/fragments/FragmentTest.java=UTF-8
+encoding//src/es/ucm/ric/activities/fragments/reader/FragmentNota.java=UTF-8
+encoding//src/es/ucm/ric/activities/fragments/sandbox/FragmentTest.java=UTF-8
 encoding//src/es/ucm/ric/activities/peticiones/HolaConexion.java=UTF-8
 encoding//src/es/ucm/ric/activities/peticiones/RecuperarFarmacosConexion.java=UTF-8
 encoding//src/es/ucm/ric/dao/CajaTextoHijoDAO.java=UTF-8

@@ -4,6 +4,7 @@ package es.ucm.ric.activities.fragments;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.adapters.MyFragmentPagerAdapter;
 import es.ucm.ric.activities.animations.DepthPageTransformer;
+import es.ucm.ric.activities.fragments.sandbox.FragmentMenuPrincipal;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;

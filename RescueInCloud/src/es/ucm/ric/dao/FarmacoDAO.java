@@ -48,5 +48,25 @@ public class FarmacoDAO {
 		return list;
 	}
 	
+	
+	public Farmaco get(String name) {
+		SQLiteDatabase db = MyApp.getContext().openOrCreateDatabase("rescue_lite_db", Context.MODE_PRIVATE,null);
+		Cursor cursor = db.query(TABLE, null, FARMACO+"=?", new String[] {name}, null, null, null);
+		
+		Farmaco valueObject = null;
+		if (cursor.moveToFirst()) {
+			int id = cursor.getInt(cursor.getColumnIndex(ID));
+			String fabrincante = cursor.getString(cursor.getColumnIndex(FABRICANTE));
+			String presentacion = cursor.getString(cursor.getColumnIndex(PRESENTACION));
+			String administracion = cursor.getString(cursor.getColumnIndex(ADMINISTRACION));
+			String descripcion = cursor.getString(cursor.getColumnIndex(DESCRIPCION));
+			
+			valueObject = new Farmaco(id, name, fabrincante,presentacion, administracion, descripcion);
+		}
+
+		cursor.close();
+		db.close();
+		return valueObject;
+	}
 
 }
