@@ -14,6 +14,7 @@ import es.ucm.ric.activities.fragments.FragmentNota;
 import es.ucm.ric.activities.fragments.FragmentPaginador;
 import es.ucm.ric.activities.fragments.FragmentTest;
 import es.ucm.ric.activities.fragments.lists.FragmentListaFarmacos;
+import es.ucm.ric.activities.fragments.lists.FragmentListaNotas;
 import es.ucm.ric.activities.fragments.lists.FragmentListaProtocolos;
 import es.ucm.ric.activities.listeners.ICambiarFragmentListener;
 import es.ucm.ric.model.IListable;
@@ -114,8 +115,9 @@ public class DrawerActivity extends BaseActivity
 				//cambiarFragment(new FragmentInit());
 				break;
 			case R.id.opcion_protocolo:
-				//cambiarFragment(new FragmentDetalle());
-				cambiarFragment(new FragmentListaProtocolos());
+				FragmentListaProtocolos f = new FragmentListaProtocolos();
+				f.setListener(this);
+				cambiarFragment(f);
 				break;
 			
 			case R.id.opcion_farmaco:
@@ -123,7 +125,7 @@ public class DrawerActivity extends BaseActivity
 				break;
 				
 			case R.id.opcion_notas:
-				cambiarFragment(new FragmentNota());
+				cambiarFragment(new FragmentListaNotas());
 				break;
 				
 			case R.id.opcion_test:

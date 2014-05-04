@@ -6,12 +6,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import es.ucm.ric.MyApp;
-import es.ucm.ric.model.Farmaco;
 import es.ucm.ric.model.Nota;
 
 public class NotasDAO {
 	private static final String TABLE = "notas";
-	private static final String ID = "rowid";
+	//private static final String ID = "rowid";
 	private static final String FARMACO = "nombre_nota";
 	private static final String DESCRIPCION = "descripcion";
 	
@@ -25,7 +24,7 @@ public class NotasDAO {
 		if(cursor.moveToFirst()){
 			
 			do{
-				int id = cursor.getInt(cursor.getColumnIndex(ID));
+				//int id = cursor.getInt(cursor.getColumnIndex(ID));
 				String nota = cursor.getString(cursor.getColumnIndex(FARMACO));
 				String descripcion = cursor.getString(cursor.getColumnIndex(DESCRIPCION));
 				

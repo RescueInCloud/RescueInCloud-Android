@@ -1,6 +1,9 @@
 package es.ucm.ric.model;
 
 public class Nota implements IListable{
+	
+	private final int LIMITE = 36;
+	
 	private String nombre;
 	private String descripcion;
 	public Nota(String nombre, String descripcion) {
@@ -20,7 +23,10 @@ public class Nota implements IListable{
 	}
 	@Override
 	public String getSubtitulo() {
-		return this.descripcion.substring(0, 20)+"...";
+		if(this.descripcion.length()>LIMITE)
+			return this.descripcion.substring(0, LIMITE)+"...";
+		else
+			return this.descripcion;
 	}
 	@Override
 	public String getRuta() {
