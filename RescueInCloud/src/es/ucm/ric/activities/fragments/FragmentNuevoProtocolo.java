@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import es.ucm.ric.R;
 import es.ucm.ric.dao.ProtocoloDAO;
@@ -18,6 +20,7 @@ import es.ucm.ric.parser.TextParser;
 
 public class FragmentNuevoProtocolo extends Fragment{
 	
+	private ProtocoloParseado pp;
 	private ViewGroup contenedor;
 	
 	@Override
@@ -34,13 +37,16 @@ public class FragmentNuevoProtocolo extends Fragment{
 
 		Protocolo p = new ProtocoloDAO().get("prueba1");
 		TextParser tp = new TextParser();
+		
 		ArrayList<TextInterpreter> cajas = tp.parseCaja(p.cajas_toString());
 		//hasta aqui correctamente
-		ProtocoloParseado pp = new ProtocoloParseado(cajas,p);
+		pp = new ProtocoloParseado(cajas,p);
+		TextInterpreter cajaelegida = pp.getCajaParseada(0);
 		
 		/**/
 		/*consulta por el id de una caja si es de decision o de texto*/
 		boolean b = pp.esCajaDecision(0);
+		
 		/*devuelve toodos los hijos de una caja, metiendo su id. En la clase TuplaParseada
 		 * está la caja hijo ya parseada (TextInterpreter) y su relación 
 		 */
@@ -49,59 +55,88 @@ public class FragmentNuevoProtocolo extends Fragment{
 		TextInterpreter tno=pp.getHijoParseadoNO(0);
 		ArrayList<TextInterpreter> tnormal=pp.getHijoParseadoNORMAL(0);
 		TextInterpreter tsi=pp.getHijoParseadoSI(0);
-		/**/
-		
-		/**/TextInterpreter cajaelegida=null;
-		for (TextInterpreter caja : cajas) {
-			if(caja.getId()==0){
-				cajaelegida = caja;
-				break;
-			}
-			
-		}
-		
+				
 		
 		//cajaelegida.encontrarRelacionCantidad(cadena, valor)
 		
-		addItem(cajaelegida.getContenido());
+		addItem(cajaelegida);
 		
 	}
 	
-	private void addItem(String texto) {
-        // Instantiate a new "row" view.
+	private void addItem(final TextInterpreter caja) {
+		
+		String texto = caja.getContenido();
+		boolean decision = pp.esCajaDecision(caja.getId());
+		
+		// Instantiate a new "row" view.
         final ViewGroup newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
                 R.layout.protocolo_item, contenedor, false);
-
-        // Set the text in the new row to a random country.
-        ((TextView) newView.findViewById(R.id.contenido)).setText(texto);
-
-        // Set a click listener for the "X" button in the row that will remove the row.
-        newView.findViewById(R.id.buttonSi).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Remove the row from its parent (the container view).
-                // Because mContainerView has android:animateLayoutChanges set to true,
-                // this removal is automatically animated.
-                //contenedor.removeView(newView);
-
-            }
-        });
-
-        newView.findViewById(R.id.buttonNo).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               
-
-            }
-        });
         
-        newView.findViewById(R.id.buttonContinuar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               
-            	addItem("lalala");
-            }
-        });
+        TextView contenido = (TextView) newView.findViewById(R.id.contenido);
+        Button buttonSi = (Button) newView.findViewById(R.id.buttonSi);
+        Button buttonNo = (Button) newView.findViewById(R.id.buttonNo);
+        Button buttonContinuar = (Button) newView.findViewById(R.id.buttonContinuar);
+        
+        contenido.setText(texto);
+		
+		if(decision){
+			
+			buttonSi.setOnClickListener(new View.OnClickListener() {
+	            @Override
+	            public void onClick(View view) {
+	            	
+	            	Log.d("cajas", "id: "+ caja.getId());
+	            	TextInterpreter hijoSi = pp.getHijoParseadoSI(caja.getId());
+	            	
+	            	
+	            	if(hijoSi!=null){
+	            		Log.d("cajas", "hijo_si: "+ hijoSi.getId());
+	   	            	addItem(hijoSi);
+	            	}
+	            }
+	        });
+			
+			
+			buttonNo.setOnClickListener(new View.OnClickListener() {
+	            @Override
+	            public void onClick(View view) {
+	            	
+	            	Log.d("cajas", "id: "+ caja.getId());
+	            	TextInterpreter hijoNo = pp.getHijoParseadoSI(caja.getId());
+	            	
+	            	
+	            	if(hijoNo!=null){
+	            		Log.d("cajas", "hijo_no: "+ hijoNo.getId());
+	            		addItem(hijoNo);
+	            	}
+	            }
+	        });
+			
+			buttonContinuar.setVisibility(View.INVISIBLE);
+		}
+		else{
+			buttonNo.setVisibility(View.INVISIBLE);
+			buttonSi.setVisibility(View.INVISIBLE);
+			
+			buttonContinuar.setOnClickListener(new View.OnClickListener() {
+	            @Override
+	            public void onClick(View view) {
+	            	/**
+	            	 * Por quŽ se devuelve una lista de hijos normales?
+	            	 * No deber’a ser s—lo un hijo?
+	            	 */
+	            	Log.d("cajas", "id: "+ caja.getId());
+	            	ArrayList<TextInterpreter> tnormal = pp.getHijoParseadoNORMAL(caja.getId());
+	            	
+	            	if(tnormal!=null && !tnormal.isEmpty()){
+	            		Log.d("cajas", "hijo_nada: "+ tnormal.get(0));
+	            		addItem(tnormal.get(0));
+	            	}
+	           
+	            }
+	        });
+		}
+        
         // Because mContainerView has android:animateLayoutChanges set to true,
         // adding this view is automatically animated.
         //contenedor.addView(newView,0);
