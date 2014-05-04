@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import es.ucm.ric.R;
 import es.ucm.ric.dao.ProtocoloDAO;
 import es.ucm.ric.model.Protocolo;
@@ -93,6 +94,9 @@ public class FragmentNuevoProtocolo extends Fragment{
 	            		Log.d("cajas", "hijo_si: "+ hijoSi.getId());
 	   	            	addItem(hijoSi);
 	            	}
+	            	else{
+	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
+	            	}
 	            }
 	        });
 			
@@ -102,12 +106,15 @@ public class FragmentNuevoProtocolo extends Fragment{
 	            public void onClick(View view) {
 	            	
 	            	Log.d("cajas", "id: "+ caja.getId());
-	            	TextInterpreter hijoNo = pp.getHijoParseadoSI(caja.getId());
+	            	TextInterpreter hijoNo = pp.getHijoParseadoNO(caja.getId());
 	            	
 	            	
 	            	if(hijoNo!=null){
 	            		Log.d("cajas", "hijo_no: "+ hijoNo.getId());
 	            		addItem(hijoNo);
+	            	}
+	            	else{
+	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
 	            	}
 	            }
 	        });
@@ -131,6 +138,9 @@ public class FragmentNuevoProtocolo extends Fragment{
 	            	if(tnormal!=null && !tnormal.isEmpty()){
 	            		Log.d("cajas", "hijo_nada: "+ tnormal.get(0));
 	            		addItem(tnormal.get(0));
+	            	}
+	            	else{
+	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
 	            	}
 	           
 	            }
