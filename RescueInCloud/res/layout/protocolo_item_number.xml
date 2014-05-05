@@ -1,0 +1,99 @@
+
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:showDividers="middle"
+    android:dividerPadding="8dp"
+    android:background="@drawable/box_background"
+    android:padding="10dp"
+	android:layout_margin="5dp"    
+    android:gravity="center">
+
+    <TextView
+		 android:id="@+id/contenido"
+		 android:layout_width="wrap_content"
+		 android:layout_height="wrap_content"
+		 android:textSize="20sp"
+		 android:textColor="@color/color_blanco"
+		 android:gravity="center"
+		 android:text="Una pregunta cualquiera y con mucho blablabla cualquiera" />
+
+   
+
+       
+        
+        <RelativeLayout
+	        android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" 
+		    android:padding="5dp">
+
+        	<Button
+	            android:id="@+id/buttonSi"
+	           	style="@style/Circle_button_style"
+	            android:text="Sí" />
+
+        	<Button
+	            android:id="@+id/buttonNo"
+	            style="@style/Circle_button_style"
+	            android:layout_alignBaseline="@+id/buttonNo"
+	            android:layout_alignBottom="@+id/buttonNo"
+	            android:layout_alignParentRight="true"
+	            android:text="No" />
+
+        	<Button
+	            android:id="@+id/buttonContinuar"
+	            android:layout_width="wrap_content"
+	            android:layout_height="50sp"
+	            android:layout_alignBaseline="@+id/buttonSi"
+	            android:layout_alignBottom="@+id/buttonSi"
+	            android:layout_centerHorizontal="true"
+	            android:background="@drawable/rounded_button_item"
+	            android:gravity="center_vertical|center_horizontal"
+	            android:padding="5dp"
+	            android:text="Continuar"
+	            android:textColor="@color/circle_button_text_color" />
+
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" 
+		    android:padding="5dp">
+         	<TextView
+		        android:id="@+id/textView1"
+		        android:textSize="20sp"
+		         android:textColor="@color/color_blanco"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Inserta el valor:" />
+
+		    <Button
+		        android:id="@+id/buttonNumberOk"
+		        style="?android:attr/buttonStyleSmall"
+		         android:textColor="@color/color_blanco"
+		        android:background="@drawable/rounded_button_item"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentRight="true"
+		        android:layout_alignParentTop="true"
+		        android:text="OK" />
+
+		    <EditText
+		        android:id="@+id/editTextNuberDecimal"
+		        android:layout_width="135dp"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@+id/textView1"
+		        android:ems="10"
+		        android:inputType="numberDecimal" >
+
+		        <requestFocus />
+		    </EditText>
+
+        </RelativeLayout>
+
+</LinearLayout>

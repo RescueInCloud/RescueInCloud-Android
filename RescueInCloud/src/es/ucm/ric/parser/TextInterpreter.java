@@ -18,6 +18,7 @@ public abstract class TextInterpreter {
     public abstract int getId();
     public abstract String getContenido();
     
+    public abstract String getRelacionCantidad();
 
 	public String encontrarRelacionCantidad(String cadena,String valor){
 			String[] w_aux = cadena.split(valor);

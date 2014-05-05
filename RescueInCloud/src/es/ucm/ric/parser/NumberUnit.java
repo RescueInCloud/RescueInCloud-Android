@@ -22,6 +22,11 @@ public class NumberUnit extends TextInterpreter{
         super();
     }
    
+    public String getRelacionCantidad(){
+    	return this.relacionCantidad;
+    }
+    
+    
     public NumberUnit(int id,String valor,String unidad,String relacionCantidad,String texto){
         super();
         this.id=id;

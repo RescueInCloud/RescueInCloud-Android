@@ -32,7 +32,16 @@ public class Number extends TextInterpreter{
     public int getId(){
     	return id;
     }
+    
+    public double getValor(){
+    	return valor;
+    }
 
+
+    public String getRelacionCantidad(){
+    	return this.relacionCantidad;
+    }
+    
     @Override
     public ArrayList<String> textInterpreterparseText(String cadena) {
     	ArrayList<String> command = null;

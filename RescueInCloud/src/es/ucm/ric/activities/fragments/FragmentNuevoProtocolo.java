@@ -11,12 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import es.ucm.ric.R;
 import es.ucm.ric.dao.ProtocoloDAO;
 import es.ucm.ric.model.Protocolo;
 import es.ucm.ric.model.ProtocoloParseado;
+import es.ucm.ric.parser.Text;
 import es.ucm.ric.parser.TextInterpreter;
 import es.ucm.ric.parser.TextParser;
 
@@ -73,17 +75,65 @@ public class FragmentNuevoProtocolo extends Fragment{
 		boolean decision = pp.esCajaDecision(caja.getId());
 		
 		// Instantiate a new "row" view.
-        final ViewGroup newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
-                R.layout.protocolo_item, contenedor, false);
+		  ViewGroup newView = null;
+		if (caja instanceof es.ucm.ric.parser.Number){
+			 newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
+		                R.layout.protocolo_item_number, contenedor, false);
+		}
+		else if (caja instanceof Text){
+			 newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
+		                R.layout.protocolo_item, contenedor, false);
+		}
+       
         
         TextView contenido = (TextView) newView.findViewById(R.id.contenido);
         final Button buttonSi = (Button) newView.findViewById(R.id.buttonSi);
         final Button buttonNo = (Button) newView.findViewById(R.id.buttonNo);
         final Button buttonContinuar = (Button) newView.findViewById(R.id.buttonContinuar);
         
+
+		 final Button buttonNumberOk = (Button) newView.findViewById(R.id.buttonNumberOk);
+        final ViewGroup newViewDEF = newView;
         contenido.setText(texto);
 		
 		if(decision){
+			if (buttonNumberOk != null){
+				buttonNumberOk.setOnClickListener(new View.OnClickListener() {
+
+					@Override
+					public void onClick(View view) {
+
+		            	desactivarRoundedButton(buttonNumberOk);
+		            	
+		            	/*consultar la relacion cantidad de la caja con el numero introducido*/
+		            	String rel=caja.getRelacionCantidad();
+		            	if (rel == ">"){
+		            		EditText numE = (EditText) newViewDEF.findViewById(R.id.editTextNuberDecimal);
+		            		String num = numE.getText().toString();
+		            		if (caja instanceof es.ucm.ric.parser.Number){
+			            		if (Integer.parseInt(num) > ((es.ucm.ric.parser.Number) caja).getValor()){
+			            			/*Si el num que mete es mayor que el que esta en la caja y la relacion es >, se cumple -> como si pulsara SI*/
+			            			desactivarCircleButton(buttonNumberOk);
+			    	            	buttonNo.setEnabled(false);
+			    	            	
+			    	            	Log.d("cajas", "id: "+ caja.getId());
+			    	            	TextInterpreter hijoSi = pp.getHijoParseadoSI(caja.getId());
+			    	            	
+			    	            	
+			    	            	if(hijoSi!=null){
+			    	            		Log.d("cajas", "hijo_si: "+ hijoSi.getId());
+			    	   	            	addItem(hijoSi);
+			    	            	}
+			    	            	else{
+			    	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
+			    	            	}
+			            			}
+		            		}
+		            	}
+					}
+					
+				});
+			}
 			
 			buttonSi.setOnClickListener(new View.OnClickListener() {
 	
@@ -145,6 +195,9 @@ public class FragmentNuevoProtocolo extends Fragment{
 	            	/**
 	            	 * Por qué se devuelve una lista de hijos normales?
 	            	 * No debería ser sólo un hijo?
+	            	 * 
+	            	 * 
+	            	 * no, puede tener mas de un hijo normal
 	            	 */
 	            	Log.d("cajas", "id: "+ caja.getId());
 	            	ArrayList<TextInterpreter> tnormal = pp.getHijoParseadoNORMAL(caja.getId());

@@ -84,5 +84,11 @@ public class Text extends TextInterpreter{
 		// TODO Auto-generated method stub
 		return texto;
 	}
+
+	@Override
+	public String getRelacionCantidad() {
+		// TODO Auto-generated method stub
+		return "";
+	}
     
 }
