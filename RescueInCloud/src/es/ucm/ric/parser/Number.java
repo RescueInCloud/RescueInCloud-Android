@@ -75,7 +75,7 @@ public class Number extends TextInterpreter{
 	                     command.add(w[i]); //2->valor
 	                     command.add(w[i+1]); //3->unidad
 	                     command.add(this.encontrarRelacionCantidad(cadena,w[i]));//4->relacionCant
-	                     command.add(texto); //4->texto
+	                     command.add(texto+w[i+1]); //4->texto
 	            	 }
             	 }
             	 else{

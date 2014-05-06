@@ -27,6 +27,7 @@ public class FragmentNuevoProtocolo extends Fragment{
 	private ProtocoloParseado pp;
 	private ViewGroup contenedor;
 	
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
 		
@@ -84,7 +85,10 @@ public class FragmentNuevoProtocolo extends Fragment{
 			 newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
 		                R.layout.protocolo_item, contenedor, false);
 		}
-       
+		else if (caja instanceof es.ucm.ric.parser.NumberUnit){
+			 newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
+		                R.layout.protocolo_item_number_unit, contenedor, false);
+		}
         
         TextView contenido = (TextView) newView.findViewById(R.id.contenido);
         final Button buttonSi = (Button) newView.findViewById(R.id.buttonSi);
@@ -92,12 +96,30 @@ public class FragmentNuevoProtocolo extends Fragment{
         final Button buttonContinuar = (Button) newView.findViewById(R.id.buttonContinuar);
         
 
-		 final Button buttonNumberOk = (Button) newView.findViewById(R.id.buttonNumberOk);
+        final Button buttonNumberOk = (Button) newView.findViewById(R.id.buttonNumberOk);
+        
+        final Button buttonNumberCambiarUnidad = (Button) newView.findViewById(R.id.buttonNumberUnitCambiarUnidad);
+        final Button buttonNumberCambiarUnidadDefecto = (Button) newView.findViewById(R.id.buttonNumberUnitCambiarUnidadDefecto);
+        
+        
+        
+        TextView textUnidad = (TextView)newView.findViewById(R.id.textNUmberUnitUnidad);
+
+        if (caja instanceof es.ucm.ric.parser.NumberUnit){
+        	String unidad = ((es.ucm.ric.parser.NumberUnit)caja).getUnidad();
+        	textUnidad.setText(unidad);
+        }
+
+
         final ViewGroup newViewDEF = newView;
+        
+        final EditText numE = (EditText) newViewDEF.findViewById(R.id.editTextNumberDecimal);
+        final TextView introducirNum = (TextView) newViewDEF.findViewById(R.id.textView1);
         contenido.setText(texto);
 		
+        
 		if(decision){
-			if (buttonNumberOk != null){
+			if (buttonNumberOk != null && numE!= null){
 				buttonNumberOk.setOnClickListener(new View.OnClickListener() {
 
 					@Override
@@ -108,33 +130,89 @@ public class FragmentNuevoProtocolo extends Fragment{
 		            	/*consultar la relacion cantidad de la caja con el numero introducido*/
 		            	String rel=caja.getRelacionCantidad();
 		            	if (rel == ">"){
-		            		EditText numE = (EditText) newViewDEF.findViewById(R.id.editTextNuberDecimal);
+		            		
 		            		String num = numE.getText().toString();
-		            		if (caja instanceof es.ucm.ric.parser.Number){
-			            		if (Integer.parseInt(num) > ((es.ucm.ric.parser.Number) caja).getValor()){
+		            		if (((caja instanceof es.ucm.ric.parser.Number) && (Integer.parseInt(num) > ((es.ucm.ric.parser.Number) caja).getValor()))
+		            			|| ((caja instanceof es.ucm.ric.parser.NumberUnit) && (Integer.parseInt(num) > ((es.ucm.ric.parser.NumberUnit) caja).getValor()))){
 			            			/*Si el num que mete es mayor que el que esta en la caja y la relacion es >, se cumple -> como si pulsara SI*/
 			            			desactivarCircleButton(buttonNumberOk);
 			    	            	buttonNo.setEnabled(false);
-			    	            	
 			    	            	Log.d("cajas", "id: "+ caja.getId());
 			    	            	TextInterpreter hijoSi = pp.getHijoParseadoSI(caja.getId());
-			    	            	
-			    	            	
 			    	            	if(hijoSi!=null){
 			    	            		Log.d("cajas", "hijo_si: "+ hijoSi.getId());
 			    	   	            	addItem(hijoSi);
-			    	            	}
+			    	            		}
 			    	            	else{
 			    	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
-			    	            	}
-			            			}
+			    	            		}
+			            			} 
+			            		else if ((caja instanceof es.ucm.ric.parser.Number) || (caja instanceof es.ucm.ric.parser.NumberUnit)){
+				            			/*Si el num que mete es mayor que el que esta en la caja y la relacion no es >, no se cumple -> como si pulsara NO*/
+				            			desactivarCircleButton(buttonNumberOk);
+				    	            	buttonSi.setEnabled(false);
+				    	            	Log.d("cajas", "id: "+ caja.getId());
+				    	            	TextInterpreter hijoNo = pp.getHijoParseadoNO(caja.getId());
+				    	            	if(hijoNo!=null){
+				    	            		Log.d("cajas", "hijo_no: "+ hijoNo.getId());
+				    	   	            	addItem(hijoNo);
+				    	            		}
+				    	            	else{
+				    	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
+				    	            		}
+				            		}
 		            		}
+		            	else if (rel == "<"){
+		            		String num = numE.getText().toString();
+		            		if (((caja instanceof es.ucm.ric.parser.Number) && (Integer.parseInt(num) < ((es.ucm.ric.parser.Number) caja).getValor()))
+		            			|| ((caja instanceof es.ucm.ric.parser.NumberUnit) && (Integer.parseInt(num) < ((es.ucm.ric.parser.NumberUnit) caja).getValor()))){
+			            			/*Si el num que mete es mayor que el que esta en la caja y la relacion es >, se cumple -> como si pulsara SI*/
+			            			desactivarCircleButton(buttonNumberOk);
+			    	            	buttonNo.setEnabled(false);
+			    	            	Log.d("cajas", "id: "+ caja.getId());
+			    	            	TextInterpreter hijoSi = pp.getHijoParseadoSI(caja.getId());
+			    	            	if(hijoSi!=null){
+			    	            		Log.d("cajas", "hijo_si: "+ hijoSi.getId());
+			    	   	            	addItem(hijoSi);
+			    	            		}
+			    	            	else{
+			    	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
+			    	            		}
+			            			} 
+			            		else if ((caja instanceof es.ucm.ric.parser.Number) || (caja instanceof es.ucm.ric.parser.NumberUnit)){
+				            			/*Si el num que mete es mayor que el que esta en la caja y la relacion no es >, no se cumple -> como si pulsara NO*/
+				            			desactivarCircleButton(buttonNumberOk);
+				    	            	buttonSi.setEnabled(false);
+				    	            	Log.d("cajas", "id: "+ caja.getId());
+				    	            	TextInterpreter hijoNo = pp.getHijoParseadoNO(caja.getId());
+				    	            	if(hijoNo!=null){
+				    	            		Log.d("cajas", "hijo_no: "+ hijoNo.getId());
+				    	   	            	addItem(hijoNo);
+				    	            		}
+				    	            	else{
+				    	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
+				    	            		}
+				            		}
 		            	}
-					}
-					
+					}	
 				});
 			}
-			
+			if (buttonNumberCambiarUnidad !=null){
+				buttonNumberCambiarUnidad.setOnClickListener(new View.OnClickListener(){
+					public void onClick(View view) {
+						
+					}
+				}
+			);			
+			}
+			if (buttonNumberCambiarUnidadDefecto !=null){
+				buttonNumberCambiarUnidadDefecto.setOnClickListener(new View.OnClickListener(){
+					public void onClick(View view) {
+						
+					}
+				}
+			);			
+			}
 			buttonSi.setOnClickListener(new View.OnClickListener() {
 	
 				@Override
@@ -184,7 +262,29 @@ public class FragmentNuevoProtocolo extends Fragment{
 		else{
 			buttonNo.setVisibility(View.INVISIBLE);
 			buttonSi.setVisibility(View.INVISIBLE);
-			
+			TextView t=(TextView)newView .findViewById(R.id.textValorNumber);
+			if (t!=null){
+				t.setVisibility(View.INVISIBLE);
+			}
+			if (buttonNumberOk != null)
+				buttonNumberOk.setVisibility(View.INVISIBLE);
+			if (numE != null)
+				numE.setVisibility(View.INVISIBLE);
+			if (textUnidad != null)
+				textUnidad.setVisibility(View.INVISIBLE);
+			if (introducirNum != null)
+				introducirNum.setVisibility(View.INVISIBLE);
+			if (buttonNumberCambiarUnidad != null)
+				buttonNumberCambiarUnidad.setVisibility(View.INVISIBLE);
+			if (buttonNumberCambiarUnidadDefecto != null){
+				buttonNumberCambiarUnidadDefecto.setOnClickListener(new View.OnClickListener() {
+		            @Override
+		            public void onClick(View view) {
+		            
+		           
+		            }
+		        });
+			}
 			buttonContinuar.setOnClickListener(new View.OnClickListener() {
 	            @Override
 	            public void onClick(View view) {

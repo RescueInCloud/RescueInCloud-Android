@@ -132,7 +132,10 @@ public class NumberUnit extends TextInterpreter{
 					 + " RELACION_CANTIDAD: "+this.relacionCantidad;
 		
 	}
-
+	
+	public String getUnidad(){
+		return this.unidad;
+	}
 	@Override
 	public int getId() {
 		// TODO Auto-generated method stub
@@ -143,6 +146,11 @@ public class NumberUnit extends TextInterpreter{
 	public String getContenido() {
 		// TODO Auto-generated method stub
 		return texto;
+	}
+
+	public double getValor() {
+		// TODO Auto-generated method stub
+		return this.valor;
 	}
     
 }
