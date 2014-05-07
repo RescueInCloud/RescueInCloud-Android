@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
     android:layout_margin="5dp"
     android:background="@drawable/box_background"
     android:dividerPadding="8dp"
@@ -90,19 +90,6 @@
             android:layout_alignBottom="@+id/buttonNo"
             android:layout_alignParentRight="true"
             android:text="No" />
-
-        <Button
-            android:id="@+id/buttonContinuar"
-            android:layout_width="wrap_content"
-            android:layout_height="50sp"
-            android:layout_alignBaseline="@+id/buttonSi"
-            android:layout_alignBottom="@+id/buttonSi"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/rounded_button_item"
-            android:gravity="center_vertical|center_horizontal"
-            android:padding="5dp"
-            android:text="Continuar"
-            android:textColor="@color/circle_button_text_color" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -143,7 +130,7 @@
             android:textColor="@color/color_blanco" />
 
         <TextView
-            android:id="@+id/textNUmberUnitUnidad1"
+            android:id="@+id/textNUmberUnitUnidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/editTextNumberDecimal"
@@ -152,7 +139,7 @@
             android:layout_toLeftOf="@+id/buttonNumberOk"
             android:text="Unidad"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/color_blanco"
+            android:textColor="@color/color_primario"
             android:textSize="20sp" />
 
     </RelativeLayout>
@@ -163,14 +150,37 @@
         android:orientation="horizontal"   
 		android:background="@drawable/borders"
         android:padding="5dp" >
+
     <Button
         android:id="@+id/buttonNumberUnitCambiarUnidad"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="146dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/rounded_button_item"
         android:text="Cambiar Unidad"
         android:textColor="@color/color_blanco" />
+
+    </RelativeLayout>
+	<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"   
+        android:padding="5dp" >
+
+    <Button
+        android:id="@+id/buttonContinuar"
+        android:layout_width="wrap_content"
+        android:layout_height="50sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_button_item"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="5dp"
+        android:text="Continuar"
+        android:textColor="@color/circle_button_text_color" />
+
     </RelativeLayout>
 
 </LinearLayout>

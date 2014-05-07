@@ -2,6 +2,10 @@ package es.ucm.ric.activities;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.fragments.sandbox.FragmentMenuPrincipal;
 import es.ucm.ric.tools.BaseActivity;

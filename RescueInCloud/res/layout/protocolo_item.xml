@@ -2,7 +2,7 @@
 <LinearLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
     android:showDividers="middle"
     android:dividerPadding="8dp"
@@ -12,14 +12,13 @@
     android:gravity="center">
 
     <TextView
-		 android:id="@+id/contenido"
-		 android:layout_width="wrap_content"
-		 android:layout_height="wrap_content"
-		 android:textSize="20sp"
-		 android:textColor="@color/color_blanco"
-		 android:gravity="center"
-		 android:text="Una pregunta cualquiera y con mucho blablabla cualquiera" />
-        
+        android:id="@+id/contenido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:text="Una pregunta cualquiera y con mucho blablabla cualquiera"
+        android:textColor="@color/color_blanco"
+        android:textSize="20sp" />
         
         <RelativeLayout
 	        android:layout_width="match_parent"
@@ -27,32 +26,33 @@
 		    android:orientation="horizontal" 
 		    android:padding="5dp">
 
-        	<Button
-	            android:id="@+id/buttonSi"
-	           	style="@style/Circle_button_style"
-	            android:text="Sí" />
+        <Button
+            android:id="@+id/buttonSi"
+            style="@style/Circle_button_style"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="Sí" />
 
-        	<Button
-	            android:id="@+id/buttonNo"
-	            style="@style/Circle_button_style"
-	            android:layout_alignBaseline="@+id/buttonNo"
-	            android:layout_alignBottom="@+id/buttonNo"
-	            android:layout_alignParentRight="true"
-	            android:text="No" />
-
-        	<Button
-	            android:id="@+id/buttonContinuar"
-	            android:layout_width="wrap_content"
-	            android:layout_height="50sp"
-	            android:layout_alignBaseline="@+id/buttonSi"
-	            android:layout_alignBottom="@+id/buttonSi"
-	            android:layout_centerHorizontal="true"
-	            android:background="@drawable/rounded_button_item"
-	            android:gravity="center_vertical|center_horizontal"
-	            android:padding="5dp"
-	            android:text="Continuar"
-	            android:textColor="@color/circle_button_text_color" />
+        <Button
+            android:id="@+id/buttonNo"
+            style="@style/Circle_button_style"
+            android:layout_alignBaseline="@+id/buttonSi"
+            android:layout_alignBottom="@+id/buttonSi"
+            android:layout_alignParentRight="true"
+            android:text="No" />
 
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/buttonContinuar"
+            android:layout_width="wrap_content"
+            android:layout_height="50sp"
+            android:background="@drawable/rounded_button_item"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="5dp"
+            android:text="Continuar"
+            android:textColor="@color/circle_button_text_color" />
+        
+       
 
 </LinearLayout>

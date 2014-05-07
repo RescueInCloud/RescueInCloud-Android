@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
     android:layout_margin="5dp"
     android:background="@drawable/box_background"
     android:dividerPadding="8dp"
@@ -44,7 +44,6 @@
             android:layout_alignBaseline="@+id/textNUmberUnitValor"
             android:layout_alignBottom="@+id/textNUmberUnitValor"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="79dp"
             android:text="Unidad"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/color_primario"
@@ -64,7 +63,7 @@
           android:id="@+id/buttonNumberUnitCambiarUnidadDefecto"
           style="?android:attr/buttonStyleSmall"
           android:layout_width="146dp"
-          android:layout_height="wrap_content"
+          android:layout_height="50sp"
           android:layout_centerHorizontal="true"
           android:layout_centerVertical="true"
           android:background="@drawable/rounded_button_item"
@@ -92,19 +91,6 @@
             android:layout_alignParentRight="true"
             android:text="No" />
 
-        <Button
-            android:id="@+id/buttonContinuar"
-            android:layout_width="wrap_content"
-            android:layout_height="50sp"
-            android:layout_alignBaseline="@+id/buttonSi"
-            android:layout_alignBottom="@+id/buttonSi"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/rounded_button_item"
-            android:gravity="center_vertical|center_horizontal"
-            android:padding="5dp"
-            android:text="Continuar"
-            android:textColor="@color/circle_button_text_color" />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -112,5 +98,15 @@
             android:padding="5dp" >
         </RelativeLayout>
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/buttonContinuar"
+        android:layout_width="wrap_content"
+        android:layout_height="50sp"
+        android:background="@drawable/rounded_button_item"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="5dp"
+        android:text="Continuar"
+        android:textColor="@color/circle_button_text_color" />
 
 </LinearLayout>

@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -131,6 +133,7 @@ public class FragmentNuevoProtocolo extends Fragment{
         final TextView introducirNum = (TextView) newViewDEF.findViewById(R.id.textView1);
         contenido.setText(texto);
 		
+        
         
 		if(decision){
 			if (buttonNumberOk != null && numE!= null){
