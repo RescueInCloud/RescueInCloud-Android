@@ -36,7 +36,7 @@ public class ProtocoloParseado extends Protocolo{
 	/*devuelve los hijos de una caja y su relacion*/
 	public ArrayList<TuplaParseada> getHijosParseados(int id){
 		ArrayList<Tupla> hijosDeID = super.hijos.getHijos(id);
-		if (hijosDeID.size()==0){
+		if (hijosDeID == null){
 			return null;
 		}
 		ArrayList<TuplaParseada> hijosDeIDparseados =new ArrayList<TuplaParseada>();

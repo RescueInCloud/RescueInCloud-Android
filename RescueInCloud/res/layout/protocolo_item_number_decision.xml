@@ -60,9 +60,40 @@
         
         <RelativeLayout
             android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
+		    android:layout_height="wrap_content"		    
+		    android:background="@drawable/borders"
 		    android:orientation="horizontal" 
 		    android:padding="5dp">
+         	<TextView
+		        android:id="@+id/textView1"
+		        android:textSize="20sp"
+		         android:textColor="@color/color_primario"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Inserta el valor:" />
+
+		    <Button
+		        android:id="@+id/buttonNumberOk"
+		        style="?android:attr/buttonStyleSmall"
+		         android:textColor="@color/color_blanco"
+		        android:background="@drawable/rounded_button_item"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentRight="true"
+		        android:layout_alignParentTop="true"
+		        android:text="OK" />
+
+		    <EditText
+		        android:id="@+id/editTextNumberDecimal"
+		        android:layout_width="135dp"
+		        android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true"
+		        android:layout_below="@+id/textView1"
+		        android:ems="10"
+		        android:inputType="numberDecimal" >
+
+		        <requestFocus />
+		    </EditText>
 
         </RelativeLayout>
 

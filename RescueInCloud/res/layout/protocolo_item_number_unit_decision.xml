@@ -18,11 +18,12 @@
         android:textColor="@color/color_blanco"
         android:textSize="20sp" />
 
+    
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" 
+        android:layout_height="wrap_content"	    
 		android:background="@drawable/borders"
+        android:orientation="horizontal"
         android:padding="5dp" >
 
         <TextView
@@ -41,9 +42,8 @@
             android:id="@+id/textNUmberUnitUnidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textNUmberUnitValor"
-            android:layout_alignBottom="@+id/textNUmberUnitValor"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginRight="79dp"
             android:text="Unidad"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -52,11 +52,10 @@
 
     </RelativeLayout>
     
-    
-     <RelativeLayout
+         <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="horizontal"   
 		android:background="@drawable/borders"
         android:padding="5dp" >
 
@@ -104,13 +103,74 @@
             android:padding="5dp"
             android:text="Continuar"
             android:textColor="@color/circle_button_text_color" />
+    </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"   
+		android:background="@drawable/borders"
+        android:padding="5dp" >
+
+        <TextView
+            android:id="@+id/textValorNumber"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp" >
-        </RelativeLayout>
+            android:layout_marginRight="50dp"
+            android:text="Inserta el valor:"
+            android:textColor="@color/color_primario"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextNumberDecimal"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/textValorNumber"
+            android:layout_below="@+id/textValorNumber"
+            android:layout_marginTop="14dp"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/buttonNumberOk"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textNUmberUnitUnidad1"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/rounded_button_item"
+            android:text="OK"
+            android:textColor="@color/color_blanco" />
+
+        <TextView
+            android:id="@+id/textNUmberUnitUnidad1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editTextNumberDecimal"
+            android:layout_alignBottom="@+id/editTextNumberDecimal"
+            android:layout_marginRight="16dp"
+            android:layout_toLeftOf="@+id/buttonNumberOk"
+            android:text="Unidad"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/color_blanco"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"   
+		android:background="@drawable/borders"
+        android:padding="5dp" >
+    <Button
+        android:id="@+id/buttonNumberUnitCambiarUnidad"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button_item"
+        android:text="Cambiar Unidad"
+        android:textColor="@color/color_blanco" />
     </RelativeLayout>
 
 </LinearLayout>

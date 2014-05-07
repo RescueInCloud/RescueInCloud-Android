@@ -18,6 +18,7 @@ import es.ucm.ric.R;
 import es.ucm.ric.dao.ProtocoloDAO;
 import es.ucm.ric.model.Protocolo;
 import es.ucm.ric.model.ProtocoloParseado;
+import es.ucm.ric.model.TuplaParseada;
 import es.ucm.ric.parser.Text;
 import es.ucm.ric.parser.TextInterpreter;
 import es.ucm.ric.parser.TextParser;
@@ -78,7 +79,11 @@ public class FragmentNuevoProtocolo extends Fragment{
 		// Instantiate a new "row" view.
 		  ViewGroup newView = null;
 		if (caja instanceof es.ucm.ric.parser.Number){
-			 newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
+			if (decision){
+				newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
+		                R.layout.protocolo_item_number_decision, contenedor, false);
+			}
+			else newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
 		                R.layout.protocolo_item_number, contenedor, false);
 		}
 		else if (caja instanceof Text){
@@ -86,7 +91,11 @@ public class FragmentNuevoProtocolo extends Fragment{
 		                R.layout.protocolo_item, contenedor, false);
 		}
 		else if (caja instanceof es.ucm.ric.parser.NumberUnit){
-			 newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
+			if (decision){
+				newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
+		                R.layout.protocolo_item_number_unit_decision, contenedor, false);
+			}
+			else newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
 		                R.layout.protocolo_item_number_unit, contenedor, false);
 		}
         
@@ -102,12 +111,17 @@ public class FragmentNuevoProtocolo extends Fragment{
         final Button buttonNumberCambiarUnidadDefecto = (Button) newView.findViewById(R.id.buttonNumberUnitCambiarUnidadDefecto);
         
         
-        
+        TextView textValor = (TextView)newView.findViewById(R.id.textNUmberUnitValor);
         TextView textUnidad = (TextView)newView.findViewById(R.id.textNUmberUnitUnidad);
 
         if (caja instanceof es.ucm.ric.parser.NumberUnit){
+        	double valor = ((es.ucm.ric.parser.NumberUnit)caja).getValor();
         	String unidad = ((es.ucm.ric.parser.NumberUnit)caja).getUnidad();
         	textUnidad.setText(unidad);
+        	textValor.setText(""+valor);
+        	if (decision){
+        		 TextView textUnidad1 = (TextView)newView.findViewById(R.id.textNUmberUnitUnidad1);
+        	}
         }
 
 
@@ -270,8 +284,6 @@ public class FragmentNuevoProtocolo extends Fragment{
 				buttonNumberOk.setVisibility(View.INVISIBLE);
 			if (numE != null)
 				numE.setVisibility(View.INVISIBLE);
-			if (textUnidad != null)
-				textUnidad.setVisibility(View.INVISIBLE);
 			if (introducirNum != null)
 				introducirNum.setVisibility(View.INVISIBLE);
 			if (buttonNumberCambiarUnidad != null)
@@ -297,14 +309,15 @@ public class FragmentNuevoProtocolo extends Fragment{
 	            	 * No deber’a ser s—lo un hijo?
 	            	 * 
 	            	 * 
-	            	 * no, puede tener mas de un hijo normal
+	            	 * no, puede tener mas de un hijo normal, de hecho puede tener hijos de TODO tipo
 	            	 */
 	            	Log.d("cajas", "id: "+ caja.getId());
-	            	ArrayList<TextInterpreter> tnormal = pp.getHijoParseadoNORMAL(caja.getId());
+	            	//ArrayList<TextInterpreter> tnormal = pp.getHijoParseadoNORMAL(caja.getId());
+	            	ArrayList<TuplaParseada> tnormal = pp.getHijosParseados(caja.getId());
 	            	
 	            	if(tnormal!=null && !tnormal.isEmpty()){
 	            		Log.d("cajas", "hijo_nada: "+ tnormal.get(0));
-	            		addItem(tnormal.get(0));
+	            		addItem(tnormal.get(0).cajaParseada);
 	            	}
 	            	else{
 	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();

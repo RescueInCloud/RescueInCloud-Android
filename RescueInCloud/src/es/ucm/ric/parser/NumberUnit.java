@@ -42,9 +42,8 @@ public class NumberUnit extends TextInterpreter{
         boolean encontrado = false;
         int i=3;
         String[] datos;
-        this.texto="";
+        this.texto= cadena.replace(w[0],"").replace(w[1], "").replace(w[2], "");
         while (!encontrado && i<w.length){
-        	texto+= " "+w[i];
             datos = (isNumber(w[i]));
             if (datos!=null){
             	if (datos[0].charAt(datos[0].length()-1)==','){
