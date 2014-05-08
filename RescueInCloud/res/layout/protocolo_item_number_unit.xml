@@ -9,6 +9,8 @@
     android:padding="10dp"
     android:showDividers="middle" >
 
+    
+
     <TextView
         android:id="@+id/contenido"
         android:layout_width="wrap_content"
@@ -59,16 +61,11 @@
 		android:background="@drawable/borders"
         android:padding="5dp" >
 
-      <Button
-          android:id="@+id/buttonNumberUnitCambiarUnidadDefecto"
-          style="?android:attr/buttonStyleSmall"
-          android:layout_width="146dp"
-          android:layout_height="50sp"
-          android:layout_centerHorizontal="true"
-          android:layout_centerVertical="true"
-          android:background="@drawable/rounded_button_item"
-          android:text="Cambiar Unidad"
-          android:textColor="@color/color_blanco" />
+      <Spinner
+        android:id="@+id/spinnerUnit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        />
       
       </RelativeLayout>
 
@@ -92,11 +89,13 @@
             android:text="No" />
 
         <RelativeLayout
+            android:id="@+id/relativeLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="5dp" >
         </RelativeLayout>
+
     </RelativeLayout>
 
     <Button

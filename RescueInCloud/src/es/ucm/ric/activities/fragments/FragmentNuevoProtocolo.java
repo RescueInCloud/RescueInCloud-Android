@@ -3,6 +3,7 @@ package es.ucm.ric.activities.fragments;
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,8 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import es.ucm.ric.R;
@@ -29,14 +33,17 @@ public class FragmentNuevoProtocolo extends Fragment{
 	
 	private ProtocoloParseado pp;
 	private ViewGroup contenedor;
+	private Spinner spinner;
+	private ArrayAdapter<String> LTRadapter;
 	
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
-		
+	
 		return inflater.inflate(R.layout.fragment_protocolo, container, false);
 	}
 	
+
 	@Override
 	public void onActivityCreated(Bundle state) { 
 		super.onActivityCreated(state);
@@ -52,22 +59,6 @@ public class FragmentNuevoProtocolo extends Fragment{
 		//hasta aqui correctamente
 		pp = new ProtocoloParseado(cajas,p);
 		TextInterpreter cajaelegida = pp.getCajaParseada(0);
-//		
-//		/**/
-//		/*consulta por el id de una caja si es de decision o de texto*/
-//		boolean b = pp.esCajaDecision(0);
-//		
-//		/*devuelve toodos los hijos de una caja, metiendo su id. En la clase TuplaParseada
-//		 * está la caja hijo ya parseada (TextInterpreter) y su relación 
-//		 */
-//		ArrayList<TuplaParseada> t= pp.getHijosParseados(0);
-//		/*Idem pero devolviendo s—lo los de si o no o normal por separado, devuelven null si no tienen esos hijos*/
-//		TextInterpreter tno=pp.getHijoParseadoNO(0);
-//		ArrayList<TextInterpreter> tnormal=pp.getHijoParseadoNORMAL(0);
-//		TextInterpreter tsi=pp.getHijoParseadoSI(0);
-				
-		
-		//cajaelegida.encontrarRelacionCantidad(cadena, valor)
 		
 		addItem(cajaelegida);
 		
@@ -93,12 +84,19 @@ public class FragmentNuevoProtocolo extends Fragment{
 		                R.layout.protocolo_item, contenedor, false);
 		}
 		else if (caja instanceof es.ucm.ric.parser.NumberUnit){
+			
 			if (decision){
 				newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
 		                R.layout.protocolo_item_number_unit_decision, contenedor, false);
 			}
 			else newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
 		                R.layout.protocolo_item_number_unit, contenedor, false);
+			
+			String [] values = {"Kilo","Hecta","Deca","base","deci","centi","mili",};
+		    spinner = (Spinner) newView.findViewById(R.id.spinnerUnit);
+		    LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, values);
+		    LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+		    spinner.setAdapter(LTRadapter);
 		}
         
         TextView contenido = (TextView) newView.findViewById(R.id.contenido);
@@ -108,9 +106,6 @@ public class FragmentNuevoProtocolo extends Fragment{
         
 
         final Button buttonNumberOk = (Button) newView.findViewById(R.id.buttonNumberOk);
-        
-        final Button buttonNumberCambiarUnidad = (Button) newView.findViewById(R.id.buttonNumberUnitCambiarUnidad);
-        final Button buttonNumberCambiarUnidadDefecto = (Button) newView.findViewById(R.id.buttonNumberUnitCambiarUnidadDefecto);
         
         
         TextView textValor = (TextView)newView.findViewById(R.id.textNUmberUnitValor);
@@ -132,9 +127,25 @@ public class FragmentNuevoProtocolo extends Fragment{
         final EditText numE = (EditText) newViewDEF.findViewById(R.id.editTextNumberDecimal);
         final TextView introducirNum = (TextView) newViewDEF.findViewById(R.id.textView1);
         contenido.setText(texto);
-		
-        
-        
+		if (spinner !=null){
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                //Object item = parent.getItemAtPosition(pos);
+            	String a=spinner.getSelectedItem().toString();
+            	//FUNCIONA-> hace la funcion de cambiar unidad y cambiar la informacion de la caja
+            	
+            	
+            	
+            	
+            	
+            	
+        		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(),a, Toast.LENGTH_SHORT).show();
+
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+		}
 		if(decision){
 			if (buttonNumberOk != null && numE!= null){
 				buttonNumberOk.setOnClickListener(new View.OnClickListener() {
@@ -214,22 +225,7 @@ public class FragmentNuevoProtocolo extends Fragment{
 					}	
 				});
 			}
-			if (buttonNumberCambiarUnidad !=null){
-				buttonNumberCambiarUnidad.setOnClickListener(new View.OnClickListener(){
-					public void onClick(View view) {
-						
-					}
-				}
-			);			
-			}
-			if (buttonNumberCambiarUnidadDefecto !=null){
-				buttonNumberCambiarUnidadDefecto.setOnClickListener(new View.OnClickListener(){
-					public void onClick(View view) {
-						
-					}
-				}
-			);			
-			}
+			
 			buttonSi.setOnClickListener(new View.OnClickListener() {
 	
 				@Override
@@ -289,20 +285,12 @@ public class FragmentNuevoProtocolo extends Fragment{
 				numE.setVisibility(View.INVISIBLE);
 			if (introducirNum != null)
 				introducirNum.setVisibility(View.INVISIBLE);
-			if (buttonNumberCambiarUnidad != null)
-				buttonNumberCambiarUnidad.setVisibility(View.INVISIBLE);
-			if (buttonNumberCambiarUnidadDefecto != null){
-				buttonNumberCambiarUnidadDefecto.setOnClickListener(new View.OnClickListener() {
-		            @Override
-		            public void onClick(View view) {
-		            
-		           
-		            }
-		        });
-			}
+			
 			buttonContinuar.setOnClickListener(new View.OnClickListener() {
 	            @Override
 	            public void onClick(View view) {
+
+	            	 
 	            	
 	            	//buttonContinuar.setEnabled(false);
 	            	desactivarRoundedButton(buttonContinuar);
@@ -332,7 +320,6 @@ public class FragmentNuevoProtocolo extends Fragment{
         
         // Because mContainerView has android:animateLayoutChanges set to true,
         // adding this view is automatically animated.
-        //contenedor.addView(newView,0);
         contenedor.addView(newView);
     }
 

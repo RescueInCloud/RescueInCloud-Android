@@ -14,8 +14,16 @@ public class Conversiones {
 	/**
 	 * Ejemplo de uso
 	 */
-	public void main(){
+	public Conversiones(){
 		funcionesConversiones = new ArrayList<IFuncion>();
+		funcionesConversiones.add(miFuncion_x10);
+		funcionesConversiones.add(miFuncion_div10);
+		funcionesConversiones.add(miFuncion_div100);
+		funcionesConversiones.add(miFuncion_x1000);	
+		funcionesConversiones.add(miFuncion_div1000);
+		
+	}
+
 		
 		IFuncion miFuncion_x10= new IFuncion() {
 			
@@ -25,7 +33,6 @@ public class Conversiones {
 				return resultado;
 			}
 		};
-		funcionesConversiones.add(miFuncion_x10);
 		
 		IFuncion miFuncion_div10 = new IFuncion() {
 			
@@ -35,7 +42,6 @@ public class Conversiones {
 				return resultado;
 			}
 		};
-		funcionesConversiones.add(miFuncion_div10);
 		IFuncion miFuncion_x100 = new IFuncion() {
 			
 			@Override
@@ -53,7 +59,6 @@ public class Conversiones {
 			}
 		};
 
-		funcionesConversiones.add(miFuncion_div100);
 		IFuncion miFuncion_x1000 = new IFuncion() {
 			
 			@Override
@@ -62,7 +67,6 @@ public class Conversiones {
 				return resultado;
 			}
 		};
-		funcionesConversiones.add(miFuncion_x1000);
 		IFuncion miFuncion_div1000 = new IFuncion() {
 			
 			@Override
@@ -71,7 +75,6 @@ public class Conversiones {
 				return resultado;
 			}
 		};
-		funcionesConversiones.add(miFuncion_div1000);
 		
 		
 		float x = 30f;
@@ -80,4 +83,4 @@ public class Conversiones {
 	}
 	
 
-}
+

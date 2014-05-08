@@ -59,16 +59,11 @@
 		android:background="@drawable/borders"
         android:padding="5dp" >
 
-      <Button
-          android:id="@+id/buttonNumberUnitCambiarUnidadDefecto"
-          style="?android:attr/buttonStyleSmall"
-          android:layout_width="146dp"
-          android:layout_height="wrap_content"
-          android:layout_centerHorizontal="true"
-          android:layout_centerVertical="true"
-          android:background="@drawable/rounded_button_item"
-          android:text="Cambiar Unidad"
-          android:textColor="@color/color_blanco" />
+      <Spinner
+            android:id="@+id/spinnerUnit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
       
       </RelativeLayout>
 
@@ -90,6 +85,9 @@
             android:layout_alignBottom="@+id/buttonNo"
             android:layout_alignParentRight="true"
             android:text="No" />
+
+        
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -150,17 +148,6 @@
         android:orientation="horizontal"   
 		android:background="@drawable/borders"
         android:padding="5dp" >
-
-    <Button
-        android:id="@+id/buttonNumberUnitCambiarUnidad"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="146dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/rounded_button_item"
-        android:text="Cambiar Unidad"
-        android:textColor="@color/color_blanco" />
 
     </RelativeLayout>
 	<RelativeLayout
