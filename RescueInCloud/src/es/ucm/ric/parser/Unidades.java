@@ -17,7 +17,9 @@ public enum Unidades {
 	  // Idiomatic Java names. You could ignore those if you really want,
 	  // and overload the constructor to have a parameterless one which calls
 	  // name() if you really want.
-	  MG("mg"),DC("dg"),KG("kg"),KILOS("kilos"),GRAMOS("gramos"),LITROS("litros"),L("l"),DL("dl"),CL("cl"),ML("ml"),
+	  KILOSM("Kilos"),KILOS("kilos"),KG("kg"),KGM("Kg"),HG("hg"),HGM("Hg"),DAGM("Dg"),
+	  GRAMOS("gramos"),G("g"),DC("dg"), CG("cg"),MG("mg"),
+	  LITROS("litros"),L("l"),LM("L"),DL("dl"),CL("cl"),ML("ml"),
 	  MMOL1("mmol/l");
 
 	  private static final Map<String, Unidades> nameToValueMap;

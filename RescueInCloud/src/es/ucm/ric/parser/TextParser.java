@@ -32,7 +32,8 @@ public class TextParser {
 	        			 auxT=new Text(Integer.parseInt(aux.get(1)),aux.get(2)); //id,texto
 	        			 arr.add(auxT);
 	        		 } else if (aux.get(0).equals("NumberUnit")){
-	        			 auxT=new NumberUnit(Integer.parseInt(aux.get(1)),aux.get(2),aux.get(3),aux.get(4),aux.get(5));
+	        			 auxT=new NumberUnit(Integer.parseInt(aux.get(1)),aux.get(2),aux.get(3),aux.get(4),aux.get(5),
+	        					 aux.get(6),aux.get(7),aux.get(8));
 	        			 arr.add(auxT);
 	        		 }  else if (aux.get(0).equals("Number")){
 	    			 auxT=new Number(Integer.parseInt(aux.get(1)),aux.get(2),aux.get(3),aux.get(4));

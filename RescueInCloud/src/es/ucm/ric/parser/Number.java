@@ -48,7 +48,8 @@ public class Number extends TextInterpreter{
         String[] w = cadena.split(" ");
         boolean encontrado = false;
         int i=3;
-        this.texto= cadena.replace(w[0],"").replace(w[1], "").replace(w[2], "");
+        //this.texto= cadena.replace(w[0],"").replace(w[1], "").replace(w[2], "");
+        this.texto="";
         while (!encontrado && i<w.length){
         	//texto += w[i]+ " ";
             if (isNumber(w[i])){
@@ -77,6 +78,15 @@ public class Number extends TextInterpreter{
 	                     command.add(w[i+1]); //3->unidad
 	                     command.add(this.encontrarRelacionCantidad(cadena,w[i]));//4->relacionCant
 	                     command.add(texto); //4->texto
+	                     command.add(w[i]);
+	                     command.add(w[i+1]);
+	                     String aux="";
+	                     if (i+1<w.length-1){
+	                     	for (int j=i+2;j<w.length;j++){
+	                     		aux+=w[j]+" ";
+	                     	}
+	                     }
+	                     command.add(aux);
 	            	 }
             	 }
             	 else{
@@ -87,6 +97,7 @@ public class Number extends TextInterpreter{
 		                command.add(texto);
             	 }
             }
+            else this.texto += w[i]+" ";
             i++;
         }
 	return command;

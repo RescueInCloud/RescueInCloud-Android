@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class NumberUnit extends TextInterpreter{
     
- private String unidad,texto,relacionCantidad;
- private double valor;
+ private String unidad,texto,relacionCantidad,tUnidad,tValor,textoFin;
+ private float valor;
  private int id;
  private String rC;
   
@@ -27,12 +27,16 @@ public class NumberUnit extends TextInterpreter{
     }
     
     
-    public NumberUnit(int id,String valor,String unidad,String relacionCantidad,String texto){
+    public NumberUnit(int id,String valor,String unidad,String relacionCantidad,String texto,String tValor,String tUnidad,
+    String textoFin){
         super();
         this.id=id;
         this.unidad=unidad;
         this.texto=texto;
-        this.valor=Double.parseDouble(valor);
+        this.tUnidad= tUnidad;
+        this.tValor=tValor;
+        this.textoFin=textoFin;
+        this.valor=Float.parseFloat(valor);
         this.relacionCantidad=relacionCantidad;
     }
     @Override
@@ -42,7 +46,8 @@ public class NumberUnit extends TextInterpreter{
         boolean encontrado = false;
         int i=3;
         String[] datos;
-        this.texto= cadena.replace(w[0],"").replace(w[1], "").replace(w[2], "");
+       // this.texto= cadena.replace(w[0],"").replace(w[1], "").replace(w[2], "");
+        this.texto="";
         while (!encontrado && i<w.length){
             datos = (isNumber(w[i]));
             if (datos!=null){
@@ -61,7 +66,17 @@ public class NumberUnit extends TextInterpreter{
                 command.add(datos[1]); //3->unidad
                 command.add(this.encontrarRelacionCantidad(cadena,datos[0]));//4->relacionCant
                 command.add(texto); //4->texto
+                command.add(datos[0]);
+                command.add(datos[1]);
+                String aux="";
+                if (i<w.length-1){
+                	for (int j=i+1;j<w.length;j++){
+                		aux+=w[j];
+                	}
+                }
+                command.add(aux);
             }
+            else texto+=w[i];
             i++;
         }
 	return command;
@@ -111,7 +126,7 @@ public class NumberUnit extends TextInterpreter{
 		return false;
 	}
     
-    void setValor(Double valor,String unidad) {
+    void setValor(Float valor,String unidad) {
         this.valor=valor;
         this.unidad=unidad; 
     }
@@ -147,9 +162,62 @@ public class NumberUnit extends TextInterpreter{
 		return texto;
 	}
 
-	public double getValor() {
+	public String gettUnidad() {
+		return tUnidad;
+	}
+
+	public void settUnidad(String tUnidad) {
+		this.tUnidad = tUnidad;
+	}
+
+	public String gettValor() {
+		return tValor;
+	}
+
+	public void settValor(String tValor) {
+		this.tValor = tValor;
+	}
+
+	public String getTextoFin() {
+		return textoFin;
+	}
+
+	public void setTextoFin(String textoFin) {
+		this.textoFin = textoFin;
+	}
+
+	public float getValor() {
 		// TODO Auto-generated method stub
 		return this.valor;
+	}
+
+	public void setUnidad(String nuevaUnidad) {
+		//if (esUnidad(nuevaUnidad))
+			this.unidad = nuevaUnidad;
+	}
+
+	public void setValor(float valor) {
+		this.valor = valor;
+	}
+	
+	public void setTexto(String valor, String nuevo_valor, String unidad, String nueva_unidad){
+		/*String aux= this.texto;
+		int iniV = aux.indexOf(valor);
+		String valorAux="";
+		for (int i=0;i<valor.length();i++){
+			valorAux
+		}
+		aux.replaceAll(valor, nuevo_valor);
+		aux.replaceAll(unidad, nueva_unidad);
+		this.texto=aux;*/
+	}
+	
+	boolean esUnidad(String nuevaUnidad){
+		for (Unidades uni : Unidades.values()){
+			if (separarUnidad(nuevaUnidad,uni.getFriendlyName()))
+				return true;
+		}
+		return false;
 	}
     
 }

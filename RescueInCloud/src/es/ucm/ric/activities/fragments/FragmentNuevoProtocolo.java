@@ -25,9 +25,13 @@ import es.ucm.ric.dao.ProtocoloDAO;
 import es.ucm.ric.model.Protocolo;
 import es.ucm.ric.model.ProtocoloParseado;
 import es.ucm.ric.model.TuplaParseada;
+import es.ucm.ric.parser.NumberUnit;
 import es.ucm.ric.parser.Text;
 import es.ucm.ric.parser.TextInterpreter;
 import es.ucm.ric.parser.TextParser;
+import es.ucm.ric.parser.ui.Conversiones;
+import es.ucm.ric.parser.ui.IFuncion;
+import es.ucm.ric.parser.ui.SFuncion;
 
 public class FragmentNuevoProtocolo extends Fragment{
 	
@@ -35,7 +39,8 @@ public class FragmentNuevoProtocolo extends Fragment{
 	private ViewGroup contenedor;
 	private Spinner spinner;
 	private ArrayAdapter<String> LTRadapter;
-	
+	TextInterpreter caja;
+	boolean cambiarValor;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
@@ -47,7 +52,7 @@ public class FragmentNuevoProtocolo extends Fragment{
 	@Override
 	public void onActivityCreated(Bundle state) { 
 		super.onActivityCreated(state);
-		
+		cambiarValor=false;
 		contenedor = (ViewGroup) getActivity().findViewById(R.id.contenedor);
 
 		String id = getArguments().getString("ID");
@@ -66,7 +71,7 @@ public class FragmentNuevoProtocolo extends Fragment{
 	
 	private void addItem(final TextInterpreter caja) {
 		
-		String texto = caja.getContenido();
+		
 		boolean decision = pp.esCajaDecision(caja.getId());
 		
 		// Instantiate a new "row" view.
@@ -92,7 +97,7 @@ public class FragmentNuevoProtocolo extends Fragment{
 			else newView = (ViewGroup) LayoutInflater.from(getActivity()).inflate(
 		                R.layout.protocolo_item_number_unit, contenedor, false);
 			
-			String [] values = {"Kilo","Hecta","Deca","base","deci","centi","mili",};
+			String [] values = {"Cambiar Unidad","Kilo","Hecta","Deca","base","deci","centi","mili",};
 		    spinner = (Spinner) newView.findViewById(R.id.spinnerUnit);
 		    LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, values);
 		    LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -110,12 +115,14 @@ public class FragmentNuevoProtocolo extends Fragment{
         
         TextView textValor = (TextView)newView.findViewById(R.id.textNUmberUnitValor);
         TextView textUnidad = (TextView)newView.findViewById(R.id.textNUmberUnitUnidad);
-
+        
         if (caja instanceof es.ucm.ric.parser.NumberUnit){
-        	double valor = ((es.ucm.ric.parser.NumberUnit)caja).getValor();
+        	
+        	float valorCaja = ((es.ucm.ric.parser.NumberUnit)caja).getValor();
+        	
         	String unidad = ((es.ucm.ric.parser.NumberUnit)caja).getUnidad();
         	textUnidad.setText(unidad);
-        	textValor.setText(""+valor);
+        	textValor.setText(""+valorCaja);
         	if (decision){
         		 TextView textUnidad1 = (TextView)newView.findViewById(R.id.textNUmberUnitUnidad1);
         	}
@@ -126,17 +133,31 @@ public class FragmentNuevoProtocolo extends Fragment{
         
         final EditText numE = (EditText) newViewDEF.findViewById(R.id.editTextNumberDecimal);
         final TextView introducirNum = (TextView) newViewDEF.findViewById(R.id.textView1);
+        
+        String texto="";
+        if (caja instanceof es.ucm.ric.parser.NumberUnit){
+        	texto=((NumberUnit)caja).getContenido() +" " + ((NumberUnit)caja).gettValor()+" "+((NumberUnit)caja).gettUnidad()+" " + ((NumberUnit)caja).getTextoFin();
+        }
+        else texto=caja.getContenido();
+        
         contenido.setText(texto);
-		if (spinner !=null){
+		
+        if (spinner !=null){
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 //Object item = parent.getItemAtPosition(pos);
-            	String a=spinner.getSelectedItem().toString();
+            	String a="";
+            	if (pos==1){
+            		a="1"+(spinner.getSelectedItem().toString());
+            	}
+            	else {
+            	 a=spinner.getSelectedItem().toString();
             	//FUNCIONA-> hace la funcion de cambiar unidad y cambiar la informacion de la caja
             	
             	
-            	
-            	
+            	}
+            	if (pos!=0)
+            		unidadSeleccionada( pos,caja);
             	
             	
         		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(),a, Toast.LENGTH_SHORT).show();
@@ -295,13 +316,6 @@ public class FragmentNuevoProtocolo extends Fragment{
 	            	//buttonContinuar.setEnabled(false);
 	            	desactivarRoundedButton(buttonContinuar);
 	            	
-	            	/**
-	            	 * Por quŽ se devuelve una lista de hijos normales?
-	            	 * No deber’a ser s—lo un hijo?
-	            	 * 
-	            	 * 
-	            	 * no, puede tener mas de un hijo normal, de hecho puede tener hijos de TODO tipo
-	            	 */
 	            	Log.d("cajas", "id: "+ caja.getId());
 	            	//ArrayList<TextInterpreter> tnormal = pp.getHijoParseadoNORMAL(caja.getId());
 	            	ArrayList<TuplaParseada> tnormal = pp.getHijosParseados(caja.getId());
@@ -354,5 +368,309 @@ public class FragmentNuevoProtocolo extends Fragment{
     	}
     	
     	boton.setTextColor(resources.getColor(R.color.color_primario));
+	}
+	
+	private void unidadSeleccionada(int pos,TextInterpreter caja){
+		String unidad=((es.ucm.ric.parser.NumberUnit)caja).getUnidad();
+		char prefijo=unidad.charAt(0);
+		/*depende del valor que sea el primer chat estoy en un rango de unidad y ejecuto una función u otra*/
+		boolean anyadir=false;
+		if (prefijo == 'k' || prefijo == 'K'){
+			anyadir=cambioUnidadesK(pos,caja);
+		}
+		else if (prefijo == 'h' || prefijo == 'H'){
+			anyadir=cambioUnidadesH(pos,caja);
+		}
+		else if (prefijo == 'D'){
+			anyadir=cambioUnidadesD(pos,caja);
+		}
+		else if (prefijo == 'd'){
+			anyadir=cambioUnidadesd(pos,caja);
+		}
+		else if (prefijo == 'c'){
+			anyadir=cambioUnidadesc(pos,caja);
+		}
+		else if (prefijo == 'm'){
+			anyadir=cambioUnidadesm(pos,caja);
+		}
+		else anyadir=cambioUnidadesB(pos,caja);
+		
+		
+		if (anyadir){
+			addItem(caja);
+		}
+		
+	}
+	
+	
+	private boolean cambioUnidadesH(int pos,TextInterpreter caja){
+		Conversiones conversiones=new Conversiones();
+		IFuncion funcion = null;
+		SFuncion sfuncion=null;
+		switch (pos){
+			//K
+			case 1: funcion=conversiones.funcionesConversiones.get(6);///10
+					sfuncion=conversiones.stringsConversiones.get(0);
+					break;
+			//H
+			case 2: return false;
+			//D
+			case 3: funcion=conversiones.funcionesConversiones.get(0);///x100
+					sfuncion=conversiones.stringsConversiones.get(2);
+					break;
+			//ba
+			case 4: funcion=conversiones.funcionesConversiones.get(1);//x1000
+					sfuncion=conversiones.stringsConversiones.get(3);
+					break;
+			//d
+			case 5: funcion=conversiones.funcionesConversiones.get(2);
+					sfuncion=conversiones.stringsConversiones.get(4);
+					break;
+			case 6: funcion=conversiones.funcionesConversiones.get(3);
+					sfuncion=conversiones.stringsConversiones.get(5);
+					break;
+			case 7: funcion=conversiones.funcionesConversiones.get(4);
+					sfuncion=conversiones.stringsConversiones.get(5);
+					break;
+			default: break;
+		
+		}
+		actualizarContenido(funcion,sfuncion,caja);
+		return true;
+	}
+	
+	
+	private boolean cambioUnidadesD(int pos,TextInterpreter caja){
+		Conversiones conversiones=new Conversiones();
+		IFuncion funcion = null;
+		SFuncion sfuncion=null;
+		switch (pos){
+			//K
+			case 1: funcion=conversiones.funcionesConversiones.get(7);///100
+					sfuncion=conversiones.stringsConversiones.get(0);
+					break;
+			//H
+			case 2: funcion=conversiones.funcionesConversiones.get(6);///10
+					sfuncion=conversiones.stringsConversiones.get(1);
+					break;
+			//D
+			case 3: return false;
+			//ba
+			case 4: funcion=conversiones.funcionesConversiones.get(0);//x1000
+					sfuncion=conversiones.stringsConversiones.get(3);
+					break;
+			//d
+			case 5: funcion=conversiones.funcionesConversiones.get(1);
+					sfuncion=conversiones.stringsConversiones.get(4);
+					break;
+			case 6: funcion=conversiones.funcionesConversiones.get(2);
+					sfuncion=conversiones.stringsConversiones.get(5);
+					break;
+			case 7: funcion=conversiones.funcionesConversiones.get(3);
+					sfuncion=conversiones.stringsConversiones.get(6);
+					break;
+			default: break;
+		
+		}
+		actualizarContenido(funcion,sfuncion,caja);
+		return true;
+	}
+	
+	private boolean cambioUnidadesB(int pos,TextInterpreter caja){
+		Conversiones conversiones=new Conversiones();
+		IFuncion funcion = null;
+		SFuncion sfuncion=null;
+		switch (pos){
+			//K
+			case 1: funcion=conversiones.funcionesConversiones.get(8);//x1000
+					sfuncion=conversiones.stringsConversiones.get(0); break;
+			//H
+			case 2: funcion=conversiones.funcionesConversiones.get(7);//x10
+					sfuncion=conversiones.stringsConversiones.get(1);
+					break;
+			//D
+			case 3: funcion=conversiones.funcionesConversiones.get(6);///x100
+					sfuncion=conversiones.stringsConversiones.get(2);
+					break;
+			//ba
+			case 4:return false;
+			//d
+			case 5: funcion=conversiones.funcionesConversiones.get(0);
+					sfuncion=conversiones.stringsConversiones.get(4);
+					break;
+			case 6: funcion=conversiones.funcionesConversiones.get(1);
+					sfuncion=conversiones.stringsConversiones.get(5);
+					break;
+			case 7: funcion=conversiones.funcionesConversiones.get(2);
+					sfuncion=conversiones.stringsConversiones.get(6);
+					break;
+			default: break;
+		
+		}
+		actualizarContenido(funcion,sfuncion,caja);
+		return true;
+	}
+	
+	private boolean cambioUnidadesd(int pos,TextInterpreter caja){
+		Conversiones conversiones=new Conversiones();
+		IFuncion funcion = null;
+		SFuncion sfuncion=null;
+		switch (pos){
+			//K
+			case 1: funcion=conversiones.funcionesConversiones.get(9);
+					sfuncion=conversiones.stringsConversiones.get(0);break;
+			//H
+			case 2: funcion=conversiones.funcionesConversiones.get(8);//x10
+					sfuncion=conversiones.stringsConversiones.get(1);
+					break;
+			//D
+			case 3: funcion=conversiones.funcionesConversiones.get(7);///x100
+					sfuncion=conversiones.stringsConversiones.get(2);
+					break;
+			//ba
+			case 4: funcion=conversiones.funcionesConversiones.get(6);//x1000
+					sfuncion=conversiones.stringsConversiones.get(3);
+					break;
+			//d
+			case 5: return false;
+			case 6: funcion=conversiones.funcionesConversiones.get(0);
+					sfuncion=conversiones.stringsConversiones.get(5);
+					break;
+			case 7: funcion=conversiones.funcionesConversiones.get(1);
+					sfuncion=conversiones.stringsConversiones.get(6);
+					break;
+			default: break;
+		
+		}
+		actualizarContenido(funcion,sfuncion,caja);
+		return true;
+	}
+	
+	private boolean cambioUnidadesc(int pos,TextInterpreter caja){
+		Conversiones conversiones=new Conversiones();
+		IFuncion funcion = null;
+		SFuncion sfuncion=null;
+		switch (pos){
+			//K
+			case 1: funcion=conversiones.funcionesConversiones.get(10);
+					sfuncion=conversiones.stringsConversiones.get(0);
+					break;
+			//H
+			case 2: funcion=conversiones.funcionesConversiones.get(9);//x10
+					sfuncion=conversiones.stringsConversiones.get(1);
+					break;
+			//D
+			case 3: funcion=conversiones.funcionesConversiones.get(8);///x100
+					sfuncion=conversiones.stringsConversiones.get(2);
+					break;
+			//ba
+			case 4: funcion=conversiones.funcionesConversiones.get(7);//x1000
+					sfuncion=conversiones.stringsConversiones.get(3);
+					break;
+			//d
+			case 5: funcion=conversiones.funcionesConversiones.get(6);
+					sfuncion=conversiones.stringsConversiones.get(4);
+					break;
+			case 6: return false;
+			
+			case 7: funcion=conversiones.funcionesConversiones.get(0);
+					sfuncion=conversiones.stringsConversiones.get(6);
+					break;
+			default: break;
+		
+		}
+		actualizarContenido(funcion,sfuncion,caja);
+		return true;
+	}
+	
+	private boolean cambioUnidadesm(int pos,TextInterpreter caja){
+		Conversiones conversiones=new Conversiones();
+		IFuncion funcion = null;
+		SFuncion sfuncion=null;
+		switch (pos){
+			//K
+			case 1: funcion=conversiones.funcionesConversiones.get(11);
+					sfuncion=conversiones.stringsConversiones.get(0);
+					break;
+			//H
+			case 2: funcion=conversiones.funcionesConversiones.get(10);//x10
+					sfuncion=conversiones.stringsConversiones.get(1);
+					break;
+			//D
+			case 3: funcion=conversiones.funcionesConversiones.get(9);///x100
+					sfuncion=conversiones.stringsConversiones.get(2);
+					break;
+			//ba
+			case 4: funcion=conversiones.funcionesConversiones.get(8);//x1000
+					sfuncion=conversiones.stringsConversiones.get(3);
+					break;
+			//d
+			case 5: funcion=conversiones.funcionesConversiones.get(7);
+					sfuncion=conversiones.stringsConversiones.get(4);
+					break;
+			case 6: funcion=conversiones.funcionesConversiones.get(6);
+					sfuncion=conversiones.stringsConversiones.get(5);
+					break;
+			case 7: return false;
+			default: break;
+		
+		}
+		actualizarContenido(funcion,sfuncion,caja);
+		return true;
+	}
+	
+	private boolean cambioUnidadesK(int pos,TextInterpreter caja){
+		Conversiones conversiones=new Conversiones();
+		IFuncion funcion = null;
+		SFuncion sfuncion=null;
+		switch (pos){
+			//K
+			case 1: return false;
+			//H
+			case 2: funcion=conversiones.funcionesConversiones.get(0);//x10
+					sfuncion=conversiones.stringsConversiones.get(1);
+					break;
+			//D
+			case 3: funcion=conversiones.funcionesConversiones.get(1);///x100
+					sfuncion=conversiones.stringsConversiones.get(2);
+					break;
+			//ba
+			case 4: funcion=conversiones.funcionesConversiones.get(2);//x1000
+					sfuncion=conversiones.stringsConversiones.get(3);
+					break;
+			//d
+			case 5: funcion=conversiones.funcionesConversiones.get(3);
+					sfuncion=conversiones.stringsConversiones.get(4);
+					break;
+			case 6: funcion=conversiones.funcionesConversiones.get(4);
+					sfuncion=conversiones.stringsConversiones.get(5);
+					break;
+			case 7: funcion=conversiones.funcionesConversiones.get(5);
+					sfuncion=conversiones.stringsConversiones.get(6);
+					break;
+			default: break;
+		
+		}
+		actualizarContenido(funcion,sfuncion,caja);
+		return true;
+	}
+	private void actualizarContenido(IFuncion funcion,SFuncion sfuncion, TextInterpreter caja){
+		if (funcion!=null){
+			float nuevoValor=0;
+			String nuevaUnidad="";
+			float valor=((NumberUnit)caja).getValor();
+			nuevoValor=funcion.formula(valor);
+			
+			String unidad = ((NumberUnit)caja).getUnidad();
+			nuevaUnidad=sfuncion.Sformula(unidad);
+			
+			((NumberUnit) caja).settUnidad(nuevaUnidad);
+			((NumberUnit) caja).settValor(nuevoValor+"");
+			
+			
+			((NumberUnit)caja).setValor(nuevoValor);
+
+			((NumberUnit)caja).setUnidad(nuevaUnidad);			 
+		}
 	}
 }

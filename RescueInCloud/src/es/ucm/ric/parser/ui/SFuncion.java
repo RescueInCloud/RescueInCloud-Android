@@ -4,8 +4,8 @@ package es.ucm.ric.parser.ui;
  * @author Ricardo Champa
  *
  */
-public interface IFuncion {
+public interface SFuncion {
 	
-	public float formula(float nuevoValor);
+	public String Sformula(String unidad);
 
 }
