@@ -44,8 +44,19 @@ public class FragmentNuevoProtocolo extends Fragment{
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
-	
-		return inflater.inflate(R.layout.fragment_protocolo, container, false);
+		View v = inflater.inflate(R.layout.fragment_protocolo, container, false); 
+		 /*
+		 Button miBoton = (Button)v.findViewById(R.id.miBoton);
+	        miBoton.setOnClickListener(new View.OnClickListener() {
+
+	            @Override
+	            public void onClick(View v) {
+	                Intent intent = new Intent(getActivity(), OtraActivity.class);
+	                startActivity(intent);
+	            }
+	        });
+			*/
+		return v;
 	}
 	
 
