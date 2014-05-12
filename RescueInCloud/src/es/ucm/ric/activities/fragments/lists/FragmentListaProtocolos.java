@@ -32,7 +32,7 @@ public class FragmentListaProtocolos extends FragmentLista
 		for (Protocolo p : lista_protocolos) {
 			lista.add((IListable) p);
 		}
-		int[] imagenes_por_defecto = {R.drawable.diagnostico, R.drawable.diagnostico_check};
+		int[] imagenes_por_defecto = {R.drawable.diagnostico, R.drawable.diagnostico};
 		adapter = new MiAdapter(this.getActivity(), lista, imagenes_por_defecto);
 		
 		listView = (ListView) getView().findViewById(R.id.mi_lista);

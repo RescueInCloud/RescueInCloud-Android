@@ -1,6 +1,9 @@
 package es.ucm.ric.activities.fragments;
 
 import java.util.ArrayList;
+import java.util.Locale;
+
+import android.speech.tts.TextToSpeech;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -33,18 +36,21 @@ import es.ucm.ric.parser.ui.Conversiones;
 import es.ucm.ric.parser.ui.IFuncion;
 import es.ucm.ric.parser.ui.SFuncion;
 
-public class FragmentNuevoProtocolo extends Fragment{
+public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnInitListener{
 	
 	private ProtocoloParseado pp;
 	private ViewGroup contenedor;
 	private Spinner spinner;
 	private ArrayAdapter<String> LTRadapter;
 	TextInterpreter caja;
-	boolean cambiarValor;
+	private TextToSpeech tts;
+	TextView contenido;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_protocolo, container, false); 
+		View v = inflater.inflate(R.layout.fragment_protocolo, container, false);
+		tts = new TextToSpeech(getActivity(), this);
+		 
 		 /*
 		 Button miBoton = (Button)v.findViewById(R.id.miBoton);
 	        miBoton.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +69,7 @@ public class FragmentNuevoProtocolo extends Fragment{
 	@Override
 	public void onActivityCreated(Bundle state) { 
 		super.onActivityCreated(state);
-		cambiarValor=false;
+		
 		contenedor = (ViewGroup) getActivity().findViewById(R.id.contenedor);
 
 		String id = getArguments().getString("ID");
@@ -81,6 +87,7 @@ public class FragmentNuevoProtocolo extends Fragment{
 	}
 	
 	private void addItem(final TextInterpreter caja) {
+		
 		
 		
 		boolean decision = pp.esCajaDecision(caja.getId());
@@ -115,7 +122,7 @@ public class FragmentNuevoProtocolo extends Fragment{
 		    spinner.setAdapter(LTRadapter);
 		}
         
-        TextView contenido = (TextView) newView.findViewById(R.id.contenido);
+        contenido = (TextView) newView.findViewById(R.id.contenido);
         final Button buttonSi = (Button) newView.findViewById(R.id.buttonSi);
         final Button buttonNo = (Button) newView.findViewById(R.id.buttonNo);
         final Button buttonContinuar = (Button) newView.findViewById(R.id.buttonContinuar);
@@ -152,7 +159,7 @@ public class FragmentNuevoProtocolo extends Fragment{
         else texto=caja.getContenido();
         
         contenido.setText(texto);
-		
+        speakOut();
         if (spinner !=null){
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -322,7 +329,7 @@ public class FragmentNuevoProtocolo extends Fragment{
 	            @Override
 	            public void onClick(View view) {
 
-	            	 
+	            	
 	            	
 	            	//buttonContinuar.setEnabled(false);
 	            	desactivarRoundedButton(buttonContinuar);
@@ -684,4 +691,32 @@ public class FragmentNuevoProtocolo extends Fragment{
 			((NumberUnit)caja).setUnidad(nuevaUnidad);			 
 		}
 	}
+
+
+	@Override
+	public void onInit(int status) {
+		 if (status == TextToSpeech.SUCCESS) {
+			 
+	            int result = tts.setLanguage(new Locale("spa"));
+	 
+	            if (result == TextToSpeech.LANG_MISSING_DATA
+	                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+	                Log.e("TTS", "This Language is not supported");
+	            } else {
+	                //btnSpeak.setEnabled(true);
+	                speakOut();
+	            }
+	 
+	        } else {
+	            Log.e("TTS", "Initilization Failed!");
+	        }
+	 
+	    }
+	 
+	    private void speakOut() {
+	 
+	        String text = contenido.getText().toString();
+	 
+	        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+	    }
 }
