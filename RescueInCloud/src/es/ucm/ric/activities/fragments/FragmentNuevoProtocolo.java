@@ -25,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import es.ucm.ric.R;
+import es.ucm.ric.activities.DrawerActivity;
 import es.ucm.ric.activities.fragments.lists.FragmentListaProtocolos;
 import es.ucm.ric.dao.ProtocoloDAO;
 import es.ucm.ric.model.Protocolo;
@@ -54,10 +55,10 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_protocolo, container, false);
 		tts = new TextToSpeech(getActivity(), this);
-<<<<<<< HEAD
+
 		textoFinal="";
-		return inflater.inflate(R.layout.fragment_protocolo, container, false);
-=======
+		//return inflater.inflate(R.layout.fragment_protocolo, container, false);
+
 		 
 		 /*
 		 Button miBoton = (Button)v.findViewById(R.id.miBoton);
@@ -71,7 +72,6 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	        });
 			*/
 		return v;
->>>>>>> 198e80c2570c47b551cd07c60973a5ae79622a2c
 	}
 	
 
@@ -724,9 +724,11 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	    }
 	 
 	    private void speakOut() {
-	 
-	        String text = contenido.getText().toString();
-	 
-	        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+	    	
+	    	DrawerActivity appState = ((DrawerActivity)getActivity());
+	         if (!appState.silenciar){
+	        	 String text = contenido.getText().toString();
+	        	 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+	         }
 	    }
 }

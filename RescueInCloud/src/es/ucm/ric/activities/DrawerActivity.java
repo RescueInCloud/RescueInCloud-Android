@@ -30,6 +30,8 @@ public class DrawerActivity extends BaseActivity
 	public static final int ABRIR_DETALLE_FARMACO = 1;
 	public static final int ABRIR_LECTOR_NOTA = 2;
 	
+	public boolean silenciar = false;
+	
 	
     private DrawerLayout drawerLayout;
     private View drawerList;
@@ -121,6 +123,9 @@ public class DrawerActivity extends BaseActivity
 	}
 
 	private void silenciar(){
+		if (silenciar)
+			silenciar = false;
+		else silenciar=true;
 		Toast.makeText(this, "Silenciar...", Toast.LENGTH_SHORT).show();
 	}
 
