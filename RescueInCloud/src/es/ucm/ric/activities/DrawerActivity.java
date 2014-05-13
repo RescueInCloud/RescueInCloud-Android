@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.fragments.FragmentDrawerLateral;
 import es.ucm.ric.activities.fragments.FragmentPaginador;
@@ -101,11 +102,27 @@ public class DrawerActivity extends BaseActivity
 				else
 					drawerLayout.openDrawer(drawerList);
 				return true;
+				
+			case R.id.action_refresh:
+				refrescarDatosConServidor();
+				return true;
+			
+			case R.id.action_silence:
+				silenciar();
+				return true;
+				
 			default:
 				return super.onOptionsItemSelected(item);
 		}
 	}
+	
+	private void refrescarDatosConServidor(){
+		Toast.makeText(this, "Sincronizar...", Toast.LENGTH_SHORT).show();
+	}
 
+	private void silenciar(){
+		Toast.makeText(this, "Silenciar...", Toast.LENGTH_SHORT).show();
+	}
 
 	public void onClick(View v){
 		

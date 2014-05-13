@@ -1,10 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" 
-    xmlns:sgoliver="http://schemas.android.com/apk/res-auto" >
+    xmlns:ric="http://schemas.android.com/apk/res-auto" >
 
     <item
-        android:id="@+id/action_search"
+        android:id="@+id/action_refresh"
         android:orderInCategory="100"
-        sgoliver:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_refresh"
-        android:title="@string/action_refresh"/>
+        ric:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_popup_sync"
+        android:title="@string/action_refresh" />
+    
+    <item
+        android:id="@+id/action_silence"
+        android:orderInCategory="100"
+        ric:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_lock_silent_mode_off"
+        android:title="@string/action_refresh" />
 </menu>

@@ -52,9 +52,26 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 		
 	@Override
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
+		View v = inflater.inflate(R.layout.fragment_protocolo, container, false);
 		tts = new TextToSpeech(getActivity(), this);
+<<<<<<< HEAD
 		textoFinal="";
 		return inflater.inflate(R.layout.fragment_protocolo, container, false);
+=======
+		 
+		 /*
+		 Button miBoton = (Button)v.findViewById(R.id.miBoton);
+	        miBoton.setOnClickListener(new View.OnClickListener() {
+
+	            @Override
+	            public void onClick(View v) {
+	                Intent intent = new Intent(getActivity(), OtraActivity.class);
+	                startActivity(intent);
+	            }
+	        });
+			*/
+		return v;
+>>>>>>> 198e80c2570c47b551cd07c60973a5ae79622a2c
 	}
 	
 
