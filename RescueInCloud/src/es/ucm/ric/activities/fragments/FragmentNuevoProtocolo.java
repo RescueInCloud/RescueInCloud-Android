@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -24,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import es.ucm.ric.R;
+import es.ucm.ric.activities.fragments.lists.FragmentListaProtocolos;
 import es.ucm.ric.dao.ProtocoloDAO;
 import es.ucm.ric.model.Protocolo;
 import es.ucm.ric.model.ProtocoloParseado;
@@ -45,10 +47,13 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	TextInterpreter caja;
 	private TextToSpeech tts;
 	TextView contenido;
-	
+	private String textoFinal;
+
+		
 	@Override
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
 		tts = new TextToSpeech(getActivity(), this);
+		textoFinal="";
 		return inflater.inflate(R.layout.fragment_protocolo, container, false);
 	}
 	
@@ -145,6 +150,7 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
         }
         else texto=caja.getContenido();
         
+        textoFinal += texto;
         contenido.setText(texto);
         speakOut();
         if (spinner !=null){
@@ -315,9 +321,7 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 			buttonContinuar.setOnClickListener(new View.OnClickListener() {
 	            @Override
 	            public void onClick(View view) {
-
-	            	
-	            	
+					
 	            	//buttonContinuar.setEnabled(false);
 	            	desactivarRoundedButton(buttonContinuar);
 	            	
@@ -330,8 +334,10 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	            		addItem(tnormal.get(0).cajaParseada);
 	            	}
 	            	else{
+	            		
 	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
 	            	}
+	            	
 	           
 	            }
 	        });
