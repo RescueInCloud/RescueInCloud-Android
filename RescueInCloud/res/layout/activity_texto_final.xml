@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="19dp"
+    android:paddingRight="19dp"
+    android:paddingTop="12dp"  >
+
+    <LinearLayout
+        android:id="@+id/notas_lo"
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textTextoFinal"
+            android:layout_width="match_parent"
+            android:layout_height="338dp"
+            android:text="el textop final con toda la info del protocolo" />
+
+        <Button
+            android:id="@+id/buttonContinuar"
+            android:layout_width="wrap_content"
+            android:layout_height="50sp"
+            android:background="@drawable/rounded_button_item"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="5dp"
+            android:text="Continuar"
+            android:textColor="@color/circle_button_text_color" />
+
+	</LinearLayout>
+</ScrollView>

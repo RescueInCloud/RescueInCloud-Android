@@ -2,6 +2,7 @@ package es.ucm.ric.activities;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,9 +13,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.fragments.FragmentDrawerLateral;
+import es.ucm.ric.activities.fragments.FragmentNuevoProtocolo;
 import es.ucm.ric.activities.fragments.FragmentPaginador;
 import es.ucm.ric.activities.fragments.details.FragmentDetalleFarmaco;
 import es.ucm.ric.activities.fragments.lists.FragmentListaFarmacos;
@@ -27,8 +30,23 @@ import es.ucm.ric.model.IListable;
 import es.ucm.ric.tools.BaseActivity;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class DrawerActivity extends BaseActivity
-	implements ICambiarFragmentListener<IListable>{
+public class TextoFinalActivity extends BaseActivity{
+	
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_drawer);
+		
+		Intent intent = getIntent();
+		Bundle todosParametros = intent.getExtras();
+		String sParametroObtenido = (todosParametros.getString("textoFinal"));
+		
+		
+        TextView t = (TextView)findViewById(R.id.textTextoFinal);
+        
+        t.setText(sParametroObtenido);
+
+	}
+	/*implements ICambiarFragmentListener<IListable>{
 	
 	
 	public static final int ABRIR_PAGINADOR = 0;
@@ -74,13 +92,13 @@ public class DrawerActivity extends BaseActivity
 			public void onDrawerClosed(View view) {
 				drawerAbierto = false;
 				getSupportActionBar().setTitle(tituloSeccion);
-				ActivityCompat.invalidateOptionsMenu(DrawerActivity.this);
+				ActivityCompat.invalidateOptionsMenu(TextoFinalActivity.this);
 			}
 
 			public void onDrawerOpened(View drawerView) {
 				drawerAbierto = true;
 				getSupportActionBar().setTitle(tituloApp);
-				ActivityCompat.invalidateOptionsMenu(DrawerActivity.this);
+				ActivityCompat.invalidateOptionsMenu(TextoFinalActivity.this);
 			}
 		};
 
@@ -232,6 +250,6 @@ public class DrawerActivity extends BaseActivity
 		}
 		
 	}
-	
+	*/
 
 }

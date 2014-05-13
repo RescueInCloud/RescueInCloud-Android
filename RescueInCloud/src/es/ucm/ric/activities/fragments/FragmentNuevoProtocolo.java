@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.DrawerActivity;
+import es.ucm.ric.activities.TextoFinalActivity;
 import es.ucm.ric.activities.fragments.lists.FragmentListaProtocolos;
 import es.ucm.ric.dao.ProtocoloDAO;
 import es.ucm.ric.model.Protocolo;
@@ -48,7 +49,7 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	TextInterpreter caja;
 	private TextToSpeech tts;
 	TextView contenido;
-	private String textoFinal;
+	public String textoFinal;
 
 		
 	@Override
@@ -57,8 +58,9 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 		tts = new TextToSpeech(getActivity(), this);
 
 		textoFinal="";
-		//return inflater.inflate(R.layout.fragment_protocolo, container, false);
+		return inflater.inflate(R.layout.fragment_protocolo, container, false);
 
+		 
 		 
 		 /*
 		 Button miBoton = (Button)v.findViewById(R.id.miBoton);
@@ -71,7 +73,7 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	            }
 	        });
 			*/
-		return v;
+		//return v;
 	}
 	
 
@@ -347,11 +349,17 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	            	ArrayList<TuplaParseada> tnormal = pp.getHijosParseados(caja.getId());
 	            	
 	            	if(tnormal!=null && !tnormal.isEmpty()){
-	            		Log.d("cajas", "hijo_nada: "+ tnormal.get(0));
+	            		/*Log.d("cajas", "hijo_nada: "+ tnormal.get(0));
 	            		addItem(tnormal.get(0).cajaParseada);
+	            		*/
+	            		Intent intent = new Intent(getActivity(), TextoFinalActivity.class);
+	            		intent.putExtra("texto", textoFinal);
+		                startActivity(intent);
 	            	}
 	            	else{
-	            		
+	            		Intent intent = new Intent(getActivity(), TextoFinalActivity.class);
+	            		intent.putExtra("texto", textoFinal);
+		                startActivity(intent);
 	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
 	            	}
 	            	
