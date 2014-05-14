@@ -1,36 +1,25 @@
 package es.ucm.ric.activities;
 
-import android.annotation.SuppressLint;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import es.ucm.ric.R;
-import es.ucm.ric.activities.fragments.FragmentDrawerLateral;
-import es.ucm.ric.activities.fragments.FragmentNuevoProtocolo;
-import es.ucm.ric.activities.fragments.FragmentPaginador;
-import es.ucm.ric.activities.fragments.details.FragmentDetalleFarmaco;
-import es.ucm.ric.activities.fragments.lists.FragmentListaFarmacos;
-import es.ucm.ric.activities.fragments.lists.FragmentListaNotas;
-import es.ucm.ric.activities.fragments.lists.FragmentListaProtocolos;
-import es.ucm.ric.activities.fragments.reader.FragmentNota;
-import es.ucm.ric.activities.fragments.sandbox.FragmentTest;
-import es.ucm.ric.activities.listeners.ICambiarFragmentListener;
-import es.ucm.ric.model.IListable;
 import es.ucm.ric.tools.BaseActivity;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class TextoFinalActivity extends BaseActivity{
+	public static int contador =0;
+	String textoProtocolo;
+	String tituloProtocolo;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,15 +27,47 @@ public class TextoFinalActivity extends BaseActivity{
 		
 		Intent intent = getIntent();
 		Bundle todosParametros = intent.getExtras();
-		String sParametroObtenido ="";
-		sParametroObtenido= todosParametros.getString("textoFinal");
-		
+		 textoProtocolo = todosParametros.getString("textoFinal");
+		 tituloProtocolo = todosParametros.getString("tituloProtocolo");
 		
         TextView t = (TextView)findViewById(R.id.textTextoFinal);
+        Button buttonGuardar = (Button)findViewById(R.id.buttonGuardarTxt);
         
-        t.setText(sParametroObtenido);
+        t.setText(tituloProtocolo+"\n"+textoProtocolo);
+        
+        contador++;
+        buttonGuardar.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				grabar();
+				Intent intent = new Intent(view.getContext(), DrawerActivity.class);
+
+                startActivity(intent);
+			}
+        });
+        
+        
+        
+        
 
 	}
+	
+	public void grabar() {
+	 try {
+		 String nombreP=tituloProtocolo+contador+"txt";
+         OutputStreamWriter archivo = new OutputStreamWriter(openFileOutput(
+        		 nombreP, Activity.MODE_PRIVATE));
+         archivo.write(textoProtocolo);
+         archivo.flush();
+         archivo.close();
+     } catch (IOException e) {
+     }
+	 Toast t = Toast.makeText(this, "Los datos fueron grabados",
+             Toast.LENGTH_SHORT);
+     t.show();
+     finish();
+ }
 	/*implements ICambiarFragmentListener<IListable>{
 	
 	

@@ -3,20 +3,16 @@ package es.ucm.ric.activities.fragments;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import android.speech.tts.TextToSpeech;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,7 +23,6 @@ import android.widget.Toast;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.DrawerActivity;
 import es.ucm.ric.activities.TextoFinalActivity;
-import es.ucm.ric.activities.fragments.lists.FragmentListaProtocolos;
 import es.ucm.ric.dao.ProtocoloDAO;
 import es.ucm.ric.model.Protocolo;
 import es.ucm.ric.model.ProtocoloParseado;
@@ -50,30 +45,15 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	private TextToSpeech tts;
 	TextView contenido;
 	public String textoFinal;
-
+	public String tituloProtocolo;
 		
 	@Override
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_protocolo, container, false);
 		tts = new TextToSpeech(getActivity(), this);
 
 		textoFinal="";
+		tituloProtocolo="";
 		return inflater.inflate(R.layout.fragment_protocolo, container, false);
-
-		 
-		 
-		 /*
-		 Button miBoton = (Button)v.findViewById(R.id.miBoton);
-	        miBoton.setOnClickListener(new View.OnClickListener() {
-
-	            @Override
-	            public void onClick(View v) {
-	                Intent intent = new Intent(getActivity(), OtraActivity.class);
-	                startActivity(intent);
-	            }
-	        });
-			*/
-		//return v;
 	}
 	
 
@@ -152,9 +132,7 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
         	String unidad = ((es.ucm.ric.parser.NumberUnit)caja).getUnidad();
         	textUnidad.setText(unidad);
         	textValor.setText(""+valorCaja);
-        	if (decision){
-        		 TextView textUnidad1 = (TextView)newView.findViewById(R.id.textNUmberUnitUnidad1);
-        	}
+
         }
 
 
@@ -169,22 +147,24 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
         }
         else texto=caja.getContenido();
         
-        textoFinal += texto;
+        if (caja.getId()==0){
+        	this.tituloProtocolo=caja.getContenido();
+        }
+        else{
+        	textoFinal += texto+ "\n";
+        }
         contenido.setText(texto);
+        
         speakOut();
         if (spinner !=null){
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                //Object item = parent.getItemAtPosition(pos);
             	String a="";
             	if (pos==1){
             		a="1"+(spinner.getSelectedItem().toString());
             	}
             	else {
             	 a=spinner.getSelectedItem().toString();
-            	//FUNCIONA-> hace la funcion de cambiar unidad y cambiar la informacion de la caja
-            	
-            	
             	}
             	if (pos!=0)
             		unidadSeleccionada( pos,caja);
@@ -223,8 +203,11 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 			    	   	            	addItem(hijoSi);
 			    	            		}
 			    	            	else{
-			    	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
-			    	            		}
+			    	            		Intent intent = new Intent(getActivity(), TextoFinalActivity.class);
+			    	            		intent.putExtra("textoFinal", textoFinal);
+			    	            		intent.putExtra("tituloProtocolo", tituloProtocolo);
+			    		                startActivity(intent);
+			    	            	}
 			            			} 
 			            		else if ((caja instanceof es.ucm.ric.parser.Number) || (caja instanceof es.ucm.ric.parser.NumberUnit)){
 				            			/*Si el num que mete es mayor que el que esta en la caja y la relacion no es >, no se cumple -> como si pulsara NO*/
@@ -237,8 +220,11 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 				    	   	            	addItem(hijoNo);
 				    	            		}
 				    	            	else{
-				    	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
-				    	            		}
+				    	            		Intent intent = new Intent(getActivity(), TextoFinalActivity.class);
+				    	            		intent.putExtra("textoFinal", textoFinal);
+				    	            		intent.putExtra("tituloProtocolo", tituloProtocolo);
+				    		                startActivity(intent);
+				    	            	}
 				            		}
 		            		}
 		            	else if (rel == "<"){
@@ -255,8 +241,11 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 			    	   	            	addItem(hijoSi);
 			    	            		}
 			    	            	else{
-			    	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
-			    	            		}
+			    	            		Intent intent = new Intent(getActivity(), TextoFinalActivity.class);
+			    	            		intent.putExtra("textoFinal", textoFinal);
+			    	            		intent.putExtra("tituloProtocolo", tituloProtocolo);
+			    		                startActivity(intent);
+			    	            	}
 			            			} 
 			            		else if ((caja instanceof es.ucm.ric.parser.Number) || (caja instanceof es.ucm.ric.parser.NumberUnit)){
 				            			/*Si el num que mete es mayor que el que esta en la caja y la relacion no es >, no se cumple -> como si pulsara NO*/
@@ -269,8 +258,11 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 				    	   	            	addItem(hijoNo);
 				    	            		}
 				    	            	else{
-				    	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
-				    	            		}
+				    	            		Intent intent = new Intent(getActivity(), TextoFinalActivity.class);
+				    	            		intent.putExtra("textoFinal", textoFinal);
+				    	            		intent.putExtra("tituloProtocolo", tituloProtocolo);
+				    		                startActivity(intent);
+				    	            	}
 				            		}
 		            	}
 					}	
@@ -295,6 +287,10 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	            	}
 	            	else{
 	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
+	            		Intent intent = new Intent(getActivity(), TextoFinalActivity.class);
+	            		intent.putExtra("textoFinal", textoFinal);
+	            		intent.putExtra("tituloProtocolo", tituloProtocolo);
+		                startActivity(intent);
 	            	}
 	            }
 	        });
@@ -316,7 +312,12 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	            		addItem(hijoNo);
 	            	}
 	            	else{
+	            		
 	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
+	            		Intent intent = new Intent(getActivity(), TextoFinalActivity.class);
+	            		intent.putExtra("textoFinal", textoFinal);
+	            		intent.putExtra("tituloProtocolo", tituloProtocolo);
+		                startActivity(intent);
 	            	}
 	            }
 	        });
@@ -349,20 +350,16 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	            	ArrayList<TuplaParseada> tnormal = pp.getHijosParseados(caja.getId());
 	            	
 	            	if(tnormal!=null && !tnormal.isEmpty()){
-	            		/*Log.d("cajas", "hijo_nada: "+ tnormal.get(0));
+	            		Log.d("cajas", "hijo_nada: "+ tnormal.get(0));
 	            		addItem(tnormal.get(0).cajaParseada);
-	            		*/
-	            		Intent intent = new Intent(getActivity(), TextoFinalActivity.class);
-	            		intent.putExtra("textoFinal", textoFinal);
-		                startActivity(intent);
-		                
-		                
 	            	}
 	            	else{
-	            		Intent intent = new Intent(getActivity(), TextoFinalActivity.class);
-	            		intent.putExtra("texto", textoFinal);
-		                startActivity(intent);
+	            		
 	            		Toast.makeText(FragmentNuevoProtocolo.this.getActivity(), "Protocolo finalizado", Toast.LENGTH_SHORT).show();
+	            		Intent intent = new Intent(getActivity(), TextoFinalActivity.class);
+	            		intent.putExtra("textoFinal", textoFinal);
+	            		intent.putExtra("tituloProtocolo", tituloProtocolo);
+		                startActivity(intent);
 	            	}
 	            	
 	           

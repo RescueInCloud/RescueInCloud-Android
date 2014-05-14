@@ -17,16 +17,17 @@
             android:id="@+id/textTextoFinal"
             android:layout_width="match_parent"
             android:layout_height="338dp"
+            android:textSize="20dp"
             android:text="el textop final con toda la info del protocolo" />
 
         <Button
-            android:id="@+id/buttonContinuar"
+            android:id="@+id/buttonGuardarTxt"
             android:layout_width="wrap_content"
             android:layout_height="50sp"
             android:background="@drawable/rounded_button_item"
-            android:gravity="center_vertical|center_horizontal"
+            android:gravity="center"
             android:padding="5dp"
-            android:text="Continuar"
+            android:text="Guardar Datos"
             android:textColor="@color/circle_button_text_color" />
 
 	</LinearLayout>
