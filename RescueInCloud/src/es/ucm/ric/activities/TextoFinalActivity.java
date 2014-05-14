@@ -34,11 +34,12 @@ public class TextoFinalActivity extends BaseActivity{
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_drawer);
+		setContentView(R.layout.activity_texto_final);
 		
 		Intent intent = getIntent();
 		Bundle todosParametros = intent.getExtras();
-		String sParametroObtenido = (todosParametros.getString("textoFinal"));
+		String sParametroObtenido ="";
+		sParametroObtenido= todosParametros.getString("textoFinal");
 		
 		
         TextView t = (TextView)findViewById(R.id.textTextoFinal);

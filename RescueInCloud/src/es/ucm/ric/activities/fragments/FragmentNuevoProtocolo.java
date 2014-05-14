@@ -353,8 +353,10 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	            		addItem(tnormal.get(0).cajaParseada);
 	            		*/
 	            		Intent intent = new Intent(getActivity(), TextoFinalActivity.class);
-	            		intent.putExtra("texto", textoFinal);
+	            		intent.putExtra("textoFinal", textoFinal);
 		                startActivity(intent);
+		                
+		                
 	            	}
 	            	else{
 	            		Intent intent = new Intent(getActivity(), TextoFinalActivity.class);
