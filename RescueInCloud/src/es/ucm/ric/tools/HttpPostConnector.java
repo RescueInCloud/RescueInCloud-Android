@@ -28,11 +28,12 @@ public class HttpPostConnector {
 	
 
 	//public static String IP_Server = "192.168.1.107";	
-	public static String IP_Server = "192.168.1.105";//ip mac
+	public static String IP_Server = "192.168.1.109";//ip mac
 	/* Connections */
 	
 	public static String URL_HOLA = "http://" + IP_Server + "/git/web-service-demo/ws-rescueincloud/scripts/hola.php";
-	public static String URL_LISTA_FARMACOS = "http://" + IP_Server + "/git/web-service-demo/ws-rescueincloud/scripts/lista_farmacos.php";
+	public static String URL_LISTA_FARMACOS = "http://" + IP_Server + "/git/web-service-demo/ws-rescueincloud/scripts/listar_farmacos.php";
+	public static String URL_LISTA_NOTAS = "http://" + IP_Server + "/git/web-service-demo/ws-rescueincloud/scripts/listar_notas.php";
 
 	private InputStream is = null;
 	private String result = "";
@@ -74,7 +75,8 @@ public class HttpPostConnector {
 
 		// Convierte respuesta a String
 		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+			//BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
 			StringBuilder sb = new StringBuilder();
 			String line = null;
 			while ((line = reader.readLine()) != null) {

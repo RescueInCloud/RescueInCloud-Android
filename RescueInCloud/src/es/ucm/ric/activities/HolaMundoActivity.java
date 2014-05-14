@@ -42,7 +42,7 @@ public class HolaMundoActivity extends BaseActivity implements Listener<ArrayLis
 			case R.id.button_conexion:
 				RecuperarFarmacosConexion connection = new RecuperarFarmacosConexion(this);
 				connection.setListener(this);
-				connector = new AsyncConnect(connection,"ale7jandra.89@gmail.com");
+				connector = new AsyncConnect(connection,"ale7jandra.89@gmail.com","lalal");
 		        connector.execute();
 				break;
 		}
