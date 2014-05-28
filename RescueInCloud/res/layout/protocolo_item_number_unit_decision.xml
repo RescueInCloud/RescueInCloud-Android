@@ -127,19 +127,6 @@
             android:text="OK"
             android:textColor="@color/color_blanco" />
 
-        <TextView
-            android:id="@+id/textNUmberUnitUnidad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/editTextNumberDecimal"
-            android:layout_alignBottom="@+id/editTextNumberDecimal"
-            android:layout_marginRight="16dp"
-            android:layout_toLeftOf="@+id/buttonNumberOk"
-            android:text="Unidad"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/color_primario"
-            android:textSize="20sp" />
-
     </RelativeLayout>
 
     <RelativeLayout
