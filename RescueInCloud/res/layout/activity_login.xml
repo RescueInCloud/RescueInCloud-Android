@@ -1,0 +1,108 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:background="@color/color_blanco"
+		    >
+
+		<LinearLayout
+          android:id="@+id/layoutlogin"
+          android:orientation="vertical"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:padding="40dip"
+          android:layout_gravity="center"
+          android:gravity="center" 
+          android:focusableInTouchMode="true"   >
+          
+		   <ImageView
+		       android:id="@+id/imageViewlogin"
+		       android:layout_width="96dp"
+		       android:layout_height="96dp"
+		       android:layout_marginBottom="20dp"
+		       android:contentDescription="@string/app_name"
+		       android:src="@drawable/baculo" />
+                
+          <RelativeLayout
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" >
+
+	          <EditText 
+	          		android:id="@+id/et_usuario"
+	              	android:layout_width="match_parent"
+	        	  	android:layout_height="match_parent"
+	              	android:paddingLeft="40dp"
+	              	android:hint="@string/et_usuario"  />
+	
+	          <ImageView
+	              android:id="@+id/idIV"
+	              android:layout_width="wrap_content"
+	        	  android:layout_height="wrap_content"
+	              android:layout_alignBottom="@+id/et_usuario"
+	              android:layout_alignLeft="@+id/et_usuario"
+	              android:layout_alignTop="@+id/et_usuario"
+	              android:contentDescription="@string/et_usuario"
+	              android:layout_marginLeft="10dp"
+	              android:src="@android:drawable/sym_action_email" />
+
+			</RelativeLayout>
+          
+         <RelativeLayout
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" >
+          
+          <EditText 
+              	android:id="@+id/et_password"
+              	android:layout_width="match_parent"
+	        	android:layout_height="match_parent"
+	        	android:paddingLeft="40dp"
+                android:hint="@string/et_pass"
+                android:inputType="textPassword" />  
+           
+          <ImageView
+              	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+		        android:id="@+id/passIV"
+		        android:layout_alignTop="@+id/et_password"
+		        android:layout_alignBottom="@+id/et_password"
+		        android:layout_alignLeft="@+id/et_password"
+		        android:src="@android:drawable/ic_secure"
+		        android:layout_marginLeft="16dp"
+		        android:contentDescription="@string/et_pass" />
+
+		</RelativeLayout>
+      
+        <Button 
+            	android:id="@+id/login_button_login"
+            	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/but_login"
+                android:onClick="onClick"
+                android:background="@drawable/rounded_button_item"
+                android:textColor="@color/circle_button_text_color"
+          />
+        
+        <Button 
+            	android:id="@+id/login_button_forget"
+            	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/but_olvide"
+               	android:onClick="onClick"
+               	android:background="@drawable/rounded_button_item"
+                android:textColor="@color/circle_button_text_color"
+          />
+        
+        <Button 
+            	android:id="@+id/registro"
+            	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/but_registrar"
+               	android:onClick="onClick"
+               	android:background="@drawable/rounded_button_item"
+                android:textColor="@color/circle_button_text_color"
+          />
+                   
+	</LinearLayout>
+</ScrollView>

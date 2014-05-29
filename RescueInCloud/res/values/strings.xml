@@ -3,6 +3,12 @@
     <string name="app_name">MS in cloud</string>
     <string name="button_next">Next activity</string>
     
+    <!-- Login Activity -->
+    <string name="et_usuario">Introduce tu email</string>
+    <string name="et_pass">*********</string>
+    <string name="but_login">Login</string>
+    <string name="but_olvide">Olvidé contraseña</string>
+    <string name="but_registrar">Regístrate</string>
     
     
     <!-- HolaMundo Activity -->
