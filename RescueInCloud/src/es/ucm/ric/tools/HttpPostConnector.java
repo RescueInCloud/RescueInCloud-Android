@@ -28,12 +28,14 @@ public class HttpPostConnector {
 	
 
 	//public static String IP_Server = "192.168.1.107";	
-	public static String IP_Server = "192.168.1.109";//ip mac
+	//public static String IP_Server = "192.168.1.109";//ip mac
+	public static String IP_Server = "ems-rczone.rhcloud.com/ws/scripts";//ip ws
 	/* Connections */
 	
-	public static String URL_HOLA = "http://" + IP_Server + "/git/web-service-demo/ws-rescueincloud/scripts/hola.php";
-	public static String URL_LISTA_FARMACOS = "http://" + IP_Server + "/git/web-service-demo/ws-rescueincloud/scripts/listar_farmacos.php";
-	public static String URL_LISTA_NOTAS = "http://" + IP_Server + "/git/web-service-demo/ws-rescueincloud/scripts/listar_notas.php";
+	public static String URL_HOLA = "http://" + IP_Server + "/hola.php";
+	public static String URL_LISTA_FARMACOS = "http://" + IP_Server + "/listar_farmacos.php";
+	public static String URL_LISTA_PROTOCOLOS = "http://" + IP_Server + "/listar_protocolos.php";
+	public static String URL_LISTA_NOTAS = "http://" + IP_Server + "/listar_notas.php";
 
 	private InputStream is = null;
 	private String result = "";
