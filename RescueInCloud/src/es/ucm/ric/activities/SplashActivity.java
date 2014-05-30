@@ -49,6 +49,7 @@ public class SplashActivity extends Activity{
                 
                 // 	make sure we close the splash screen so the user won't come back when it presses back key
                 finish();
+                overridePendingTransition(R.anim.activityfadein,R.anim.splashfadeout);
             }
  
         }, SPLASH_DURATION); // time in milliseconds (1 second = 1000 milliseconds) until the run() method will be called
