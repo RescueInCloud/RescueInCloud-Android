@@ -2,6 +2,7 @@
 
     <string name="app_name">EMS in cloud</string>
     <string name="button_next">Next activity</string>
+    <string name="local_service_started">servicio</string>
     
     <!-- Login Activity -->
     <string name="et_usuario">Introduce tu email</string>
