@@ -21,10 +21,10 @@ import es.ucm.ric.R;
 import es.ucm.ric.activities.fragments.FragmentDrawerLateral;
 import es.ucm.ric.activities.fragments.FragmentPaginador;
 import es.ucm.ric.activities.fragments.details.FragmentDetalleFarmaco;
+import es.ucm.ric.activities.fragments.details.FragmentNota;
 import es.ucm.ric.activities.fragments.lists.FragmentListaFarmacos;
 import es.ucm.ric.activities.fragments.lists.FragmentListaNotas;
 import es.ucm.ric.activities.fragments.lists.FragmentListaProtocolos;
-import es.ucm.ric.activities.fragments.reader.FragmentNota;
 import es.ucm.ric.activities.fragments.sandbox.FragmentTest;
 import es.ucm.ric.activities.listeners.ICambiarFragmentListener;
 import es.ucm.ric.model.IListable;
@@ -212,13 +212,11 @@ public class DrawerActivity extends BaseActivity
 			
 			case R.id.opcion_farmaco:
 				FragmentListaFarmacos lf = new FragmentListaFarmacos();
-				lf.setListener(this);
 				cambiarFragment(lf);
 				break;
 				
 			case R.id.opcion_notas:
 				FragmentListaNotas ln = new FragmentListaNotas();
-				ln.setListener(this);
 				cambiarFragment(ln);
 				break;
 				
@@ -266,22 +264,7 @@ public class DrawerActivity extends BaseActivity
 			    f.setArguments(bundle);
 				cambiarFragment(f);
 				break;
-	
-//			case ABRIR_DETALLE_FARMACO:
-//				FragmentDetalleFarmaco fdf = new FragmentDetalleFarmaco();
-//				bundle = new Bundle();
-//			    bundle.putString("ID", data.getTitulo());
-//			    fdf.setArguments(bundle);
-//				cambiarFragment(fdf);
-//				break;
 				
-			case ABRIR_LECTOR_NOTA:
-				FragmentNota fn = new FragmentNota();
-				bundle = new Bundle();
-			    bundle.putString("ID", data.getTitulo());
-			    fn.setArguments(bundle);
-				cambiarFragment(fn);
-				break;
 			default:
 				break;
 		}

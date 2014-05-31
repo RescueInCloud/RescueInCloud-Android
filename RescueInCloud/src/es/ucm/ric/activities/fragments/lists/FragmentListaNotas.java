@@ -2,6 +2,7 @@ package es.ucm.ric.activities.fragments.lists;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,6 +11,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.DrawerActivity;
 import es.ucm.ric.activities.adapters.MiAdapter;
+import es.ucm.ric.activities.fragments.details.FragmentDetalleFarmaco;
+import es.ucm.ric.activities.fragments.details.FragmentNota;
 import es.ucm.ric.activities.listeners.ICambiarFragmentListener;
 import es.ucm.ric.dao.NotasDAO;
 import es.ucm.ric.model.IListable;
@@ -18,7 +21,6 @@ import es.ucm.ric.model.Nota;
 public class FragmentListaNotas extends FragmentLista
 	implements OnItemClickListener{
 	
-	private ICambiarFragmentListener<IListable> listener;
 	
 	@Override
 	public void onActivityCreated(Bundle state) {
@@ -40,14 +42,10 @@ public class FragmentListaNotas extends FragmentLista
 
 	@Override
 	public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-		
-		IListable item = (IListable) adapter.getItemAtPosition(position);
-		
-		listener.cambiarFragment(item, DrawerActivity.ABRIR_LECTOR_NOTA);
+		Intent myIntent = new Intent(this.getActivity(), FragmentNota.class); 
+	    myIntent.putExtra("id", ""+id);
+	    startActivity(myIntent);
 		
 	}
 	
-	public void setListener(ICambiarFragmentListener<IListable> listener){
-		this.listener = listener;
-	}
 }

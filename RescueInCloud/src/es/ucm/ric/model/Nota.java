@@ -7,8 +7,8 @@ public class Nota implements IListable{
 	private int id;
 	private String nombre;
 	private String descripcion;
-	public Nota(String nombre, String descripcion) {
-		super();
+	public Nota(int id, String nombre, String descripcion) {
+		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 	}

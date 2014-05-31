@@ -13,7 +13,7 @@ import es.ucm.ric.model.Nota;
 
 public class NotasDAO {
 	private static final String TABLE = "notas";
-	//private static final String ID = "rowid";
+	private static final String ID = "id";
 	private static final String NOMBRE = "nombre_nota";
 	private static final String DESCRIPCION = "descripcion";
 	
@@ -27,11 +27,11 @@ public class NotasDAO {
 		if(cursor.moveToFirst()){
 			
 			do{
-				//int id = cursor.getInt(cursor.getColumnIndex(ID));
+				int id = cursor.getInt(cursor.getColumnIndex(ID));
 				String nota = cursor.getString(cursor.getColumnIndex(NOMBRE));
 				String descripcion = cursor.getString(cursor.getColumnIndex(DESCRIPCION));
 				
-				valueObject = new Nota(nota, descripcion);
+				valueObject = new Nota(id,nota, descripcion);
 				
 				list.add(valueObject);
 			}while(cursor.moveToNext());
@@ -43,16 +43,16 @@ public class NotasDAO {
 	}
 	
 	
-	public Nota get(String name) {
+	public Nota get(String id) {
 		SQLiteDatabase db = MyApp.getContext().openOrCreateDatabase("rescue_lite_db", Context.MODE_PRIVATE,null);
-		Cursor cursor = db.query(TABLE, null, NOMBRE+"=?", new String[] {name}, null, null, null);
+		Cursor cursor = db.query(TABLE, null, ID+"=?", new String[] {id}, null, null, null);
 		
 		Nota valueObject = null;
 		if (cursor.moveToFirst()) {
-			//String nombre = cursor.getString(cursor.getColumnIndex(NOMBRE));
+			String nombre = cursor.getString(cursor.getColumnIndex(NOMBRE));
 			String descripcion = cursor.getString(cursor.getColumnIndex(DESCRIPCION));
 			
-			valueObject = new Nota(name, descripcion);
+			valueObject = new Nota(Integer.parseInt(id), nombre, descripcion);
 					
 		}
 
