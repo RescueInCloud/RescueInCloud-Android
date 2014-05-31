@@ -2,81 +2,26 @@ package es.ucm.ric.activities.fragments.lists;
 
 import java.util.ArrayList;
 
-import android.content.ComponentName;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.adapters.MiAdapter;
 import es.ucm.ric.activities.fragments.details.FragmentActivityDetalleFarmaco;
-import es.ucm.ric.activities.listeners.UpdateListener;
-import es.ucm.ric.activities.peticiones.LocalService;
+import es.ucm.ric.activities.peticiones.SincronizarFarmacosIntentService;
 import es.ucm.ric.dao.FarmacoDAO;
 import es.ucm.ric.model.Farmaco;
 import es.ucm.ric.model.IListable;
 
 public class FragmentListaFarmacos extends FragmentLista
-	implements OnItemClickListener,UpdateListener{
-	
-	private boolean mIsBound;
-	
-	private LocalService mBoundService;
-
-	private ServiceConnection mConnection = new ServiceConnection() {
-	    public void onServiceConnected(ComponentName className, IBinder service) {
-	        // This is called when the connection with the service has been
-	        // established, giving us the service object we can use to
-	        // interact with the service.  Because we have bound to a explicit
-	        // service that we know is running in our own process, we can
-	        // cast its IBinder to a concrete class and directly access it.
-	        mBoundService = ((LocalService.LocalBinder)service).getService();
-
-	        // Tell the user about this for our demo.
-	        Toast.makeText(FragmentListaFarmacos.this.getActivity(), "Conectando...",
-	                Toast.LENGTH_SHORT).show();
-	    }
-
-	    public void onServiceDisconnected(ComponentName className) {
-	        // This is called when the connection with the service has been
-	        // unexpectedly disconnected -- that is, its process crashed.
-	        // Because it is running in our same process, we should never
-	        // see this happen.
-	        mBoundService = null;
-	        Toast.makeText(FragmentListaFarmacos.this.getActivity(), "Desconectado..",
-	                Toast.LENGTH_SHORT).show();
-	    }
-	};
-
-	void doBindService() {
-	    // Establish a connection with the service.  We use an explicit
-	    // class name because we want a specific service implementation that
-	    // we know will be running in our own process (and thus won't be
-	    // supporting component replacement by other applications).
-	    getActivity().bindService(new Intent(FragmentListaFarmacos.this.getActivity(), 
-	            LocalService.class), mConnection, Context.BIND_AUTO_CREATE);
-	    mIsBound = true;
-	}
-
-	void doUnbindService() {
-	    if (mIsBound) {
-	        // Detach our existing connection.
-	    	getActivity().unbindService(mConnection);
-	        mIsBound = false;
-	    }
-	}
-
-	@Override
-	public void onDestroy() {
-	    super.onDestroy();
-	    doUnbindService();
-	}
+	implements OnItemClickListener{
 	
 	@Override
 	public void onActivityCreated(Bundle state) {
@@ -94,7 +39,66 @@ public class FragmentListaFarmacos extends FragmentLista
 		listView = (ListView) getView().findViewById(R.id.mi_lista);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(this);
+		
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(SincronizarFarmacosIntentService.ACTION_FIN);
+		getActivity().registerReceiver(mHandleMessageReceiver, filter);
 	}
+	
+	private final BroadcastReceiver mHandleMessageReceiver = new BroadcastReceiver() {
+		 
+	    @Override
+	    public void onReceive(Context context, Intent intent) {
+	        if(intent.getAction().equals(SincronizarFarmacosIntentService.ACTION_FIN)) {
+	            //BBDD actualizada -> Actualizar la lista;
+	        	MiAdapter adapter = (MiAdapter) listView.getAdapter();
+	        	adapter.clear();
+	        	
+	        	FarmacoDAO dao = new FarmacoDAO();
+	    		ArrayList<Farmaco> lista_farmacos = dao.getListaFarmacos();
+	    		
+	    		lista.clear();
+	    		lista = new ArrayList<IListable>();
+	    		for (Farmaco f : lista_farmacos) {
+	    			lista.add(f);
+	    		}
+	    		
+	    		for (IListable item : lista) {
+	    			adapter.add(item);
+				}
+	    		
+	    		adapter.notifyDataSetChanged();
+	        	
+	        }
+	    }
+	};
+	
+	@Override
+	public void onResume(){
+		getActivity().registerReceiver(mHandleMessageReceiver, new IntentFilter(SincronizarFarmacosIntentService.ACTION_FIN));
+		super.onResume();
+	}
+
+	@Override
+	public void onPause(){
+		try {
+			getActivity().unregisterReceiver(mHandleMessageReceiver);
+            
+        } catch (Exception e) {
+            Log.e("UnRegister Receiver Error", "> " + e.getMessage());
+        }
+        super.onPause();
+	}
+
+	@Override
+	public void onDestroy() {
+        try {
+        	getActivity().unregisterReceiver(mHandleMessageReceiver);
+        } catch (Exception e) {
+            Log.e("UnRegister Receiver Error", "> " + e.getMessage());
+        }
+        super.onDestroy();
+    }
 
 	@Override
 	public void onItemClick(AdapterView<?> adapter, View view, int position,long id) {
@@ -104,9 +108,4 @@ public class FragmentListaFarmacos extends FragmentLista
 	    startActivity(myIntent);
 	}
 
-	@Override
-	public void onUpdate(boolean updating) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -1,12 +1,15 @@
 package es.ucm.ric.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import es.ucm.ric.MyApp;
 import es.ucm.ric.model.Farmaco;
-
+import es.ucm.ric.model.Nota;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 
@@ -67,6 +70,41 @@ public class FarmacoDAO {
 		cursor.close();
 		db.close();
 		return valueObject;
+	}
+	
+	public boolean updateFromServer(List<Farmaco> listaFarmacos){
+		SQLiteDatabase db = MyApp.getContext().openOrCreateDatabase("rescue_lite_db", Context.MODE_PRIVATE,null);
+		boolean result = false;
+		try {
+		    db.beginTransaction();
+
+		    //Delete all records
+		    db.delete(TABLE, null, null);
+		    
+		    //Insert all values
+		    ContentValues values;
+		    
+		    for (Farmaco farmaco : listaFarmacos) {
+		    	values = new ContentValues();
+				values.put(FARMACO, farmaco.getNombre_farmaco());
+				values.put(FABRICANTE, farmaco.getNombre_fabricante());
+				values.put(PRESENTACION, farmaco.getPresentacion_farmaco());
+				values.put(ADMINISTRACION, farmaco.getTipo_presentacion());
+				values.put(DESCRIPCION, farmaco.getDescripcion_farmaco());
+				long new_id = db.insertOrThrow(TABLE, null, values);
+			}
+		    
+		    db.setTransactionSuccessful();
+		    result = true;
+		} catch(SQLException e) {
+		    // do some error handling
+			result = false;
+		} finally {
+		   db.endTransaction();
+		}
+		
+		return result;
+
 	}
 
 }

@@ -7,6 +7,8 @@ import android.content.Context;
  *
  */
 public interface ConnectionListener {
+	
+	public static String code="bd5e6b731c8bdf0b911bea5d5279f058";
 
 	boolean validateDataBeforeConnection(String... params);
 	void invalidInputData();

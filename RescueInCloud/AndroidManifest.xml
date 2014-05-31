@@ -111,6 +111,8 @@
 			android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize"
 			android:windowSoftInputMode="adjustPan">
         </activity>
+        
+       <service android:name="es.ucm.ric.activities.peticiones.SincronizarFarmacosIntentService"></service>
     </application>
 
 </manifest>

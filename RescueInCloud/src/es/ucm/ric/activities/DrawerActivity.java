@@ -4,29 +4,26 @@ import java.util.Stack;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.fragments.FragmentDrawerLateral;
 import es.ucm.ric.activities.fragments.FragmentPaginador;
-import es.ucm.ric.activities.fragments.details.FragmentActivityDetalleFarmaco;
-import es.ucm.ric.activities.fragments.details.FragmentActivtyNota;
 import es.ucm.ric.activities.fragments.lists.FragmentListaFarmacos;
 import es.ucm.ric.activities.fragments.lists.FragmentListaNotas;
 import es.ucm.ric.activities.fragments.lists.FragmentListaProtocolos;
 import es.ucm.ric.activities.fragments.sandbox.FragmentTest;
 import es.ucm.ric.activities.listeners.ICambiarFragmentListener;
+import es.ucm.ric.activities.peticiones.SincronizarFarmacosIntentService;
 import es.ucm.ric.model.IListable;
 import es.ucm.ric.tools.BaseActivity;
 
@@ -99,7 +96,9 @@ public class DrawerActivity extends BaseActivity
 		FragmentListaProtocolos f = new FragmentListaProtocolos();
 		f.setListener(this);
 		cambiarFragment(f);
+		
 	}
+	
 	
 	private void cambiarFragment(Fragment fragment){
 		
@@ -167,9 +166,14 @@ public class DrawerActivity extends BaseActivity
 	private void refrescarDatosConServidor(){
 		if(fragment_actual instanceof FragmentListaProtocolos ){
 			Toast.makeText(this, "Sincronizando protocolos...", Toast.LENGTH_SHORT).show();
+			
 		}
 		else if(fragment_actual instanceof FragmentListaFarmacos ){
 			Toast.makeText(this, "Sincronizando fármacos...", Toast.LENGTH_SHORT).show();
+			Intent msgIntent = new Intent(DrawerActivity.this, SincronizarFarmacosIntentService.class);
+	        msgIntent.putExtra("email", "ale7jandra.89@gmail.com");
+	        msgIntent.putExtra("password", "admin");
+	        startService(msgIntent);
 		}
 		else if(fragment_actual instanceof FragmentListaNotas ){//fragmentnotas
 			Toast.makeText(this, "Sincronizando notas...", Toast.LENGTH_SHORT).show();
@@ -208,16 +212,19 @@ public class DrawerActivity extends BaseActivity
 				FragmentListaProtocolos fp = new FragmentListaProtocolos();
 				fp.setListener(this);
 				cambiarFragment(fp);
+				getSupportActionBar().setTitle("Protocolo");
 				break;
 			
 			case R.id.opcion_farmaco:
 				FragmentListaFarmacos lf = new FragmentListaFarmacos();
 				cambiarFragment(lf);
+				getSupportActionBar().setTitle("Farmacos");
 				break;
 				
 			case R.id.opcion_notas:
 				FragmentListaNotas ln = new FragmentListaNotas();
 				cambiarFragment(ln);
+				getSupportActionBar().setTitle("Informes");
 				break;
 				
 			case R.id.opcion_test:

@@ -40,6 +40,7 @@ public class RecuperarFarmacosConexion implements ConnectionListener{
 
 		postParametersToSend.add(new BasicNameValuePair("email", params[0]));
 		postParametersToSend.add(new BasicNameValuePair("password", params[1]));
+		postParametersToSend.add(new BasicNameValuePair("code", code));
 
 
 		// realizamos una peticion y como respuesta obtenes un array JSON
