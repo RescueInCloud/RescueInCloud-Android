@@ -33,6 +33,7 @@ public class HttpPostConnector {
 	/* Connections */
 	
 	public static String URL_HOLA = "http://" + IP_Server + "/hola.php";
+	public static String URL_LOGIN_ANDROID = "http://" + IP_Server + "/listar_todo.php";
 	public static String URL_LISTA_FARMACOS = "http://" + IP_Server + "/listar_farmacos.php";
 	public static String URL_LISTA_PROTOCOLOS = "http://" + IP_Server + "/listar_protocolos.php";
 	public static String URL_LISTA_NOTAS = "http://" + IP_Server + "/listar_notas.php";
