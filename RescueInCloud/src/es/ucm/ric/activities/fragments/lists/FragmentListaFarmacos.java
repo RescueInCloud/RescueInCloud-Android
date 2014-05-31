@@ -10,7 +10,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.adapters.MiAdapter;
-import es.ucm.ric.activities.fragments.details.FragmentDetalleFarmaco;
+import es.ucm.ric.activities.fragments.details.FragmentActivityDetalleFarmaco;
 import es.ucm.ric.dao.FarmacoDAO;
 import es.ucm.ric.model.Farmaco;
 import es.ucm.ric.model.IListable;
@@ -40,7 +40,7 @@ public class FragmentListaFarmacos extends FragmentLista
 	@Override
 	public void onItemClick(AdapterView<?> adapter, View view, int position,long id) {
 
-		Intent myIntent = new Intent(this.getActivity(), FragmentDetalleFarmaco.class); 
+		Intent myIntent = new Intent(this.getActivity(), FragmentActivityDetalleFarmaco.class); 
 	    myIntent.putExtra("id", ""+id);
 	    startActivity(myIntent);
 	}

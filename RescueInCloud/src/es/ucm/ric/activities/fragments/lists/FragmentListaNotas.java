@@ -6,14 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 import es.ucm.ric.R;
-import es.ucm.ric.activities.DrawerActivity;
 import es.ucm.ric.activities.adapters.MiAdapter;
-import es.ucm.ric.activities.fragments.details.FragmentDetalleFarmaco;
-import es.ucm.ric.activities.fragments.details.FragmentNota;
-import es.ucm.ric.activities.listeners.ICambiarFragmentListener;
+import es.ucm.ric.activities.fragments.details.FragmentActivtyNota;
 import es.ucm.ric.dao.NotasDAO;
 import es.ucm.ric.model.IListable;
 import es.ucm.ric.model.Nota;
@@ -42,7 +39,7 @@ public class FragmentListaNotas extends FragmentLista
 
 	@Override
 	public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-		Intent myIntent = new Intent(this.getActivity(), FragmentNota.class); 
+		Intent myIntent = new Intent(this.getActivity(), FragmentActivtyNota.class); 
 	    myIntent.putExtra("id", ""+id);
 	    startActivity(myIntent);
 		

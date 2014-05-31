@@ -8,7 +8,7 @@ import es.ucm.ric.dao.FarmacoDAO;
 import es.ucm.ric.model.Farmaco;
 import es.ucm.ric.tools.BaseActivity;
 
-public class FragmentDetalleFarmaco extends BaseActivity{
+public class FragmentActivityDetalleFarmaco extends BaseActivity{
 
 	private String id;
 

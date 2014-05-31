@@ -9,7 +9,7 @@ import es.ucm.ric.model.Nota;
 import es.ucm.ric.tools.BaseActivity;
 import es.ucm.ric.tools.JustifiedTextView;
 
-public class FragmentNota extends BaseActivity{
+public class FragmentActivtyNota extends BaseActivity{
 	
 	private String id;
 
