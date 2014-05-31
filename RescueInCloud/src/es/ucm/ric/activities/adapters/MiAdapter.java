@@ -29,6 +29,11 @@ public class MiAdapter extends ArrayAdapter<IListable>{
 	}
 	
 	@Override
+	public long getItemId(int position) {
+        return lista.get(position).getId();
+    }
+	
+	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
         
 		View v = convertView;

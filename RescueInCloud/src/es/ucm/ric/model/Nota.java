@@ -4,6 +4,7 @@ public class Nota implements IListable{
 	
 	private final int LIMITE = 36;
 	
+	private int id;
 	private String nombre;
 	private String descripcion;
 	public Nota(String nombre, String descripcion) {
@@ -31,6 +32,10 @@ public class Nota implements IListable{
 	@Override
 	public String getRuta() {
 		return null;
+	}
+	@Override
+	public int getId() {
+		return id;
 	}
 	
 	

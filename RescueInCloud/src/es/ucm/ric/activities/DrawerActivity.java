@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
@@ -265,13 +267,13 @@ public class DrawerActivity extends BaseActivity
 				cambiarFragment(f);
 				break;
 	
-			case ABRIR_DETALLE_FARMACO:
-				FragmentDetalleFarmaco fdf = new FragmentDetalleFarmaco();
-				bundle = new Bundle();
-			    bundle.putString("ID", data.getTitulo());
-			    fdf.setArguments(bundle);
-				cambiarFragment(fdf);
-				break;
+//			case ABRIR_DETALLE_FARMACO:
+//				FragmentDetalleFarmaco fdf = new FragmentDetalleFarmaco();
+//				bundle = new Bundle();
+//			    bundle.putString("ID", data.getTitulo());
+//			    fdf.setArguments(bundle);
+//				cambiarFragment(fdf);
+//				break;
 				
 			case ABRIR_LECTOR_NOTA:
 				FragmentNota fn = new FragmentNota();

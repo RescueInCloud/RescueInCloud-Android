@@ -2,6 +2,7 @@ package es.ucm.ric.activities.fragments.lists;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,6 +11,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.DrawerActivity;
 import es.ucm.ric.activities.adapters.MiAdapter;
+import es.ucm.ric.activities.fragments.details.FragmentDetalleFarmaco;
 import es.ucm.ric.activities.listeners.ICambiarFragmentListener;
 import es.ucm.ric.dao.FarmacoDAO;
 import es.ucm.ric.model.Farmaco;
@@ -45,9 +47,11 @@ public class FragmentListaFarmacos extends FragmentLista
 	@Override
 	public void onItemClick(AdapterView<?> adapter, View view, int position,long id) {
 
-		IListable item = (IListable) adapter.getItemAtPosition(position);
+		//IListable item = (IListable) adapter.getItemAtPosition(position);
+		//listener.cambiarFragment(item, DrawerActivity.ABRIR_DETALLE_FARMACO);
 		
-		listener.cambiarFragment(item, DrawerActivity.ABRIR_DETALLE_FARMACO);
-		
+		Intent myIntent = new Intent(this.getActivity(), FragmentDetalleFarmaco.class); 
+	    myIntent.putExtra("id", ""+id);
+	    startActivity(myIntent);
 	}
 }

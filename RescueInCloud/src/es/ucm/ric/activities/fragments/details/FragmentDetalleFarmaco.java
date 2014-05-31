@@ -1,47 +1,44 @@
 package es.ucm.ric.activities.fragments.details;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import es.ucm.ric.R;
 import es.ucm.ric.dao.FarmacoDAO;
 import es.ucm.ric.model.Farmaco;
+import es.ucm.ric.tools.BaseActivity;
 
-public class FragmentDetalleFarmaco extends FragmentDetalle{
+public class FragmentDetalleFarmaco extends BaseActivity{
 
 	private String id;
+
 	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = super.onCreateView(inflater, container, savedInstanceState);
+	public void onCreate(Bundle state) { 
+		super.onCreate(state);
+		setContentView(R.layout.fragment_detalle);
+
+	    Intent intent = getIntent();
+	    id = intent.getStringExtra("id");
+	    
+	    if(id!=null){
 		
-		id = getArguments().getString("ID");
-		
-		return v;
-	}
-	
-	
-	@Override
-	public void onActivityCreated(Bundle state) { 
-		super.onActivityCreated(state);
-		
-		FarmacoDAO dao = new FarmacoDAO();
-		Farmaco f = dao.get(id);
-		
-		TextView nombre = (TextView) getActivity().findViewById(R.id.nombre_farmaco);
-		TextView fabricante = (TextView) getActivity().findViewById(R.id.nombre_fabricante);
-		TextView presentacion = (TextView) getActivity().findViewById(R.id.presentacion_farmaco);
-		TextView tipo_presentacion = (TextView) getActivity().findViewById(R.id.tipo_presentacion);
-		TextView descripcion = (TextView) getActivity().findViewById(R.id.descripcion);
-		
-		
-		nombre.setText(f.getNombre_farmaco());
-		fabricante.setText(f.getNombre_fabricante());
-		presentacion.setText(f.getPresentacion_farmaco());
-		tipo_presentacion.setText(f.getTipo_presentacion());
-		descripcion.setText(f.getDescripcion_farmaco());
+			FarmacoDAO dao = new FarmacoDAO();
+			Farmaco f = dao.get(id);
+			
+			TextView nombre = (TextView) findViewById(R.id.nombre_farmaco);
+			TextView fabricante = (TextView)findViewById(R.id.nombre_fabricante);
+			TextView presentacion = (TextView)findViewById(R.id.presentacion_farmaco);
+			TextView tipo_presentacion = (TextView)findViewById(R.id.tipo_presentacion);
+			TextView descripcion = (TextView)findViewById(R.id.descripcion);
+			
+			
+			nombre.setText(f.getNombre_farmaco());
+			fabricante.setText(f.getNombre_fabricante());
+			presentacion.setText(f.getPresentacion_farmaco());
+			tipo_presentacion.setText(f.getTipo_presentacion());
+			descripcion.setText(f.getDescripcion_farmaco());
+	    }
 	}
 	
 	
