@@ -1,5 +1,7 @@
 package es.ucm.ric.activities;
 
+import java.util.Stack;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.res.Configuration;
@@ -49,6 +51,8 @@ public class DrawerActivity extends BaseActivity
     
     FragmentTest fragTest;
     
+    Stack<Fragment> pila_navegacion;
+    Fragment fragment_actual;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,8 @@ public class DrawerActivity extends BaseActivity
 		
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = findViewById(R.id.drawer);
+        
+        pila_navegacion = new Stack<Fragment>();
         
         getSupportFragmentManager().beginTransaction()
 		.replace(R.id.drawer, new FragmentDrawerLateral())
@@ -98,6 +104,22 @@ public class DrawerActivity extends BaseActivity
 		getSupportFragmentManager().beginTransaction()
 		.replace(R.id.content_frame, fragment)
 		.commit();
+		
+		fragment_actual = fragment;
+		
+		if(	fragment instanceof FragmentListaProtocolos ||
+			fragment instanceof FragmentListaFarmacos ||
+			fragment instanceof FragmentListaNotas){
+			
+			//se reinicia la navegación
+			pila_navegacion.clear();
+			pila_navegacion.push(fragment);
+			
+		}
+		else{
+			pila_navegacion.push(fragment);
+		}
+		
 	}
 	
 	@Override
@@ -122,21 +144,52 @@ public class DrawerActivity extends BaseActivity
 				return super.onOptionsItemSelected(item);
 		}
 	}
+	@Override
+	public void onBackPressed() {
+	   
+		if(!pila_navegacion.isEmpty()){
+			//desapilar
+			pila_navegacion.pop();
+			
+			if(!pila_navegacion.isEmpty()){
+				cambiarFragment(pila_navegacion.firstElement());
+			}
+		}
+		else{
+			super.onBackPressed();
+		}
+		
+		
+	}
 	
 	private void refrescarDatosConServidor(){
-		Toast.makeText(this, "Sincronizar...", Toast.LENGTH_SHORT).show();
+		if(fragment_actual instanceof FragmentListaProtocolos ){
+			Toast.makeText(this, "Sincronizando protocolos...", Toast.LENGTH_SHORT).show();
+		}
+		else if(fragment_actual instanceof FragmentListaFarmacos ){
+			Toast.makeText(this, "Sincronizando fármacos...", Toast.LENGTH_SHORT).show();
+		}
+		else if(fragment_actual instanceof FragmentListaNotas ){//fragmentnotas
+			Toast.makeText(this, "Sincronizando notas...", Toast.LENGTH_SHORT).show();
+		}
+		else{
+			Toast.makeText(this, "Imposible sincronizar...", Toast.LENGTH_SHORT).show();
+		}
+		
 	}
 
 	@SuppressLint("NewApi")
 	private void silenciar(){
 		if (silenciar){
 			silenciar = false;
+			Toast.makeText(this, "Sin volumen", Toast.LENGTH_SHORT).show();
 		}
 		else{ 
 			silenciar=true;
+			Toast.makeText(this, "Con volumen", Toast.LENGTH_SHORT).show();
 		}
 		
-		Toast.makeText(this, "Silenciar...", Toast.LENGTH_SHORT).show();
+		
 	}
 
 	public void onClick(View v){

@@ -11,7 +11,6 @@ import es.ucm.ric.R;
 import es.ucm.ric.activities.HolaMundoActivity;
 import es.ucm.ric.activities.MenuPrincipalActivity;
 import es.ucm.ric.activities.SandboxActivity;
-import es.ucm.ric.activities.peticiones.HolaConexion;
 //import es.ucm.ric.activities.peticiones.RecuperarNotasConexion;
 import es.ucm.ric.tools.AsyncConnect;
 

@@ -32,7 +32,6 @@ public class HttpPostConnector {
 	public static String IP_Server = "ems-rczone.rhcloud.com/ws/scripts";//ip ws
 	/* Connections */
 	
-	public static String URL_HOLA = "http://" + IP_Server + "/hola.php";
 	public static String URL_LOGIN_ANDROID = "http://" + IP_Server + "/listar_todo.php";
 	public static String URL_LISTA_FARMACOS = "http://" + IP_Server + "/listar_farmacos.php";
 	public static String URL_LISTA_PROTOCOLOS = "http://" + IP_Server + "/listar_protocolos.php";

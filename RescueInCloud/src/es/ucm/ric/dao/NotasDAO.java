@@ -1,9 +1,12 @@
 package es.ucm.ric.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import es.ucm.ric.MyApp;
 import es.ucm.ric.model.Nota;
@@ -56,6 +59,38 @@ public class NotasDAO {
 		cursor.close();
 		db.close();
 		return valueObject;
+	}
+	
+	public boolean updateFromServer(List<Nota> listaNotas){
+		SQLiteDatabase db = MyApp.getContext().openOrCreateDatabase("rescue_lite_db", Context.MODE_PRIVATE,null);
+		boolean result = false;
+		try {
+		    db.beginTransaction();
+
+		    //Delete all records
+		    db.delete(TABLE, null, null);
+		    
+		    //Insert all values
+		    ContentValues values;
+		    
+		    for (Nota nota : listaNotas) {
+		    	values = new ContentValues();
+				values.put(NOMBRE, nota.getNombre());
+				values.put(DESCRIPCION, nota.getDescripcion());
+				long new_id = db.insertOrThrow(TABLE, null, values);
+			}
+		    
+		    db.setTransactionSuccessful();
+		    result = true;
+		} catch(SQLException e) {
+		    // do some error handling
+			result = false;
+		} finally {
+		   db.endTransaction();
+		}
+		
+		return result;
+
 	}
 
 }
