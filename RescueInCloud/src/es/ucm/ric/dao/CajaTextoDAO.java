@@ -7,20 +7,20 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import es.ucm.ric.MyApp;
 import es.ucm.ric.model.CajaTexto;
-import es.ucm.ric.model.Protocolo;
 
 public class CajaTextoDAO {
 	/*0 -> normal
 1-> decision
 y en el tipo de relacion
-0 -> Sí
+0 -> Sï¿½
 1 -> no
 2 -> nada*/
-	private static final String TABLE = "caja_texto";
-	private static final String ID = "caja_texto_id";
-	private static final String TIPO = "tipo";
-	private static final String CONTENIDO = "contenido";
-	private static final String PROTOCOLO_ID = "protocolo_id";
+	public static final String TABLE = "caja_texto";
+	public static final String ID = "id";
+	public static final String ID_CAJA = "caja_texto_id";
+	public static final String TIPO = "tipo";
+	public static final String CONTENIDO = "contenido";
+	public static final String PROTOCOLO_ID = "protocolo_id";
 	
 	public ArrayList<CajaTexto> getListaProtocolo(int id_protocolo) {
 		
@@ -33,12 +33,12 @@ y en el tipo de relacion
 		if(cursor.moveToFirst()){
 			
 			do{
-				int id = cursor.getInt(cursor.getColumnIndex(ID));
+				int id = cursor.getInt(cursor.getColumnIndex(ID_CAJA));
 				int tipo = cursor.getInt(cursor.getColumnIndex(TIPO));
 				String contenido = cursor.getString(cursor.getColumnIndex(CONTENIDO));
 				
 				valueObject = new CajaTexto(id, id_protocolo, tipo, contenido);
-				//falta añadir que se añada la CajaTexto al protocolo
+				//falta aï¿½adir que se aï¿½ada la CajaTexto al protocolo
 				
 				list.add(valueObject);
 			}while(cursor.moveToNext());

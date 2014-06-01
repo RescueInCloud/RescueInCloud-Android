@@ -14,12 +14,12 @@ y en el tipo de relacion
 0 -> Sí
 1 -> no
 2 -> nada*/
-	private static final String TABLE = "caja_texto_hijos";
-	private static final String ID = "id";
-	private static final String ID_PROTOCOLO = "id_protocolo";
-	private static final String HIJO = "caja_texto_hijo";
-	private static final String PADRE = "caja_texto_padre";
-	private static final String RELACION = "tipo_relacion";
+	public static final String TABLE = "caja_texto_hijos";
+	public static final String ID = "id";
+	public static final String ID_PROTOCOLO = "id_protocolo";
+	public static final String HIJO = "caja_texto_hijo";
+	public static final String PADRE = "caja_texto_padre";
+	public static final String RELACION = "tipo_relacion";
 	
 	public CajasHijos getListaCajas(int id_protocolo) {
 		

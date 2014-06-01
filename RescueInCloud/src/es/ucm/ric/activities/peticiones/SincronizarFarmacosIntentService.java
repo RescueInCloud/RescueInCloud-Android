@@ -8,21 +8,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import es.ucm.ric.dao.FarmacoDAO;
-import es.ucm.ric.model.Farmaco;
-import es.ucm.ric.tools.HttpPostConnector;
 import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
+import es.ucm.ric.dao.FarmacoDAO;
+import es.ucm.ric.model.Farmaco;
+import es.ucm.ric.tools.HttpPostConnector;
 
 public class SincronizarFarmacosIntentService extends IntentService {
 	
 	 
-    public static final String ACTION_PROGRESO = "es.ucm.ric.intent.action.PROGRESO";
-    public static final String ACTION_FIN = "es.ucm.ric.intent.action.FIN";
+    public static final String ACTION_PROGRESO = "es.ucm.ric.intent.action.farmaco.PROGRESO";
+    public static final String ACTION_FIN = "es.ucm.ric.intent.action.farmaco.FIN";
  
     public SincronizarFarmacosIntentService() {
-        super("MiIntentService");
+        super("SincronizarFarmacosIntentService");
     }
  
     @Override

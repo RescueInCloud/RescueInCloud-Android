@@ -24,6 +24,7 @@ import es.ucm.ric.activities.fragments.lists.FragmentListaProtocolos;
 import es.ucm.ric.activities.fragments.sandbox.FragmentTest;
 import es.ucm.ric.activities.listeners.ICambiarFragmentListener;
 import es.ucm.ric.activities.peticiones.SincronizarFarmacosIntentService;
+import es.ucm.ric.activities.peticiones.SincronizarProtocolosIntentService;
 import es.ucm.ric.model.IListable;
 import es.ucm.ric.tools.BaseActivity;
 
@@ -166,7 +167,10 @@ public class DrawerActivity extends BaseActivity
 	private void refrescarDatosConServidor(){
 		if(fragment_actual instanceof FragmentListaProtocolos ){
 			Toast.makeText(this, "Sincronizando protocolos...", Toast.LENGTH_SHORT).show();
-			
+			Intent msgIntent = new Intent(DrawerActivity.this, SincronizarProtocolosIntentService.class);
+	        msgIntent.putExtra("email", "ricardocb48@gmail.com");
+	        msgIntent.putExtra("password", "admin");
+	        startService(msgIntent);
 		}
 		else if(fragment_actual instanceof FragmentListaFarmacos ){
 			Toast.makeText(this, "Sincronizando fármacos...", Toast.LENGTH_SHORT).show();
@@ -212,19 +216,16 @@ public class DrawerActivity extends BaseActivity
 				FragmentListaProtocolos fp = new FragmentListaProtocolos();
 				fp.setListener(this);
 				cambiarFragment(fp);
-				getSupportActionBar().setTitle("Protocolo");
 				break;
 			
 			case R.id.opcion_farmaco:
 				FragmentListaFarmacos lf = new FragmentListaFarmacos();
 				cambiarFragment(lf);
-				getSupportActionBar().setTitle("Farmacos");
 				break;
 				
 			case R.id.opcion_notas:
 				FragmentListaNotas ln = new FragmentListaNotas();
 				cambiarFragment(ln);
-				getSupportActionBar().setTitle("Informes");
 				break;
 				
 			case R.id.opcion_test:

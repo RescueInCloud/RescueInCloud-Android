@@ -3,14 +3,13 @@ package es.ucm.ric.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.ucm.ric.MyApp;
-import es.ucm.ric.model.Farmaco;
-import es.ucm.ric.model.Nota;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import es.ucm.ric.MyApp;
+import es.ucm.ric.model.Farmaco;
 
 
 public class FarmacoDAO {

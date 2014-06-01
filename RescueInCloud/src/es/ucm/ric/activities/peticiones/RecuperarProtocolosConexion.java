@@ -11,7 +11,6 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.util.Log;
 import es.ucm.ric.activities.listeners.Listener;
-import es.ucm.ric.model.Farmaco;
 import es.ucm.ric.model.Protocolo;
 import es.ucm.ric.tools.ConnectionListener;
 import es.ucm.ric.tools.HttpPostConnector;

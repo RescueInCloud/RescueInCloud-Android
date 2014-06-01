@@ -113,6 +113,7 @@
         </activity>
         
        <service android:name="es.ucm.ric.activities.peticiones.SincronizarFarmacosIntentService"></service>
+       <service android:name="es.ucm.ric.activities.peticiones.SincronizarProtocolosIntentService"></service>
     </application>
 
 </manifest>
