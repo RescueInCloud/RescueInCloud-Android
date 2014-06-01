@@ -2,11 +2,14 @@ package es.ucm.ric.activities;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
+import es.ucm.ric.MyApp;
 import es.ucm.ric.R;
 
 public class SplashActivity extends Activity{
@@ -38,13 +41,20 @@ public class SplashActivity extends Activity{
                
                 if (!mIsBackButtonPressed) {
                 	
-//                	SharedPreferences prefs = SplashActivity.this.getSharedPreferences("PREFERENCES_FILE", Context.MODE_PRIVATE);
-//                	String name = prefs.getString("NAME", "");
+                	SharedPreferences prefs = SplashActivity.this.getSharedPreferences(MyApp.PREFERENCES_FILE, Context.MODE_PRIVATE);
+                	
+                	String email = prefs.getString("email", "");
+                	String pass = prefs.getString("pass", "");
 
-                	Intent intent = new Intent(SplashActivity.this, DrawerActivity.class);
-                	startActivity(intent);
-                	
-                	
+                	if(email.equals("")){
+                		Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                		SplashActivity.this.startActivity(intent); 
+                	}
+                	else{
+                		Intent intent = new Intent(SplashActivity.this, DrawerActivity.class);
+                    	startActivity(intent);
+                	}
+
                 }
                 
                 // 	make sure we close the splash screen so the user won't come back when it presses back key

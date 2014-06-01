@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.HolaMundoActivity;
 import es.ucm.ric.activities.MenuPrincipalActivity;
-import es.ucm.ric.activities.SandboxActivity;
+import es.ucm.ric.peticiones.RecuperarTodoConexion;
 //import es.ucm.ric.activities.peticiones.RecuperarNotasConexion;
 import es.ucm.ric.tools.AsyncConnect;
 
@@ -37,7 +37,7 @@ public class FragmentTest extends Fragment {
 				break;
 			
 			case R.id.button2:
-				//connection = new AsyncConnect(new RecuperarNotasConexion(getActivity()),"ricardocb48@gmail.com","lala");
+				connection = new AsyncConnect(new RecuperarTodoConexion(getActivity()),"ricardocb48@gmail.com","admin");
 		        connection.execute();
 		        break;
 				

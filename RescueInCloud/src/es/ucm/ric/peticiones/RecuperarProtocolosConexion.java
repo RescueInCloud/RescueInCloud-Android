@@ -1,4 +1,4 @@
-package es.ucm.ric.activities.peticiones;
+package es.ucm.ric.peticiones;
 
 import java.util.ArrayList;
 
@@ -11,25 +11,25 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.util.Log;
 import es.ucm.ric.activities.listeners.Listener;
-import es.ucm.ric.model.Farmaco;
+import es.ucm.ric.model.Protocolo;
 import es.ucm.ric.tools.ConnectionListener;
 import es.ucm.ric.tools.HttpPostConnector;
 
 
-public class RecuperarFarmacosConexion implements ConnectionListener{
+public class RecuperarProtocolosConexion implements ConnectionListener{
 	
 	private HttpPostConnector post;
 	private Context context;
 	private String mensaje;
-	private Listener<ArrayList<Farmaco>> listener;
-	private ArrayList<Farmaco> listdata;
+	private Listener<ArrayList<Protocolo>> listener;
+	private ArrayList<Protocolo> listdata;
 	
-	public RecuperarFarmacosConexion(Context context) {
+	public RecuperarProtocolosConexion(Context context) {
 		this.context = context;
 		post = new HttpPostConnector();
 	}
 	
-	public void setListener(Listener<ArrayList<Farmaco>> listener){
+	public void setListener(Listener<ArrayList<Protocolo>> listener){
 		this.listener = listener;
 	}
 	
@@ -40,7 +40,6 @@ public class RecuperarFarmacosConexion implements ConnectionListener{
 
 		postParametersToSend.add(new BasicNameValuePair("email", params[0]));
 		postParametersToSend.add(new BasicNameValuePair("password", params[1]));
-		postParametersToSend.add(new BasicNameValuePair("code", code));
 
 
 		// realizamos una peticion y como respuesta obtenes un array JSON
@@ -60,19 +59,11 @@ public class RecuperarFarmacosConexion implements ConnectionListener{
 					        mensaje = json_data.getString("message");
 					        
 					        JSONArray jArray = new JSONArray(mensaje);
-					        listdata = new ArrayList<Farmaco>();     
+					        listdata = new ArrayList<Protocolo>();     
 					        if (jArray != null) { 
 					        	for (int i=0;i<jArray.length();i++){ 
 					        		JSONObject fila = jArray.getJSONObject(i);
-					        		int id = Integer.parseInt(fila.getString("id_farmaco"));
-					        		String nombre_farmaco = fila.getString("nombre_farmaco");
-					        		String nombre_fabricante = fila.getString("nombre_fabricante");
-					        		String presentacion_farmaco = fila.getString("presentacion_farmaco");
-					        		String tipo_presentacion = fila.getString("tipo_administracion");
-					        		String descripcion_farmaco = fila.getString("descripcion_farmaco");
 					        		
-					        		Farmaco f = new Farmaco(id, nombre_farmaco, nombre_fabricante, presentacion_farmaco, tipo_presentacion, descripcion_farmaco);
-					        		listdata.add(f);
 					           } 
 					        } 
 					        return true;

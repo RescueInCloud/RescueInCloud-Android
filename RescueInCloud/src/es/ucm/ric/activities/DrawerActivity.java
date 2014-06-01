@@ -23,9 +23,9 @@ import es.ucm.ric.activities.fragments.lists.FragmentListaNotas;
 import es.ucm.ric.activities.fragments.lists.FragmentListaProtocolos;
 import es.ucm.ric.activities.fragments.sandbox.FragmentTest;
 import es.ucm.ric.activities.listeners.ICambiarFragmentListener;
-import es.ucm.ric.activities.peticiones.SincronizarFarmacosIntentService;
-import es.ucm.ric.activities.peticiones.SincronizarProtocolosIntentService;
 import es.ucm.ric.model.IListable;
+import es.ucm.ric.peticiones.SincronizarFarmacosIntentService;
+import es.ucm.ric.peticiones.SincronizarProtocolosIntentService;
 import es.ucm.ric.tools.BaseActivity;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)

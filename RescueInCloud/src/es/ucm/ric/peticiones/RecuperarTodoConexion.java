@@ -1,4 +1,4 @@
-package es.ucm.ric.activities.peticiones;
+package es.ucm.ric.peticiones;
 
 import java.util.ArrayList;
 
@@ -11,25 +11,25 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.util.Log;
 import es.ucm.ric.activities.listeners.Listener;
-import es.ucm.ric.model.Protocolo;
+import es.ucm.ric.model.Farmaco;
 import es.ucm.ric.tools.ConnectionListener;
 import es.ucm.ric.tools.HttpPostConnector;
 
 
-public class RecuperarProtocolosConexion implements ConnectionListener{
+public class RecuperarTodoConexion implements ConnectionListener{
 	
 	private HttpPostConnector post;
 	private Context context;
 	private String mensaje;
-	private Listener<ArrayList<Protocolo>> listener;
-	private ArrayList<Protocolo> listdata;
+	private Listener<ArrayList<Farmaco>> listener;
+	private ArrayList<Farmaco> listdata;
 	
-	public RecuperarProtocolosConexion(Context context) {
+	public RecuperarTodoConexion(Context context) {
 		this.context = context;
 		post = new HttpPostConnector();
 	}
 	
-	public void setListener(Listener<ArrayList<Protocolo>> listener){
+	public void setListener(Listener<ArrayList<Farmaco>> listener){
 		this.listener = listener;
 	}
 	
@@ -40,6 +40,7 @@ public class RecuperarProtocolosConexion implements ConnectionListener{
 
 		postParametersToSend.add(new BasicNameValuePair("email", params[0]));
 		postParametersToSend.add(new BasicNameValuePair("password", params[1]));
+		postParametersToSend.add(new BasicNameValuePair("code", code));
 
 
 		// realizamos una peticion y como respuesta obtenes un array JSON
@@ -56,16 +57,30 @@ public class RecuperarProtocolosConexion implements ConnectionListener{
 						if("200".equals(codeFromServer)){
 
 					       
-					        mensaje = json_data.getString("message");
+					        String protocolos = json_data.getString("protocolos");
+					        JSONArray ja_protocolos = new JSONArray(protocolos);
 					        
-					        JSONArray jArray = new JSONArray(mensaje);
-					        listdata = new ArrayList<Protocolo>();     
-					        if (jArray != null) { 
-					        	for (int i=0;i<jArray.length();i++){ 
-					        		JSONObject fila = jArray.getJSONObject(i);
-					        		
-					           } 
-					        } 
+					        String farmacos = json_data.getString("farmacos");
+					        JSONArray ja_farmacos = new JSONArray(farmacos);
+					        
+					        String notas = json_data.getString("notas");
+					        JSONArray ja_notas = new JSONArray(notas);
+					        
+					        listdata = new ArrayList<Farmaco>();     
+//					        if (jArray != null) { 
+//					        	for (int i=0;i<jArray.length();i++){ 
+//					        		JSONObject fila = jArray.getJSONObject(i);
+//					        		int id = Integer.parseInt(fila.getString("id_farmaco"));
+//					        		String nombre_farmaco = fila.getString("nombre_farmaco");
+//					        		String nombre_fabricante = fila.getString("nombre_fabricante");
+//					        		String presentacion_farmaco = fila.getString("presentacion_farmaco");
+//					        		String tipo_presentacion = fila.getString("tipo_administracion");
+//					        		String descripcion_farmaco = fila.getString("descripcion_farmaco");
+//					        		
+//					        		Farmaco f = new Farmaco(id, nombre_farmaco, nombre_fabricante, presentacion_farmaco, tipo_presentacion, descripcion_farmaco);
+//					        		listdata.add(f);
+//					           } 
+//					        } 
 					        return true;
 						}
 						else{

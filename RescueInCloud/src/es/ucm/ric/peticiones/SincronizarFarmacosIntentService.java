@@ -1,4 +1,4 @@
-package es.ucm.ric.activities.peticiones;
+package es.ucm.ric.peticiones;
 
 import java.util.ArrayList;
 

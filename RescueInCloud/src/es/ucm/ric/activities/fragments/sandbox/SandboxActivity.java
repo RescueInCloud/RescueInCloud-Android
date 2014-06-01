@@ -1,4 +1,4 @@
-package es.ucm.ric.activities;
+package es.ucm.ric.activities.fragments.sandbox;
 
 
 import android.os.Bundle;

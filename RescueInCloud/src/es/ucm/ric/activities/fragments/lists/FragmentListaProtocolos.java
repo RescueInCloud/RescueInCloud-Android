@@ -16,11 +16,11 @@ import es.ucm.ric.R;
 import es.ucm.ric.activities.DrawerActivity;
 import es.ucm.ric.activities.adapters.MiAdapter;
 import es.ucm.ric.activities.listeners.ICambiarFragmentListener;
-import es.ucm.ric.activities.peticiones.SincronizarFarmacosIntentService;
-import es.ucm.ric.activities.peticiones.SincronizarProtocolosIntentService;
 import es.ucm.ric.dao.ProtocoloDAO;
 import es.ucm.ric.model.IListable;
 import es.ucm.ric.model.Protocolo;
+import es.ucm.ric.peticiones.SincronizarFarmacosIntentService;
+import es.ucm.ric.peticiones.SincronizarProtocolosIntentService;
 
 public class FragmentListaProtocolos extends FragmentLista 
 	implements OnItemClickListener{

@@ -72,7 +72,7 @@
 		</RelativeLayout>
       
         <Button 
-            	android:id="@+id/login_button_login"
+            	android:id="@+id/button_login"
             	android:layout_width="match_parent"
 	        	android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -83,7 +83,7 @@
           />
         
         <Button 
-            	android:id="@+id/login_button_forget"
+            	android:id="@+id/button_forget"
             	android:layout_width="match_parent"
 	        	android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -94,7 +94,7 @@
           />
         
         <Button 
-            	android:id="@+id/registro"
+            	android:id="@+id/button_registro"
             	android:layout_width="match_parent"
 	        	android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
