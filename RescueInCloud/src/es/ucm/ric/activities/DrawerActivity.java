@@ -4,7 +4,9 @@ import java.util.Stack;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import es.ucm.ric.MyApp;
 import es.ucm.ric.R;
 import es.ucm.ric.activities.fragments.FragmentDrawerLateral;
 import es.ucm.ric.activities.fragments.FragmentPaginador;
@@ -165,18 +168,23 @@ public class DrawerActivity extends BaseActivity
 	}
 	
 	private void refrescarDatosConServidor(){
+		SharedPreferences prefs = this.getSharedPreferences(MyApp.PREFERENCES_FILE, Context.MODE_PRIVATE);
+    	
+		String email = prefs.getString("email", "");
+    	String pass = prefs.getString("pass", "");
+    	
 		if(fragment_actual instanceof FragmentListaProtocolos ){
 			Toast.makeText(this, "Sincronizando protocolos...", Toast.LENGTH_SHORT).show();
 			Intent msgIntent = new Intent(DrawerActivity.this, SincronizarProtocolosIntentService.class);
-	        msgIntent.putExtra("email", "ricardocb48@gmail.com");
-	        msgIntent.putExtra("password", "admin");
+	        msgIntent.putExtra("email", email);
+	        msgIntent.putExtra("password", pass);
 	        startService(msgIntent);
 		}
 		else if(fragment_actual instanceof FragmentListaFarmacos ){
 			Toast.makeText(this, "Sincronizando fármacos...", Toast.LENGTH_SHORT).show();
 			Intent msgIntent = new Intent(DrawerActivity.this, SincronizarFarmacosIntentService.class);
-	        msgIntent.putExtra("email", "ale7jandra.89@gmail.com");
-	        msgIntent.putExtra("password", "admin");
+	        msgIntent.putExtra("email", email);
+	        msgIntent.putExtra("password", pass);
 	        startService(msgIntent);
 		}
 		else if(fragment_actual instanceof FragmentListaNotas ){//fragmentnotas

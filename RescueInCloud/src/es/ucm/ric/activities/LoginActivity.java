@@ -2,7 +2,9 @@ package es.ucm.ric.activities;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +12,16 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
+import es.ucm.ric.MyApp;
 import es.ucm.ric.R;
-import es.ucm.ric.peticiones.RecuperarNotasConexion;
+import es.ucm.ric.activities.listeners.Listener;
+import es.ucm.ric.peticiones.RecuperarTodoConexion;
 import es.ucm.ric.tools.AsyncConnect;
 
-public class LoginActivity extends Activity{
+public class LoginActivity extends Activity implements Listener<Boolean>{
 
-	
+	private String email;
+	private String pass;
  
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +40,11 @@ public class LoginActivity extends Activity{
     	switch(v.getId()){
     	
 	    	case R.id.button_login:
-	    		String email = ((EditText)findViewById(R.id.et_usuario)).getText().toString();
-	    		String pass = ((EditText)findViewById(R.id.et_password)).getText().toString();
-	    		AsyncConnect connection = new AsyncConnect(new RecuperarNotasConexion(this),email,pass);
+	    		email = ((EditText)findViewById(R.id.et_usuario)).getText().toString();
+	    		pass = ((EditText)findViewById(R.id.et_password)).getText().toString();
+	    		RecuperarTodoConexion c = new RecuperarTodoConexion(this);
+	    		c.setListener(this);
+	    		AsyncConnect connection = new AsyncConnect(c,email,pass);
 		        connection.execute();
 	    		break;
 	    	case R.id.button_forget:
@@ -50,5 +57,24 @@ public class LoginActivity extends Activity{
     	}
     	
     }
+
+	@Override
+	public void actualizar(Boolean ok) {
+		
+		if(ok){
+			SharedPreferences preferences = getSharedPreferences(MyApp.PREFERENCES_FILE,Context.MODE_PRIVATE);
+			SharedPreferences.Editor editor = preferences.edit();
+			editor.putString("email", email);
+			editor.putString("pass", pass);
+			editor.commit();
+			
+			Intent intent = new Intent(this, DrawerActivity.class);
+			startActivity(intent);
+		}
+		else{
+			Toast.makeText(this, "El usuario o la contraseña no son correctas.", Toast.LENGTH_SHORT).show();
+		}
+		
+	}
 
 }

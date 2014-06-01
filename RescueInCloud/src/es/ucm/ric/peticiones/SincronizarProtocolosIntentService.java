@@ -66,65 +66,67 @@ public class SincronizarProtocolosIntentService extends IntentService {
 				if("200".equals(codeFromServer)){
 			        mensaje = json_data.getString("message");
 			        
-			        SparseArray<ProtocoloVO> protocolos = new SparseArray<ProtocoloVO>();
+//			        SparseArray<ProtocoloVO> protocolos = new SparseArray<ProtocoloVO>();
+//			        
+//			        JSONArray ja = new JSONArray("["+mensaje+"]");
+//			        JSONArray cajas = ja.getJSONObject(0).getJSONArray("cajas");
+//			            
+//			        if (cajas != null) { 
+//			        	for (int i=0;i<cajas.length();i++){ 
+//			        		
+//			        		JSONObject fila = cajas.getJSONObject(i);
+//			        		int id = fila.getInt("id_caja_texto");
+//			        		String contenido = fila.getString("contenido");
+//			        		int tipo = fila.getInt("tipo");
+//			        		int id_protocolo = fila.getInt("id_protocolo");
+//			        		CajaTextoVO vo = new CajaTextoVO(id, tipo, contenido, id_protocolo);
+//			        		
+//			        		ProtocoloVO protocolo = protocolos.get(id_protocolo);
+//			        		if(protocolo==null){
+//			        			ProtocoloVO p = new ProtocoloVO(id_protocolo);
+//			        			if(id==0){
+//			        				p.setNombre(contenido);
+//			        			}
+//			        			p.addCaja(vo);
+//			        			protocolos.put(id_protocolo, p);
+//			        		}
+//			        		else{
+//			        			protocolo.addCaja(vo);
+//			        			if(id==0){
+//			        				protocolo.setNombre(contenido);
+//			        			}
+//			        		}
+//			        		
+//			           } 
+//			        } 
+//			        
+//			        JSONArray relaciones = ja.getJSONObject(0).getJSONArray("relaciones");
+//			             
+//			        if (relaciones != null) { 
+//			        	for (int i=0;i<relaciones.length();i++){ 
+//			        		JSONObject fila = relaciones.getJSONObject(i);
+//			        		int id = fila.getInt("id");
+//			        		int id_protocolo = fila.getInt("id_protocolo");
+//			        		int id_hijo = fila.getInt("id_hijo");
+//			        		int id_padre = fila.getInt("id_padre");
+//			        		int relacion = fila.getInt("relacion");
+//			        		
+//			        		CajaHijoVO vo = new CajaHijoVO(id, id_protocolo, id_hijo, id_padre, relacion);
+//			        		
+//			        		ProtocoloVO protocolo = protocolos.get(id_protocolo);
+//			        		if(protocolo!=null){
+//			        			protocolo.addHijo(vo);
+//			        		}
+//			        		else{
+//			        			Log.e("Protocolos", "Error");
+//			        		}
+//			           }  
+//			        } 
+//			        
+//			        ProtocoloDAO dao = new ProtocoloDAO();
+//			        dao.updateFromServer(protocolos);
 			        
-			        JSONArray ja = new JSONArray("["+mensaje+"]");
-			        JSONArray cajas = ja.getJSONObject(0).getJSONArray("cajas");
-			            
-			        if (cajas != null) { 
-			        	for (int i=0;i<cajas.length();i++){ 
-			        		
-			        		JSONObject fila = cajas.getJSONObject(i);
-			        		int id = fila.getInt("id_caja_texto");
-			        		String contenido = fila.getString("contenido");
-			        		int tipo = fila.getInt("tipo");
-			        		int id_protocolo = fila.getInt("id_protocolo");
-			        		CajaTextoVO vo = new CajaTextoVO(id, tipo, contenido, id_protocolo);
-			        		
-			        		ProtocoloVO protocolo = protocolos.get(id_protocolo);
-			        		if(protocolo==null){
-			        			ProtocoloVO p = new ProtocoloVO(id_protocolo);
-			        			if(id==0){
-			        				p.setNombre(contenido);
-			        			}
-			        			p.addCaja(vo);
-			        			protocolos.put(id_protocolo, p);
-			        		}
-			        		else{
-			        			protocolo.addCaja(vo);
-			        			if(id==0){
-			        				protocolo.setNombre(contenido);
-			        			}
-			        		}
-			        		
-			           } 
-			        } 
-			        
-			        JSONArray relaciones = ja.getJSONObject(0).getJSONArray("relaciones");
-			             
-			        if (relaciones != null) { 
-			        	for (int i=0;i<relaciones.length();i++){ 
-			        		JSONObject fila = relaciones.getJSONObject(i);
-			        		int id = fila.getInt("id");
-			        		int id_protocolo = fila.getInt("id_protocolo");
-			        		int id_hijo = fila.getInt("id_hijo");
-			        		int id_padre = fila.getInt("id_padre");
-			        		int relacion = fila.getInt("relacion");
-			        		
-			        		CajaHijoVO vo = new CajaHijoVO(id, id_protocolo, id_hijo, id_padre, relacion);
-			        		
-			        		ProtocoloVO protocolo = protocolos.get(id_protocolo);
-			        		if(protocolo!=null){
-			        			protocolo.addHijo(vo);
-			        		}
-			        		else{
-			        			Log.e("Protocolos", "Error");
-			        		}
-			           }  
-			        } 
-			        
-			        ProtocoloDAO dao = new ProtocoloDAO();
-			        dao.updateFromServer(protocolos);
+			        boolean ok = Operaciones.syncProtocolos(mensaje);
 			        
 				}
 				else{

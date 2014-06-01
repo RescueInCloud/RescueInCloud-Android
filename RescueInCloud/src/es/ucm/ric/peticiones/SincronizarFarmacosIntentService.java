@@ -63,25 +63,27 @@ public class SincronizarFarmacosIntentService extends IntentService {
 			       
 			        mensaje = json_data.getString("message");
 			        
-			        JSONArray jArray = new JSONArray(mensaje);
-			        listdata = new ArrayList<Farmaco>();     
-			        if (jArray != null) { 
-			        	for (int i=0;i<jArray.length();i++){ 
-			        		JSONObject fila = jArray.getJSONObject(i);
-			        		int id = Integer.parseInt(fila.getString("id_farmaco"));
-			        		String nombre_farmaco = fila.getString("nombre_farmaco");
-			        		String nombre_fabricante = fila.getString("nombre_fabricante");
-			        		String presentacion_farmaco = fila.getString("presentacion_farmaco");
-			        		String tipo_presentacion = fila.getString("tipo_administracion");
-			        		String descripcion_farmaco = fila.getString("descripcion_farmaco");
-			        		
-			        		Farmaco f = new Farmaco(id, nombre_farmaco, nombre_fabricante, presentacion_farmaco, tipo_presentacion, descripcion_farmaco);
-			        		listdata.add(f);
-			           } 
-			        } 
+//			        JSONArray jArray = new JSONArray(mensaje);
+//			        listdata = new ArrayList<Farmaco>();     
+//			        if (jArray != null) { 
+//			        	for (int i=0;i<jArray.length();i++){ 
+//			        		JSONObject fila = jArray.getJSONObject(i);
+//			        		int id = Integer.parseInt(fila.getString("id_farmaco"));
+//			        		String nombre_farmaco = fila.getString("nombre_farmaco");
+//			        		String nombre_fabricante = fila.getString("nombre_fabricante");
+//			        		String presentacion_farmaco = fila.getString("presentacion_farmaco");
+//			        		String tipo_presentacion = fila.getString("tipo_administracion");
+//			        		String descripcion_farmaco = fila.getString("descripcion_farmaco");
+//			        		
+//			        		Farmaco f = new Farmaco(id, nombre_farmaco, nombre_fabricante, presentacion_farmaco, tipo_presentacion, descripcion_farmaco);
+//			        		listdata.add(f);
+//			           } 
+//			        } 
+//			        
+//			        FarmacoDAO dao = new FarmacoDAO();
+//			        dao.updateFromServer(listdata);
 			        
-			        FarmacoDAO dao = new FarmacoDAO();
-			        dao.updateFromServer(listdata);
+			        boolean ok = Operaciones.syncFarmacos(mensaje);
 				}
 				else{
 					//Toast.makeText(this, "Error desconocido.", Toast.LENGTH_SHORT).show();

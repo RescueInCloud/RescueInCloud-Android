@@ -21,7 +21,7 @@ public class RecuperarTodoConexion implements ConnectionListener{
 	private HttpPostConnector post;
 	private Context context;
 	private String mensaje;
-	private Listener<ArrayList<Farmaco>> listener;
+	private Listener<Boolean> listener;
 	private ArrayList<Farmaco> listdata;
 	
 	public RecuperarTodoConexion(Context context) {
@@ -29,7 +29,7 @@ public class RecuperarTodoConexion implements ConnectionListener{
 		post = new HttpPostConnector();
 	}
 	
-	public void setListener(Listener<ArrayList<Farmaco>> listener){
+	public void setListener(Listener<Boolean> listener){
 		this.listener = listener;
 	}
 	
@@ -40,11 +40,11 @@ public class RecuperarTodoConexion implements ConnectionListener{
 
 		postParametersToSend.add(new BasicNameValuePair("email", params[0]));
 		postParametersToSend.add(new BasicNameValuePair("password", params[1]));
-		postParametersToSend.add(new BasicNameValuePair("code", code));
+		postParametersToSend.add(new BasicNameValuePair("code", "bd5e6b731c8bdf0b911bea5d5279f058"));
 
 
 		// realizamos una peticion y como respuesta obtenes un array JSON
-		JSONArray jdata = post.getserverdata(postParametersToSend, HttpPostConnector.URL_LISTA_FARMACOS);
+		JSONArray jdata = post.getserverdata(postParametersToSend, HttpPostConnector.URL_LOGIN_ANDROID);
 
 		// si lo que obtuvimos no es null, es decir, hay respuesta v�lida
 				if (jdata != null && jdata.length() > 0) {
@@ -58,30 +58,18 @@ public class RecuperarTodoConexion implements ConnectionListener{
 
 					       
 					        String protocolos = json_data.getString("protocolos");
-					        JSONArray ja_protocolos = new JSONArray(protocolos);
+					        //JSONArray ja_protocolos = new JSONArray("["+protocolos+"]");
+					        boolean ok_protocolos = Operaciones.syncProtocolos(protocolos);
 					        
 					        String farmacos = json_data.getString("farmacos");
-					        JSONArray ja_farmacos = new JSONArray(farmacos);
+					        //JSONArray ja_farmacos = new JSONArray("["+farmacos+"]");
+					        boolean ok_farmacos = Operaciones.syncFarmacos(farmacos);
 					        
 					        String notas = json_data.getString("notas");
-					        JSONArray ja_notas = new JSONArray(notas);
+					        JSONArray ja_notas = new JSONArray("["+notas+"]");
 					        
-					        listdata = new ArrayList<Farmaco>();     
-//					        if (jArray != null) { 
-//					        	for (int i=0;i<jArray.length();i++){ 
-//					        		JSONObject fila = jArray.getJSONObject(i);
-//					        		int id = Integer.parseInt(fila.getString("id_farmaco"));
-//					        		String nombre_farmaco = fila.getString("nombre_farmaco");
-//					        		String nombre_fabricante = fila.getString("nombre_fabricante");
-//					        		String presentacion_farmaco = fila.getString("presentacion_farmaco");
-//					        		String tipo_presentacion = fila.getString("tipo_administracion");
-//					        		String descripcion_farmaco = fila.getString("descripcion_farmaco");
-//					        		
-//					        		Farmaco f = new Farmaco(id, nombre_farmaco, nombre_fabricante, presentacion_farmaco, tipo_presentacion, descripcion_farmaco);
-//					        		listdata.add(f);
-//					           } 
-//					        } 
-					        return true;
+					       
+					        return ok_protocolos && ok_farmacos;
 						}
 						else{
 							//Toast.makeText(this, "Error desconocido.", Toast.LENGTH_SHORT).show();
@@ -120,12 +108,12 @@ public class RecuperarTodoConexion implements ConnectionListener{
 	
 	@Override
 	public void afterGoodConnection() {
-		listener.actualizar(listdata);
+		listener.actualizar(true);
 		
 	}
 	@Override
 	public void afterErrorConnection() {
-		// TODO Auto-generated method stub
+		listener.actualizar(false);
 		
 	}
 	@Override

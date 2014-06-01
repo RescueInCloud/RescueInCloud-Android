@@ -31,7 +31,8 @@
 	              	android:layout_width="match_parent"
 	        	  	android:layout_height="match_parent"
 	              	android:paddingLeft="40dp"
-	              	android:hint="@string/et_usuario"  />
+	              	android:hint="@string/et_usuario" 
+	              	android:inputType="textEmailAddress" />
 	
 	          <ImageView
 	              android:id="@+id/idIV"
@@ -80,6 +81,8 @@
                 android:onClick="onClick"
                 android:background="@drawable/rounded_button_item"
                 android:textColor="@color/circle_button_text_color"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
           />
         
         <Button 
@@ -91,6 +94,8 @@
                	android:onClick="onClick"
                	android:background="@drawable/rounded_button_item"
                 android:textColor="@color/circle_button_text_color"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
           />
         
         <Button 
@@ -102,6 +107,8 @@
                	android:onClick="onClick"
                	android:background="@drawable/rounded_button_item"
                 android:textColor="@color/circle_button_text_color"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
           />
                    
 	</LinearLayout>

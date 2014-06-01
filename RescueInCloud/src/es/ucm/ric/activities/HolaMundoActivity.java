@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import es.ucm.ric.R;
-import es.ucm.ric.activities.listeners.Listener;
 import es.ucm.ric.dao.FarmacoDAO;
 import es.ucm.ric.model.Farmaco;
 import es.ucm.ric.peticiones.RecuperarTodoConexion;
 import es.ucm.ric.tools.AsyncConnect;
 import es.ucm.ric.tools.BaseActivity;
 
-public class HolaMundoActivity extends BaseActivity implements Listener<ArrayList<Farmaco>>{
+public class HolaMundoActivity extends BaseActivity {
 	
 	AsyncConnect connector; 
 	TextView tv;
@@ -41,20 +40,11 @@ public class HolaMundoActivity extends BaseActivity implements Listener<ArrayLis
 		switch(v.getId()){
 			case R.id.button_conexion:
 				RecuperarTodoConexion connection = new RecuperarTodoConexion(this);
-				connection.setListener(this);
 				connector = new AsyncConnect(connection,"ale7jandra.89@gmail.com","lalal");
 		        connector.execute();
 				break;
 		}
 	}
 
-	@Override
-	public void actualizar(ArrayList<Farmaco> data) {
-		
-		for (Farmaco farmaco : data) {
-			tv.append(farmaco+ "\n");
-		}
-		
-	}
 
 }

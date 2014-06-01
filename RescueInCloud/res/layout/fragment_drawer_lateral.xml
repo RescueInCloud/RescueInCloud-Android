@@ -62,7 +62,8 @@
             android:id="@+id/opcion_test"
             android:text="@string/testing"
             android:drawableLeft="@drawable/mini_diagnostico_check"
-            style="@style/Drawer_style" />
+            style="@style/Drawer_style"
+            android:visibility="invisible" />
                 
 	</LinearLayout>
 	
