@@ -38,7 +38,8 @@ y en el tipo de relacion
 				Tupla t = new Tupla();
 				t.id=id_hijo;
 				t.relacion = relacion;
-				valueObject.addHijo(id_padre,t);
+				if (id_hijo != id_padre)
+					valueObject.addHijo(id_padre,t);
 				
 			}while(cursor.moveToNext());
 			//al final hay que a�adir el valueObject a la clase protocolo
