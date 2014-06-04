@@ -17,7 +17,7 @@ public class TextParser {
 	/*devuelve un ArrayList con todas las cajas del protocolo parseadas*/
 	public ArrayList parseCaja(String line){
         ArrayList<TextInterpreter> arr= new ArrayList<TextInterpreter>();
-         String[] lines = line.split("\n");
+         String[] lines = line.split("\nid");
          TextInterpreter auxT;
          //cada line es una caja
          /*falta quitar el id y los tipos para hacerla mas efeciente*/

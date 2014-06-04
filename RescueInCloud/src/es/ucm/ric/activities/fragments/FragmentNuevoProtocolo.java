@@ -45,12 +45,13 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	private TextToSpeech tts;
 	TextView contenido;
 	public String textoFinal;
+	public int num;
 	public String tituloProtocolo;
 		
 	@Override
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
 		tts = new TextToSpeech(getActivity(), this);
-
+		num=1;
 		textoFinal="";
 		tituloProtocolo="";
 		return inflater.inflate(R.layout.fragment_protocolo, container, false);
@@ -151,7 +152,8 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
         	this.tituloProtocolo=caja.getContenido();
         }
         else{
-        	textoFinal += texto+ "\n";
+        	textoFinal += num +". "+ texto+ "\n";
+        	num++;
         }
         contenido.setText(texto);
         
