@@ -200,11 +200,11 @@ public class DrawerActivity extends BaseActivity
 	private void silenciar(){
 		if (silenciar){
 			silenciar = false;
-			Toast.makeText(this, "Sin volumen", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Con volumen", Toast.LENGTH_SHORT).show();
 		}
 		else{ 
 			silenciar=true;
-			Toast.makeText(this, "Con volumen", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Sin volumen", Toast.LENGTH_SHORT).show();
 		}
 		
 		
