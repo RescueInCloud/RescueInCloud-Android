@@ -21,30 +21,36 @@ public class Conversiones {
 		setStringsConversiones();
 		
 	}
-
+	private String getNombreBase(String unidad){
+		String aux="";
+		for(int i=1;i<unidad.length();i++){
+			aux +=unidad.charAt(i);
+		}
+		return aux;
+	}
 	private void setStringsConversiones() {
 		SFuncion K=new SFuncion() {
 			
 			@Override
 			public String Sformula(String unidad) {
-				// TODO Auto-generated method stub
-				return unidad.replace(unidad.charAt(0),'K');
+				String nombreB=getNombreBase(unidad);
+				return 'K'+nombreB;
 			}
 		};
 		SFuncion H=new SFuncion() {
 			
 			@Override
 			public String Sformula(String unidad) {
-				// TODO Auto-generated method stub
-				return unidad.replace(unidad.charAt(0),'H');
+				String nombreB=getNombreBase(unidad);
+				return 'H'+nombreB;
 			}
 		};
 		SFuncion D=new SFuncion() {
 			
 			@Override
 			public String Sformula(String unidad) {
-				// TODO Auto-generated method stub
-				return unidad.replace(unidad.charAt(0),'D');
+				String nombreB=getNombreBase(unidad);
+				return 'D'+nombreB;
 				
 				
 			}
@@ -53,34 +59,32 @@ public class Conversiones {
 			
 			@Override
 			public String Sformula(String unidad) {
-				String aux="";
-				for(int i=1;i<unidad.length();i++){
-					aux +=unidad.charAt(i);
-				}
-				return aux;
+				String nombreB=getNombreBase(unidad);
+				return nombreB;
 			}
 		};
 		SFuncion d=new SFuncion() {
 			
 			@Override
 			public String Sformula(String unidad) {
-				// TODO Auto-generated method stub
-				return unidad.replace(unidad.charAt(0),'d');
+				String nombreB=getNombreBase(unidad);
+				return 'd'+nombreB;
 			}
 		};
 		SFuncion c=new SFuncion() {
 			
 			@Override
 			public String Sformula(String unidad) {
-				// TODO Auto-generated method stub
-				return unidad.replace(unidad.charAt(0),'c');
+				String nombreB=getNombreBase(unidad);
+				return 'c'+nombreB;
 			}
 		};
 		SFuncion m=new SFuncion() {
 			
 			@Override
 			public String Sformula(String unidad) {
-				return unidad.replace(unidad.charAt(0),'m');
+				String nombreB=getNombreBase(unidad);
+				return 'm'+nombreB;
 			}
 		};
 		
