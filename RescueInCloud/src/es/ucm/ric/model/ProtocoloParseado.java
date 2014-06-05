@@ -53,7 +53,7 @@ public class ProtocoloParseado extends Protocolo{
 	/*devuelve el hijo de una caja si su relacion es si=0*/
 	public TextInterpreter getHijoParseadoSI(int id){
 		ArrayList<Tupla> hijosDeID = super.hijos.getHijos(id);
-		if (hijosDeID.size()==0)
+		if (hijosDeID == null)
 			return null;
 		for (Tupla t: hijosDeID){
 			if (t.relacion==0){
@@ -66,7 +66,7 @@ public class ProtocoloParseado extends Protocolo{
 	/*devuelve el hijo de una caja si su relacion es no=1*/
 	public TextInterpreter getHijoParseadoNO(int id){
 		ArrayList<Tupla> hijosDeID = super.hijos.getHijos(id);
-		if (hijosDeID.size()==0)
+		if (hijosDeID==null)
 			return null;
 		for (Tupla t: hijosDeID){
 			if (t.relacion==1){
