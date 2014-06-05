@@ -68,7 +68,7 @@ public class Number extends TextInterpreter{
 		                command.add(w[0].replace("id", ""));//1->id
 		                command.add(w[i]);//2->valor
 		                command.add(encontrarRelacionCantidad(cadena,w[i]));//3->rC
-		                if (i+1<w.length-1){
+		                if (i+1<w.length){
 	                     	for (int j=i;j<w.length;j++){
 	                     		texto+=w[j]+" ";
 	                     	}
