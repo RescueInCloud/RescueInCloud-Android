@@ -73,6 +73,7 @@ public class RecuperarTodoConexion implements ConnectionListener{
 						}
 						else{
 							//Toast.makeText(this, "Error desconocido.", Toast.LENGTH_SHORT).show();
+							return false;
 						}
 					
 
@@ -81,8 +82,6 @@ public class RecuperarTodoConexion implements ConnectionListener{
 						return false;
 					}
 					
-					
-					return true;
 				} else { // json obtenido invalido verificar parte WEB.
 					Log.e("JSON  ", "ERROR");
 					
