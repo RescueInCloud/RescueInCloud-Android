@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,10 +42,11 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	private ProtocoloParseado pp;
 	private ViewGroup contenedor;
 	private Spinner spinner;
+	private ScrollView scroll;
 	private ArrayAdapter<String> LTRadapter;
-	TextInterpreter caja;
+	private TextInterpreter caja;
 	private TextToSpeech tts;
-	TextView contenido;
+	private TextView contenido;
 	public String textoFinal;
 	public int num;
 	public String tituloProtocolo;
@@ -63,7 +66,7 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 		super.onActivityCreated(state);
 		
 		contenedor = (ViewGroup) getActivity().findViewById(R.id.contenedor);
-
+		scroll = (ScrollView) getActivity().findViewById(R.id.scroll);
 		String id = getArguments().getString("ID");
 		
 		Protocolo p = new ProtocoloDAO().get(id);
@@ -79,8 +82,6 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	}
 	
 	private void addItem(final TextInterpreter caja) {
-		
-		
 		
 		boolean decision = pp.esCajaDecision(caja.getId());
 		
@@ -372,6 +373,17 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
         // Because mContainerView has android:animateLayoutChanges set to true,
         // adding this view is automatically animated.
         contenedor.addView(newView);
+        
+        Runnable runnable = new Runnable() {
+    	   @Override
+    	   public void run() {
+    		   scroll.fullScroll(View.FOCUS_DOWN);
+    	   }
+    	};
+        	
+        Handler handler = new Handler();
+        handler.postDelayed(runnable, 500);
+        
     }
 
 	
@@ -410,7 +422,7 @@ public class FragmentNuevoProtocolo extends Fragment implements TextToSpeech.OnI
 	private void unidadSeleccionada(int pos,TextInterpreter caja){
 		String unidad=((es.ucm.ric.parser.NumberUnit)caja).getUnidad();
 		char prefijo=unidad.charAt(0);
-		/*depende del valor que sea el primer chat estoy en un rango de unidad y ejecuto una función u otra*/
+		/*depende del valor que sea el primer chat estoy en un rango de unidad y ejecuto una funciï¿½n u otra*/
 		boolean anyadir=false;
 		if (prefijo == 'k' || prefijo == 'K'){
 			anyadir=cambioUnidadesK(pos,caja);

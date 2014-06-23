@@ -11,7 +11,6 @@ import org.json.JSONObject;
 import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
-import es.ucm.ric.dao.FarmacoDAO;
 import es.ucm.ric.model.Farmaco;
 import es.ucm.ric.tools.HttpPostConnector;
 

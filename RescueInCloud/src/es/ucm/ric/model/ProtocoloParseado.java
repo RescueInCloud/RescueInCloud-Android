@@ -2,7 +2,6 @@ package es.ucm.ric.model;
 
 import java.util.ArrayList;
 
-import es.ucm.ric.parser.RelacionCantidadMayor;
 import es.ucm.ric.parser.TextInterpreter;
 
 public class ProtocoloParseado extends Protocolo{

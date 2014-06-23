@@ -7,6 +7,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ import es.ucm.ric.tools.BaseActivity;
 public class DrawerActivity extends BaseActivity
 	implements ICambiarFragmentListener<IListable>{
 	
+	
+	private final String SILENCE = "silencio";
 	
 	public static final int ABRIR_PAGINADOR = 0;
 	public static final int ABRIR_DETALLE_FARMACO = 1;
@@ -100,6 +103,11 @@ public class DrawerActivity extends BaseActivity
 		FragmentListaProtocolos f = new FragmentListaProtocolos();
 		f.setListener(this);
 		cambiarFragment(f);
+		
+		//Cargar la configuracion de silencio
+
+		SharedPreferences prefs = this.getSharedPreferences(MyApp.PREFERENCES_FILE, Context.MODE_PRIVATE);
+		silenciar = prefs.getBoolean(SILENCE, true); 
 		
 	}
 	
@@ -206,6 +214,12 @@ public class DrawerActivity extends BaseActivity
 			silenciar=true;
 			Toast.makeText(this, "Sin volumen", Toast.LENGTH_SHORT).show();
 		}
+		
+		SharedPreferences prefs = this.getSharedPreferences(MyApp.PREFERENCES_FILE, Context.MODE_PRIVATE);
+		Editor editor = prefs.edit();
+		editor.putBoolean(SILENCE, silenciar);
+		editor.apply();
+		
 		
 		
 	}
